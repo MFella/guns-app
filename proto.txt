@@ -1,0 +1,7 @@
+// Guns guns guns -> 73 Guns
+
+1. Authentication -> admin & user
+2. Provide API?
+3. CRUD system
+4. Add/Delete comment(for gun)
+
