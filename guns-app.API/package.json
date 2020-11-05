@@ -8,15 +8,18 @@
     "start": "node app"
   },
   "dependencies": {
-    "express": "*",
-    "mongoose": "*",
     "bcryptjs": "*",
-    "cors": "*",
-    "jsonwebtoken": "*",
     "body-parser": "*",
+    "cors": "*",
+    "express": "*",
+    "jsonwebtoken": "*",
+    "mongoose": "*",
     "passport": "*",
-    "passport-jwt": "*"
+    "passport-jwt": "^4.0.0"
   },
   "author": "Cezary Wrzesinski",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "cross-env": "^7.0.2"
+  }
 }

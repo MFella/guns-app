@@ -24,15 +24,22 @@ const users = require('./routes/users');
 const port = 3000;
 
 //CORS Middleware
-app.use(cors({
-    origin: 'http://localhost:4200'
-}));
+// app.use(cors({
+//     origin: 'http://localhost:4200'
+// }));
+app.use(cors());
 
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Body Parser Middleware
 app.use(bodyParser.json());
+
+//Passport middleware
+app.listenerCount(passport.initialize());
+app.listenerCount(passport.session());
+
+require('./config/passport')(passport);
 
 app.use('/users', users);
 
