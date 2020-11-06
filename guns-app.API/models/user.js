@@ -16,10 +16,6 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    emailRepeat: {
-        type: String,
-        required: true
-    },
     date:
     {
         type: Date,
@@ -28,11 +24,7 @@ const UserSchema = mongoose.Schema({
     password: {
         type: String,
         required: true
-    },     
-    passwordRepeat: {
-        type: String,
-        required: true
-    },
+    }
 });
 
 const User = module.exports = mongoose.model('User', UserSchema);
@@ -48,6 +40,8 @@ module.exports.getUserByEmail = (email, callback) => {
 
 module.exports.addUser = (newUser, callback) => {
 
+    console.log(newUser);
+
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => { 
 
@@ -61,7 +55,7 @@ module.exports.addUser = (newUser, callback) => {
 
 module.exports.verifyCreds = async(emailFromReq, passwordFromReq, callback) => {
 
-    const user = await User.findOne({email: emailFromReq});
+    const user = await User.findOne({email: emailFromReq}); 
     if(user)
     {
         const compare = await bcrypt.compare(user.password, passwordFromReq);
@@ -80,5 +74,21 @@ module.exports.comparePassword = (pass, hash, callback) =>
         if(err) throw err;
         callback(null, isMatch);
     });
+
+}
+
+module.exports.userExists = (user) => 
+{ 
+    //console.log(user.email);
+    User.findOne({email: user.email}, (err, user) => {
+
+        //console.log(user);
+        if(err) throw err;
+
+        if(user)
+        {
+            return true;
+        } else return false;
+    })
 
 }

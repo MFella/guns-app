@@ -6,6 +6,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
 
+require('./config/passport')(passport);
 
 mongoose.connect(config.database);
 
@@ -39,7 +40,7 @@ app.use(bodyParser.json());
 app.listenerCount(passport.initialize());
 app.listenerCount(passport.session());
 
-require('./config/passport')(passport);
+//
 
 app.use('/users', users);
 
@@ -47,6 +48,7 @@ app.use('/users', users);
 app.get('/', (req, res) => {
     res.send('Invalid Endpoint');
 });
+
 
 //Start Server
 app.listen(port, () => {

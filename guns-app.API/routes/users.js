@@ -9,27 +9,30 @@ const User = require('../models/user');
 
 //Register
 router.post('/register', async (req, res, next) => {
-    //res.send('REGISTER');
-    // let newUser = new User({
-    //     name: req.body.name,
-    //     surname: req.body.surname,
-    //     email: req.body.email,
-    //     emailRepeat: req.body.emailRepeat,
-    //     dateOfBirth: req.body.dateOfBirth,
-    //     password: req.body.password,
-    //     passwordRepeat: req.body.passwordRepeat
-    // });
+
     let newUser = new User(req.body);
 
-    User.addUser(newUser, (err, user) => {
-        if(err)
+    User.getUserByEmail(newUser.email, (err, user) => 
+    {
+        if(err){console.log(err)}
+
+        if(user)
         {
-            res.json({success: false, msg: 'Failed to register user'})
-        } else
-        {
-            res.json({success: true, msg: 'User registered'})
-        } 
-    });
+            res.json({success: false, msg: 'Email already exists!'});
+            return;
+        }
+
+            User.addUser(newUser, (err, user) => { 
+                if(err)
+                {
+                    res.json({success: false, msg: 'Failed to register user'})
+                } else 
+                {
+                    res.json({success: true, msg: 'User registered'})
+                } 
+            });
+    })
+
 });
 
 router.post('/login', (req,res,next) => {
@@ -79,7 +82,7 @@ router.post('/login', (req,res,next) => {
 
 //Profile
 router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
-    console.log('xD')
+
     res.json({user: req.user});
 });
 
