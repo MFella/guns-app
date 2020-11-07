@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap');
+$transHow: skewX(-10deg);
+$transCol: #1e5200;
+
+nav
+{
+    font-family: 'Lato', sans-serif;
+    background-image: linear-gradient(to left top, #f0ad4e, #c0dfbd);
+    background-image: linear-gradient(70deg, #D9AFD9 0%, #97D9E1 100%);
+    height:4rem;
+    font-weight: 700;
+}
+
+.nav-link{
+
+    &:hover{
+        cursor:pointer;
+    }
+}
+
+.navbar-brand
+{
+    padding-top: .4em;
+    transform: $transHow;
+    color: $transCol;
+    font-size: 2rem;
+    //eight:3rem;
+    transition: all .35s;
+    transform: skewX(4deg);
+    
+    &:hover
+    {
+        color: #389900;
+        transform: skewX(4deg);
+    }
+}
+
+.nav-link
+{
+    font-size: 1.3rem;
+    color: rgb(37, 28, 28)
+}
+
+.navbar-nav > li{
+    border-radius: .8rem;
+    margin-left: 2rem;
+    width:8rem;
+    text-align: center;
+    transition: all .4s;
+    &:hover
+    {
+        transform: translateY(-.1rem);
+        //background-color: #e7b2e7;
+        box-shadow: -2px -2px 27px -3px rgba(0,0,0,0.75);
+    }
+
+    &:target
+    {
+        display: none;
+    }
+}
+
+.nav-item.active
+{
+    //animation: activeRoute 3s linear infinite;
+    transition: all 10s;
+    pointer-events: none;
+    background-color: #D9AFD9;
+    animation-name: activeRoute;
+    animation-iteration-count: 1;
+    animation-duration: .3s;
+    animation-fill-mode: forwards; 
+    //box-shadow: inset 0px 0px 6px -1px rgba(0,0,0,0.75);
+}
+
+
+.logo_wolf
+{
+    width: 4rem;
+    padding-bottom:.3rem;
+    //display: none;
+}
+
+.slideIn {
+    -webkit-animation-name: slideIn;
+    animation-name: slideIn;
+    a{
+        transition: all .35s;
+
+        &:hover
+        {
+            background-color: #f0ad4e;
+        }
+
+    }
+}
+
+#navbarSupportedContent
+{
+    z-index: 1;
+}
+
+@media (min-width: 992px) {
+    .animate {
+      animation-duration: 0.3s;
+      -webkit-animation-duration: 0.3s;
+      animation-fill-mode: both;
+      -webkit-animation-fill-mode: both;
+    }
+  }
+
+@media only screen and (max-width: 576px) and (min-width:433px)
+{
+    .form-control
+    {
+        //display: none;
+        width:12.5rem;
+    }
+}
+
+@media only screen and (max-width: 432px) and (min-width:200px)
+{
+    .form-control
+    {
+        //display: none;
+        width:10rem;
+    }
+
+    a.navbar-brand
+    {
+        display: none;
+    }
+}
+
+@keyframes activeRoute
+{
+    0%{
+        box-shadow: none;
+    }
+
+    50%{
+        box-shadow: inset 2px 2px 4px -2px rgba(0,0,0,0.75);
+    }
+
+    100%{
+        box-shadow: inset 2px 2px 4px -1px rgba(0,0,0,0.75);
+    }
+}
+
+@keyframes slideIn {
+    0% {
+      transform: translateY(1rem);
+      opacity: 0;
+    }
+    100% {
+      transform:translateY(0rem);
+      opacity: 1;
+    }
+    0% {
+      transform: translateY(1rem);
+      opacity: 0;
+    }
+  }

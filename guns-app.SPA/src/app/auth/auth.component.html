@@ -1,0 +1,20 @@
+<main>
+<form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="text-center mb-4">
+   </div>
+
+   <h1>Log Yourself!</h1>
+   <hr>
+    <div class="form-label-group">
+      <input type="text" id="inputEmail" class="form-control" placeholder="" formControlName="email" required>
+      <label for="inputEmail">Email address</label>
+    </div>
+
+    <div class="form-label-group">
+      <input type="password" id="inputPassword" class="form-control" placeholder="" formControlName="password" required>
+      <label class="passLabel" for="inputPassword">Password</label>
+    </div>
+    <button class="btn btn-lg btn-info btn-block" [disabled]="this.loginForm.invalid" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-muted text-center">© 73Guns</p>
+  </form>
+</main> 

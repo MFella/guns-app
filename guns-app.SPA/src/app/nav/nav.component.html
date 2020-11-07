@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg" #nL>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" [routerLink]="['']"> <img class="logo_wolf" src="../../assets/wolf-icon.png" alt="Logo"> 73Guns</a>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link" [routerLink]="['/']">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">Search</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" *ngIf="this.authServ.currentUser === null">
+            <a class="nav-link" [routerLink]="['login']" >Login</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" *ngIf="this.authServ.currentUser === null">
+          <a class="nav-link" [routerLink]="['register']" >Register</a>
+        </li>
+        <!-- <li class="nav-item" *ngIf="this.authServ.currentUser == null">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Logged as...</a>
+        </li>
+        <li class="nav-item" *ngIf="this.authServ.currentUser !== null">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">{{this.authServ?.currentUser?.surname}}</a>
+        </li> -->
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="this.authServ.currentUser !== null">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Click Me!
+            </a>
+              <!-- Here's the magic. Add the .animate and .slide-in classes to your .dropdown-menu and you're all set! -->
+              <div class="dropdown-menu dropdown-menu-right animate slideIn text-center" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#"> <i class="fa fa-cogs pr-2"></i> Settings <i class="fa fa-cogs pr-2" style="transform: rotateY(180deg)"></i></a>
+                <a class="dropdown-item" href="#"><i class="fa fa-user pr-2"></i> Profile <i class="fa fa-user pl-2"></i></a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" (click)="this.authServ.logout()">Log<strong>out</strong></a>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </ul>
+    </div>
+  </nav>

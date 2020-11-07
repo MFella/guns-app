@@ -1,0 +1,123 @@
+main
+{
+    padding-top: 2rem;
+    height: calc(100vh - 6.7rem);
+    background-image: url("../../assets/login_back.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+h1{
+   // height:5rem;
+   margin-top: auto;
+   margin-bottom: auto;
+}
+
+
+
+.form-signin
+{
+    background-image: url("../../assets/register_back.png");
+    width: 200vw;
+    //max-width: 420px;
+    max-width: 70rem;
+    padding: 2rem;
+    margin: 0 auto;
+    //margin-top: 2rem;
+    padding-bottom: 2rem;
+    border-radius: .6rem;
+    box-shadow: 2px 6px 69px -19px rgba(0,0,0,1);
+
+    label
+    {
+        position: absolute;
+        transform: translateX(.7rem) translateY(-4.2rem);
+        transition: all .4s;
+        font-size: 1.4rem;
+        pointer-events: none;
+        cursor: text;
+        opacity: .6;
+    }
+
+    input, select   
+    {
+        background-color: #d9dbfc;
+        border-radius: .4rem;
+        border: none;
+        border-bottom: 2px black solid;
+        opacity: .7;
+        transition: all .4s;
+        margin-bottom: 2rem;
+        font-weight: 1000;
+
+        &:valid
+        {
+            opacity: 1;
+        }
+    }
+
+    input:focus
+    {
+        opacity: 1;
+        transform: translateY(-.1rem);
+        box-shadow: -3px 9px 28px -11px rgba(0,0,0,0.75);
+    }
+
+    input:focus ~ label,
+    input:valid ~ label,
+    select:focus ~ label,
+    select:valid ~ label
+    {       
+            transform: translateX(.6rem) translateY(-1.7rem);
+            font-size: 1rem;
+            cursor: default;
+            opacity: 1;
+    }
+
+    button:disabled
+    {
+        transition: all .5s;
+        opacity: .4;
+    }
+
+    button:enabled
+    {
+        transition: all .5s;
+        opacity: 1;
+    }
+
+}
+
+.col-md-6, .col-md-4
+{
+    padding-bottom: 1rem;
+}
+
+button.btn
+{
+    margin: 0 auto;
+    max-width: 30vw;
+}
+
+input, select, input:focus, select:focus
+{
+    background-color: #d9dbfc;
+    border-radius: .7rem;
+}
+
+*:focus
+{
+    box-shadow: none;
+}
+
+.inv_feed
+{
+    position: relative;
+    //transform: translateX(40rem) translateY(-5.5rem);
+
+    ul
+    {
+        list-style-type: none;
+    }
+} 

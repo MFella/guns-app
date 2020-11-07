@@ -1,0 +1,9 @@
+<app-nav></app-nav>
+<app-search></app-search>
+<main [@routeAnimations]="prepareRoute(outlet)">
+    <router-outlet #outlet="outlet">
+    </router-outlet>
+    <!-- <app-footer></app-footer> -->
+</main>
+
+ 

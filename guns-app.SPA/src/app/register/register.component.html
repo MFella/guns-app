@@ -1,0 +1,138 @@
+<main>
+<form [formGroup]="registerForm" class="form-signin" (ngSubmit)="register()">
+    <div class="text-left mb-4 d-flex justify-content-around card_head">      
+      <h1 class="h3 mb-4 font-weight-bold"><i class="fa fa-users mr-5" style="font-size:3rem;"></i>Register Yourself! </h1>
+      <span class="inv_feed">
+        <ul class="list-group">
+          <li>
+            <i class="fa fa-arrow-right pr-2"
+            [ngStyle]="{'color': ((this.apprFormat[2] && this.apprFormat[3])? 'black': 'red')}"
+            ></i>
+            <span
+            [ngStyle]="{'color': (this.apprFormat[2])? 'black' : 'red'}"
+            >
+              Name  
+            </span>
+            and
+            <span
+            [ngStyle]="{'color':(this.apprFormat[3])? 'black': 'red'}"
+            >
+               surname
+            </span>
+
+            should contains 
+            
+            <span [ngStyle]="{'color': (this.registerForm.get('name').errors?.pattern != null || 
+            this.registerForm.get('surname').errors?.pattern != null || 
+            this.registerForm.get('name').errors?.pattern != null || 
+            this.registerForm.get('surname').errors?.pattern != null)? 'red': 'black'}">only letters</span> 
+            
+            and length between 
+            
+             <span [ngStyle]="{'color': (this.registerForm.get('name').errors?.minlength != null || 
+              this.registerForm.get('surname').errors?.minlength != null || 
+              this.registerForm.get('name').errors?.maxlength != null || 
+              this.registerForm.get('surname').errors?.maxlength != null)? 'red': 'black'}">2 and 40</span> 
+            
+          </li>
+          <li>
+            <i class="fa fa-arrow-right pr-2"
+             [ngStyle]="{'color': (this.apprFormat[0]? 'black': 'red')}"
+            ></i>
+            Password have to contains 
+             <span [ngStyle]="{'color': (this.apprFormat[0]? 'black': 'red')}">
+             small letters, capital letters, number and special signs.
+             </span>
+           </li>
+          <li>
+            <i class="fa fa-arrow-right pr-2"
+               [ngStyle]="{'color': '' + ((this.registerForm.errors?.mismatchEmail === true && this.registerForm.get('email').touched 
+               && this.registerForm.get('emailRepeat').touched) || (this.registerForm.errors?.mismatchPassword === true && this.registerForm.get('password').touched 
+               && this.registerForm.get('passRepeat').touched)? 'red': 'black')}"
+            ></i>
+            <span [ngStyle]="{'color': '' + ((this.registerForm.errors?.mismatchEmail === true && this.registerForm.get('email').touched 
+            && this.registerForm.get('emailRepeat').touched) ? 'red' : 'black')}">Email, repeat email</span>
+            , and 
+            <span [ngStyle]="{'color': '' + ((this.registerForm.errors?.mismatchPassword === true && this.registerForm.get('password').touched 
+            && this.registerForm.get('passRepeat').touched) ? 'red' : 'black')}"> password, repeat password</span> have to match.
+           </li>
+          <li>
+           <i class="fa fa-arrow-right pr-2"
+             [ngStyle]="{'color': '' + (this.apprFormat[1]? 'black': 'red')}"
+           ></i>
+           <span [ngStyle]="{'color': '' + (this.apprFormat[1]? 'black': 'red')}">Appropriate format</span> 
+           of email is required </li>
+
+           <li>
+             <i class="fa fa-arrow-right pr-2"
+             [ngStyle]="{'color': '' + (this.apprFormat[4]? 'black': 'red')}"
+             ></i>
+             At least 
+            <span [ngStyle]="{'color': ''+(this.apprFormat[4]? 'black': 'red')}"> 18 years old</span> 
+           </li>
+        </ul>
+      </span>
+ </div>
+
+
+
+<hr>
+
+ <div class="row">
+   <div class="col-md-6">
+    <div class="form-label-group">
+      <input type="text" id="inputName" class="form-control" placeholder="" formControlName="name" required (change)="updateFormat()">
+      <label for="inputEmail">Name</label>
+    </div>
+   </div>
+
+
+   <div class="col-md-6">
+    <div class="form-label-group">
+      <input type="text" id="inputSurname" class="form-control" placeholder="" formControlName="surname" required (change)="updateFormat()">
+      <label for="inputEmail">Surname</label>
+    </div>
+   </div>
+
+   <div class="col-md-4">
+    <div class="form-label-group">
+      <input type="text" id="inputEmail" class="form-control" placeholder="" formControlName="email" required (change)="updateFormat()"> 
+      <label for="inputEmail">Email address</label>
+    </div>
+   </div>
+
+   <div class="col-md-4">
+    <div class="form-label-group">
+      <input type="text" id="inputLogin" class="form-control" placeholder="" formControlName="emailRepeat" required (change)="updateFormat()">
+      <label for="inputEmail">Repeat email</label>
+    </div>
+   </div>
+
+    <div class="col-xs-12 col-12 col-md-4 form-group">
+      <input type="text"
+             placeholder="Datepicker"
+             class="form-control"
+             bsDatepicker
+             [bsConfig]="{ isAnimated: true, containerClass: 'theme-blue', dateInputFormat: 'DD-MM-YYYY' }"
+             placement="top" formControlName="date" (onHidden)="updateFormat()">
+    </div>
+
+  <div class="col-md-6">
+    <div class="form-label-group">
+      <input type="password" id="inputPassword" class="form-control" formControlName="password" required (change)="updateFormat()">
+      <label for="inputPassword">Password</label>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="form-label-group">
+      <input type="password" id="inputPassword" class="form-control" formControlName="passRepeat" required (change)="updateFormat()">
+      <label for="inputRepeatPassword">Repeat password</label>
+    </div>
+  </div>
+
+    <button class="btn btn-warning btn-block" type="submit" [disabled]="this.registerForm.invalid">Register</button>
+  </div>
+
+  </form>
+</main>

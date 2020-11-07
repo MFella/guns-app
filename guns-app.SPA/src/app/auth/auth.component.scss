@@ -1,0 +1,140 @@
+$bgInputCol: #ffe2ca;
+
+main
+{
+    padding-top: 2rem;
+    height: calc(100vh - 6.7rem);
+    background-image: url("../../assets/register_back.png");
+    background-repeat: no-repeat;
+    //background-size: 28.80rem 18.80rem;
+    //background-size: 100.8rem 45.8rem;
+    background-size: cover;
+}
+
+h1{
+    text-align: center;
+    transform: skewX(7deg);
+    animation-name: nonsense;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    padding-bottom: 1rem;
+}
+
+.form-signin
+{
+
+    button
+    {
+        margin-top: 2.6rem;
+        width:20rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    button:disabled
+    {
+        transition: all .5s;
+        opacity: .4;
+    }
+
+    button:enabled
+    {
+        transition: all .5s;
+        opacity: 1;
+    }
+
+    background-image: url('../../assets/login_back.png');
+    position: relative;
+    width: 30rem;
+    //max-width: 420px;
+    padding: 2rem;
+    margin: 0 auto;
+    margin-top: 6vh;
+    border-radius: 1rem;
+    box-shadow: 2px 6px 69px -19px rgba(0,0,0,1)
+
+
+}
+
+*:focus
+{
+    background-color: $bgInputCol;
+    box-shadow: none;
+}
+
+.form-label-group
+{
+    padding-top: .7rem;
+
+    label
+    {
+        position: absolute;
+        transform: translateX(.8rem) translateY(-2.2rem);
+        transition: all .4s;
+        font-size: 1.4rem;
+        pointer-events: none;
+        cursor: text;
+        opacity: .6;
+        
+    }
+
+    input:focus ~ label,
+    input:valid ~ label
+    {
+            transform: translateX(0rem) translateY(0rem);
+            font-size: 1rem;
+            cursor: default;
+            opacity: 1;
+    }
+
+    input   
+    {
+        background-color: $bgInputCol;
+        border-radius: .4rem;
+        border: none;
+        border-bottom: 2px black solid;
+        opacity: .7;
+        transition: all .4s;
+
+        &:valid
+        {
+            opacity: 1;
+        }
+    }
+
+    input:nth-child(odd)
+    {
+        margin-top: 1.4rem;
+    }
+    
+    input:focus
+    {
+        opacity: 1;
+        transform: translateY(-.1rem);
+        box-shadow: -3px 9px 28px -11px rgba(0,0,0,0.75);
+    }
+}
+
+@keyframes nonsense
+{
+    0%{
+        transform: translateX(0rem) skewX(0deg);
+    }
+    25%{
+        transform: translateX(-6.5rem) skewX(7deg);
+        opacity:.7;
+    }
+    50%{
+        transform: translateX(0rem) skewX(0deg);
+        opacity: .7;
+    }
+    75%{
+        transform: translateX(6.5rem) skewX(-7deg);
+        opacity: .7;
+    }
+    100%{
+        transform: translateX(0rem) skewX(0deg);
+        opacity: 1;
+    }
+}

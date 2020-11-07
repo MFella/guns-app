@@ -1,0 +1,70 @@
+<main>
+<div class="container pt-4">
+
+  <p class="text-center pt-2 pb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac sodales ex. 
+    Suspendisse interdum mauris eu nulla accumsan, eu mattis tortor cursus. Curabitur vel diam in lectus sagittis blandit 
+    et non dui. Maecenas tincidunt tellus enim, vel consectetur nibh hendrerit in. Vivamus non ultricies dui. 
+    Aliquam interdum, nibh finibus semper rhoncus, lectus tellus tristique felis, vel mattis est massa a mauris. 
+    Etiam arcu est, tincidunt interdum magna in, tempus iaculis ligula. Ut sollicitudin nulla in nibh ultrices bibendum.</p>
+
+    <p class="text-center pt-2 pb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac sodales ex. 
+      Suspendisse interdum mauris eu nulla accumsan, eu mattis tortor cursus. Curabitur vel diam in lectus sagittis blandit 
+      et non dui. Maecenas tincidunt tellus enim, vel consectetur nibh hendrerit in. Vivamus non ultricies dui. 
+      Aliquam interdum, nibh finibus semper rhoncus, lectus tellus tristique felis, vel mattis est massa a mauris. 
+      Etiam arcu est, tincidunt interdum magna in, tempus iaculis ligula. Ut sollicitudin nulla in nibh ultrices bibendum.</p>
+
+      <p class="text-center pt-2 pb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac sodales ex. 
+        Suspendisse interdum mauris eu nulla accumsan, eu mattis tortor cursus. Curabitur vel diam in lectus sagittis blandit 
+        et non dui. Maecenas tincidunt tellus enim, vel consectetur nibh hendrerit in. Vivamus non ultricies dui. 
+        Aliquam interdum, nibh finibus semper rhoncus, lectus tellus tristique felis, vel mattis est massa a mauris. 
+        Etiam arcu est, tincidunt interdum magna in, tempus iaculis ligula. Ut sollicitudin nulla in nibh ultrices bibendum.</p>
+        
+      <p class="text-center pt-2 pb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac sodales ex. 
+        Suspendisse interdum mauris eu nulla accumsan, eu mattis tortor cursus. Curabitur vel diam in lectus sagittis blandit 
+        et non dui. Maecenas tincidunt tellus enim, vel consectetur nibh hendrerit in. Vivamus non ultricies dui. 
+        Aliquam interdum, nibh finibus semper rhoncus, lectus tellus tristique felis, vel mattis est massa a mauris. 
+        Etiam arcu est, tincidunt interdum magna in, tempus iaculis ligula. Ut sollicitudin nulla in nibh ultrices bibendum.</p>
+
+    <div class="row justify-content-right" *ngIf="this.authServ.currentUser === null">
+        <div class="col-sm-6 d-flex flex-row">
+          <div class="card" [routerLink]="['/login']">
+            <div class="card-body authCard">
+              <h2 class="card-title text-center"><i class="fa fa-arrow-left"></i> Login</h2>
+              <p class="card-text text-center">If you have already an account.</p>
+              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 d-flex flex-row-reverse">
+          <div class="card" [routerLink]="['/register']">
+            <div class="card-body authCard">
+              <h2 class="card-title text-center">Register <i class="fa fa-arrow-right"></i></h2>
+              <p class="card-text text-center">If you haven't got account yet.</p>
+              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-xs-3">
+            <img src="../../assets/gun2.svg" class="rounded mx-auto d-block gun_l" alt="Gun">
+        </div>
+        <div class="col-xs-3 d-flex align-content-end mt-auto temp1">
+            <span class="genHead"  (mouseenter)="gunsEnter()">73Guns</span>
+        </div>
+        <div class="col-xs-3">
+            <img src="../../assets/gun2.svg" class="rounded mx-auto d-block gun_r" alt="Gun">
+        </div>
+        <!-- <span class="text-center mt-2 quote">"It's all mirror, mirror on the wall because beauty is power the same way money is power the same way a gun is power."</span> -->
+
+    </div>
+    <blockquote class="blockquote text-center pb-4 m-0">
+      <p class="mb-0 mt-2 quote">You don't spread democracy with a barrel of a gun.</p>
+      <footer class="blockquote-footer">Helen Thomas</footer>
+    </blockquote>
+
+</div>
+</main>
+
+<app-footer></app-footer>

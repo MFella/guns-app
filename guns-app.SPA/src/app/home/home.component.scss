@@ -1,0 +1,76 @@
+
+main
+{
+    //height: calc(100vh - 6.7rem);
+    background-image: linear-gradient(50deg, #70e1f5 0%, #ffd194 100%);
+    background-repeat: no-repeat;
+    //background-size: 28.80rem 18.80rem;
+    background-size: cover;
+    margin: auto auto;
+}
+// .container
+// {
+//     height: calc(100vh - 6.7rem);
+//     background-image: url("../../assets/bullets.jpg");
+//     background-repeat: no-repeat;
+// }
+
+.genHead
+{
+    font-size: 5rem;
+    transform: skewX(-10deg);
+    color: #417523;
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.gun_r{
+    transition: all .5s;
+    transform: scaleX(-1);
+
+}
+.temp1:has(span:hover){
+
+display: none;
+}
+
+.card{
+    border-radius: 2rem;
+    border:none;
+    outline: none;
+}
+
+.authCard
+{
+    transition: all .4s;
+    border-radius: inherit;
+    width: 25vw;
+    box-shadow: 4px 6px 48px -14px rgba(0,0,0,0.75);
+    background-color: #dcffca;
+    //background-color: inherit;
+    &:hover
+    {
+        background-color: #5cb85c;
+        cursor: pointer;
+    }
+}
+
+.col-sm-6:nth-child(odd)
+{
+    display:flex;
+    text-align: center;
+}
+
+.quote
+{
+    transform: skewX(-10deg);
+}
+
+
+
+@media only screen and (max-width:1000px){
+    .genHead{
+        font-size: 3rem;
+    }
+}
