@@ -44,6 +44,7 @@ export class AuthComponent implements OnInit {
       }, (err) => 
       {
         this.izi.error(`Some error occured: ${err}`);
+        console.log(err);
       }, () => {
         //automatically log in!
        this.router.navigate(['/']);

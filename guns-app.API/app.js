@@ -6,6 +6,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
 
+require('./config/passport')(passport);
 
 mongoose.connect(config.database);
 
@@ -20,13 +21,14 @@ mongoose.connection.on('error', (err) => {
 const app = express();
 
 const users = require('./routes/users');
-
+const guns = require('./routes/gun');
 const port = 3000;
 
 //CORS Middleware
-app.use(cors({
-    origin: 'http://localhost:4200'
-}));
+// app.use(cors({
+//     origin: 'http://localhost:4200'
+// }));
+app.use(cors());
 
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -34,15 +36,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Body Parser Middleware
 app.use(bodyParser.json());
 
+//Passport middleware
+app.listenerCount(passport.initialize());
+app.listenerCount(passport.session());
+
+//
+
 app.use('/users', users);
+app.use('/guns', guns);
 
 // Index Route
 app.get('/', (req, res) => {
     res.send('Invalid Endpoint');
 });
 
+
 //Start Server
 app.listen(port, () => {
     console.log('Server started on port ' + port );
 });
-

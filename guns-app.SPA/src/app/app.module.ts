@@ -17,17 +17,19 @@ import { NgxIziToastModule } from 'ngx-izitoast';
 import { AuthService } from './_services/auth.service';
 import { AuthInterceptorInterceptor } from './_services/auth-interceptor.interceptor';
 import { FooterComponent } from './footer/footer.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
-  declarations: [	
+  declarations: [		
     AppComponent,
     NavComponent,
     AuthComponent,
     HomeComponent,
     RegisterComponent,
     SearchComponent,
-      FooterComponent
+      FooterComponent,
+      ProfileComponent
    ],
   imports: [
     HttpClientModule,

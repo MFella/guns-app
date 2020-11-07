@@ -1,0 +1,69 @@
+
+html, body
+{
+    height: 100%;
+}
+
+.cont
+{
+    //margin-top: 10rem;    
+    background-image: url('../../assets/login_back.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    height: 100vh;
+}
+
+.card
+{
+    width: 70%;
+}
+
+img
+{
+    width: 220px;
+    height: 220px;
+    border: 1px solid black;
+    //border-radius: 4rem;
+}
+
+.userImage
+{
+    transition: all .4s;
+
+    &:hover
+    {
+        opacity: .2;
+        //cursor: pointer;
+        ~i{
+            cursor: pointer;
+            //pointer-events: none;
+            display: inline-block;
+            //transform: translate(-7.5rem, 0rem) scale(2.5);
+            color: white;
+            animation: uppAni 1s forwards ease;
+        }
+    }
+
+    ~i{
+        display: none;
+    }
+
+    ~i:hover
+    {
+        cursor: pointer;
+        pointer-events: auto;
+        display: inline-block;
+        transform: translate(-8.5rem, 4rem) scale(1.5);
+    }
+    
+}
+
+@keyframes uppAni
+{
+    0%{transform: translate(-8.5rem, 5rem) scale(1.5); opacity: 0}
+    100%{transform: translate(-8.5rem, 4rem) scale(1.5); opacity: 1}
+}
+

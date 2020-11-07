@@ -5,17 +5,23 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app"
+    "start": "node app",
+    "seed": "node seeder.js"
   },
   "dependencies": {
-    "express": "*",
-    "mongoose": "*",
     "bcryptjs": "*",
-    "cors": "*",
-    "jsonwebtoken": "*",
     "body-parser": "*",
+    "cors": "*",
+    "dependency": "0.0.1",
+    "express": "*",
+    "install": "^0.13.0",
+    "jsonwebtoken": "*",
+    "mongoose": "*",
+    "mongoose-seed": "^0.6.0",
     "passport": "*",
-    "passport-jwt": "*"
+    "passport-jwt": "*",
+    "to": "^0.2.9",
+    "v-response": "^1.1.0"
   },
   "author": "Cezary Wrzesinski",
   "license": "ISC"
