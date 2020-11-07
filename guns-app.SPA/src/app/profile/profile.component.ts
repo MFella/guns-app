@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../_services/auth.service';
 import { IziAlertService } from '../_services/iziAlert.service';
 
 @Component({
@@ -8,9 +9,10 @@ import { IziAlertService } from '../_services/iziAlert.service';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(public izi: IziAlertService) { }
+  constructor(public izi: IziAlertService, public authServ: AuthService) { }
 
   ngOnInit() {
+    console.log(this.authServ.currentUser);
   }
 
 }

@@ -6,13 +6,16 @@ import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { SearchComponent } from './search/search.component';
 import { AuthGuard } from './_guards/auth.guard';
+import { SearchResolver } from './_resolvers/search.resolver';
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent, data: {animation: 'home'}},
   {path: 'login', component: AuthComponent, data: {animation: 'isLeft'}},
   {path: 'register', component: RegisterComponent, data: {animation: 'isRight'}},
-  {path: 'search', component: SearchComponent, data: {animation: 'isRight'}},
+  {path: 'search', component: SearchComponent, data: {animation: 'isRight'}, resolve:{
+    gun: SearchResolver
+  }},
   {path: 'profile', component: ProfileComponent, data: {animation: 'isLeft'},  canActivate: [AuthGuard]}
 ];
 

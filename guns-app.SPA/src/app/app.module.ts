@@ -19,6 +19,7 @@ import { AuthInterceptorInterceptor } from './_services/auth-interceptor.interce
 import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MatSliderModule } from '@angular/material/slider';
+import { SearchResolver } from './_resolvers/search.resolver';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { MatSliderModule } from '@angular/material/slider';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorInterceptor,
       multi: true
-    }
+    },
+    SearchResolver
   ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]

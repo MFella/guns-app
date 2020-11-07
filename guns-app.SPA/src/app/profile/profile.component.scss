@@ -63,7 +63,8 @@ img
 
 @keyframes uppAni
 {
-    0%{transform: translate(-8.5rem, 5rem) scale(1.5); opacity: 0}
-    100%{transform: translate(-8.5rem, 4rem) scale(1.5); opacity: 1}
+    0%{transform: translate(-8.5rem, 5rem) scale(1.5); opacity: 0; pointer-events: none;};
+    90%{transform: translate(-8.5rem, 4rem) scale(1.5); opacity: .9; pointer-events: none;}
+    100%{transform: translate(-8.5rem, 4rem) scale(1.5); opacity: 1; pointer-events: auto;}
 }
 

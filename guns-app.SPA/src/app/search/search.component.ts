@@ -16,23 +16,20 @@ export class SearchComponent implements OnInit {
   guns: Array<Gun> = [];
 
   constructor(private route: ActivatedRoute, private gunServ: GunsService,
-    private izi: IziAlertService  ) { }
+    private izi: IziAlertService) { }
 
   ngOnInit(): void {
-    //console.log(this.route);
+    this.route.data.subscribe((res:any) => {
+      console.log(res);
+      this.guns = res.gun.guns.slice(7,13);
+    })
   }
 
   retrieveItems()
   {
-    this.gunServ.getAllGuns()
-      .subscribe((res: any) => {
-          console.log(res);
-          this.guns = res?.guns;
-      }, err => {
-        this.izi.error('Errors occured during retriving items');
-      }, () => {
+      //get specific guns: price range, category, etc
 
-      })
+
   }
 
 }

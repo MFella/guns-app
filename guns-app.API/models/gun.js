@@ -34,4 +34,9 @@ module.exports.getAllGuns = (callback) =>
     Gun.find({}, (callback));
 }
 
+module.exports.getSpecificGuns = (models, callback) => 
+{
+    Gun.find
+}
+
 //module.exports = Gun;

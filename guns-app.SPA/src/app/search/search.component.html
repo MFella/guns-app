@@ -107,14 +107,31 @@
             </form>
 
             <div class="container pt-2">
-              <ul class="list-group" *ngFor="let gun of this.guns">
-                <li class="list-group-item">{{gun.name}}</li>
-              </ul>
+              <!-- <ul class="list-group" *ngFor="let gun of this.guns">
+                <li class="list-group-item col-md-12">{{gun.name}}</li>
+              </ul> -->
+
+              <div class="row">
+                <div class="col-md-4" *ngFor="let gun of this.guns">
+                  <div class="card">
+                    <img class="card-img-top" src="../../assets/gun2.svg" alt="Card image cap">
+                    <hr>
+                    <div class="card-body">
+                      <h5 class="card-title">{{gun.name}}</h5>
+                      <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                      <span class="mt-4">{{gun.price}} &euro;</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
 
-        </div>
       </div>
     </div>
-  </main>
+  </div>
+</main>
+  <app-footer></app-footer>
 
 
