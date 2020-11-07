@@ -5,13 +5,15 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { SearchComponent } from './search/search.component';
+import { AuthGuard } from './_guards/auth.guard';
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent, data: {animation: 'home'}},
   {path: 'login', component: AuthComponent, data: {animation: 'isLeft'}},
   {path: 'register', component: RegisterComponent, data: {animation: 'isRight'}},
-  {path: 'profile', component: ProfileComponent, data: {animation: 'isLeft'}}
+  {path: 'search', component: SearchComponent, data: {animation: 'isRight'}},
+  {path: 'profile', component: ProfileComponent, data: {animation: 'isLeft'},  canActivate: [AuthGuard]}
 ];
 
 @NgModule({

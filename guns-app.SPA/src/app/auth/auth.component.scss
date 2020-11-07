@@ -3,12 +3,14 @@ $bgInputCol: #ffe2ca;
 main
 {
     padding-top: 2rem;
-    height: calc(100vh - 6.7rem);
+   // height: calc(100vh - 6.7rem);
+   // height: 100vh;
     background-image: url("../../assets/register_back.png");
     background-repeat: no-repeat;
     //background-size: 28.80rem 18.80rem;
     //background-size: 100.8rem 45.8rem;
     background-size: cover;
+    padding-bottom: 4rem;
 }
 
 h1{

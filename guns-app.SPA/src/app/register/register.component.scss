@@ -1,11 +1,13 @@
 main
 {
     padding-top: 2rem;
-    height: calc(100vh - 6.7rem);
+    padding-bottom: 20vh;
+    height:100vh;
+    //height: calc(100vh - 6.7rem);
     background-image: url("../../assets/login_back.png");
     background-repeat: no-repeat;
     background-size: cover;
-
+    overflow: hidden;
 }
 
 h1{

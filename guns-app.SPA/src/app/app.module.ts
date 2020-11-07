@@ -18,6 +18,7 @@ import { AuthService } from './_services/auth.service';
 import { AuthInterceptorInterceptor } from './_services/auth-interceptor.interceptor';
 import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
+import { MatSliderModule } from '@angular/material/slider';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { ProfileComponent } from './profile/profile.component';
       ProfileComponent
    ],
   imports: [
+    MatSliderModule,
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
