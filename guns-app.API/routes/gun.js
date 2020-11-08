@@ -42,3 +42,20 @@ router.get('/all', (req,res,next) =>
 
     })
 })
+
+router.post('/specific', (req,res,next) => 
+{
+    Gun.getSpecificGuns(req.body,(err, guns) => 
+    {
+        //console.log(guns);
+        if(err) throw err;
+
+        if(guns)
+        {
+            res.json({guns: guns});
+            return;
+        }
+
+        res.json({});
+    })
+})

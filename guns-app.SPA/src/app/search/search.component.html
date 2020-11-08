@@ -60,20 +60,20 @@
                 <label for="range">Price</label> 
                 <div class="row">
                   <div class="col-5">
-                    <input type="number" class="form-control" min="0" max="10000" value="0" [(ngModel)]="this.models[0]"> 
+                    <input type="number" class="form-control" min="0" max="10000" value="0" [(ngModel)]="this.models.floor"> 
                   </div>
                   <div class="col-2">
                     <i class="fa fa-arrow-right mt-2"></i>
                   </div>
 
                   <div class="col-5">
-                    <input type="number" class="form-control" min="0" max="10000" value="1000" [(ngModel)]="this.models[1]">
+                    <input type="number" class="form-control" min="0" max="10000" value="1000" [(ngModel)]="this.models.ceil">
                   </div>
                 </div>
               </li>
               <li class="list-group-item text-center">Category
                 <select size="1" class="form-control" id="exampleFormControlSelect2" onfocus='this.size=3;' 
-                onblur='this.size=1;' onchange='this.size=1; this.blur();' [(ngModel)]="this.models[2]">
+                onblur='this.size=1;' onchange='this.size=1; this.blur();' [(ngModel)]="this.models.category">
                   <option value="Handgun">Handgun</option>
                   <option value="Submachine Gun">Submachine Gun</option>
                   <option value="Shotgun">Shotgun</option>
@@ -100,7 +100,7 @@
             <div class="form-group">
               <label for="exampleInputEmail1">Just type something, and let it work!</label>
               <div class="d-flex pl-4">
-                <input type="text" name="search_Phrase" [(ngModel)]="this.models[3]" class="form-control mr-2 ml-4" aria-describedby="search" placeholder="Maybe some weapon? ;)">
+                <input type="text" name="search_Phrase" [(ngModel)]="this.models.searchInput" class="form-control mr-2 ml-4" aria-describedby="search" placeholder="Maybe some weapon? ;)">
                 <button class="btn btn-secondary" (click)="retrieveItems()">Search!</button>
               </div>
             </div>

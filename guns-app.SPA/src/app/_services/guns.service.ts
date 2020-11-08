@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -13,6 +13,13 @@ constructor(private http: HttpClient) { }
   getAllGuns()
   {
     return this.http.get(`${this.backUrl}/all`);
+  }
+
+  getSpecGuns(model: any)
+  {
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(`${this.backUrl}/specific`, model, {headers: headers});
   }
 
 }

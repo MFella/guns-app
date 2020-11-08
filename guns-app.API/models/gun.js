@@ -34,9 +34,22 @@ module.exports.getAllGuns = (callback) =>
     Gun.find({}, (callback));
 }
 
-module.exports.getSpecificGuns = (models, callback) => 
+module.exports.getSpecificGuns = (model, callback) => 
 {
-    Gun.find
+    //something is wrong with 'price'?
+    //it works via postman ...
+
+    
+    const [parsedFloor, parsedCeil] = [parseFloat(model.floor), parseFloat(model.ceil)];
+    console.log(parsedCeil);
+    const query = { 
+        name: new RegExp('^' + model.searchInput),
+       // price: {$gte: parsedFloor, $lte: parsedCeil},
+        category: model.category
+    }
+
+    console.log(query);
+    Gun.find(query, callback);
 }
 
 //module.exports = Gun;
