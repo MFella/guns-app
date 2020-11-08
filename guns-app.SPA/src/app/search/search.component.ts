@@ -13,7 +13,7 @@ import { IziAlertService } from '../_services/iziAlert.service';
 export class SearchComponent implements OnInit {
 
   models = {
-    ceil: "1000",
+    ceil: "999",
     floor: "0",
     category: "Shotgun",
     searchInput: ""
@@ -35,9 +35,10 @@ export class SearchComponent implements OnInit {
       //get specific guns: price range, category, etc
       console.log(this.models);
       this.gunServ.getSpecGuns(this.models)
-        .subscribe(res => 
+        .subscribe((res:any) => 
           {
             console.log(res);
+            this.guns = res.guns;
           }, err => {
             
             this.izi.error('Error occured during retriving data');

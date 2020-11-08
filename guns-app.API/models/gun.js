@@ -44,9 +44,11 @@ module.exports.getSpecificGuns = (model, callback) =>
     console.log(parsedCeil);
     const query = { 
         name: new RegExp('^' + model.searchInput),
-       // price: {$gte: parsedFloor, $lte: parsedCeil},
+        price: {$gte: parsedFloor, $lte: parsedCeil},
         category: model.category
     }
+
+    //$gte: parsedFloor,
 
     console.log(query);
     Gun.find(query, callback);

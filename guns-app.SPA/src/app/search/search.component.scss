@@ -111,3 +111,18 @@ select
     height:2rem;
     overflow-y: scroll;
 }
+
+span 
+{
+    animation-name: animateSand;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    transform: translateX(4rem);
+}
+
+
+@keyframes animateSand
+{
+    0%{transform: translate(0rem);}
+    100%{transform: translate(2rem);}
+}

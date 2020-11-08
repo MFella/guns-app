@@ -60,14 +60,14 @@
                 <label for="range">Price</label> 
                 <div class="row">
                   <div class="col-5">
-                    <input type="number" class="form-control" min="0" max="10000" value="0" [(ngModel)]="this.models.floor"> 
+                    <input type="number" class="form-control" min="0" max="999" value="0" [(ngModel)]="this.models.floor"> 
                   </div>
                   <div class="col-2">
                     <i class="fa fa-arrow-right mt-2"></i>
                   </div>
 
                   <div class="col-5">
-                    <input type="number" class="form-control" min="0" max="10000" value="1000" [(ngModel)]="this.models.ceil">
+                    <input type="number" class="form-control" min="0" max="999" value="999" [(ngModel)]="this.models.ceil">
                   </div>
                 </div>
               </li>
@@ -124,8 +124,12 @@
                     </div>
                   </div>
                 </div>
+
               </div>
 
+              <div class="alert alert-secondary" role="alert" *ngIf="this.guns.length === 0">
+                <span>Cant find that one <span>&#x231B;</span> </span>
+              </div>
             </div>
 
       </div>
