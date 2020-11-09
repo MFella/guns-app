@@ -35,7 +35,18 @@ router.get('/all', (req,res,next) =>
         if(guns)
         {
             guns.sort((a,b) => (a.name > b.name)? 1: ((b.name > a.name)? -1 : 0));
-            res.json({guns: guns});
+            //casual pagination:
+            let totalPages = Math.ceil(Math.round(guns.length/3));
+            
+            const pag = 
+            {
+                currentPage: 1,
+                itemsPerPage: 3,
+                totalItems: guns.length,
+                totalPages
+            };
+
+            res.json({guns: guns.slice(0,3), pag: pag});
             return;
         }
 
@@ -53,8 +64,16 @@ router.post('/specific', (req,res,next) =>
 
         if(guns)
         {
+            //sort
             guns.sort((a,b) => (a.name > b.name)? 1: ((b.name > a.name)? -1 : 0));
-            res.json({guns: guns});         
+
+            //return some range of this guns
+            const [pageNumber, pageSize] = [req.query.pageNumber, req.query.pageSize];
+            let gunsToRet = guns;
+            console.log(req.query);
+            gunsToRet = gunsToRet.slice((pageNumber-1)*pageSize, pageNumber*pageSize);
+
+            res.json({guns: gunsToRet, itemsCount: guns.length});         
             return;
         }
 

@@ -15,14 +15,14 @@ constructor(private http: HttpClient) { }
     return this.http.get(`${this.backUrl}/all`);
   }
 
-  getSpecGuns(model: any)
+  getSpecGuns(model: any, pageNumber: string, pageSize: string)
   {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    //headers.append('pageNo', '1');
     let params = new HttpParams();
-    params = params.append('min', '100');
-    return this.http.post(`${this.backUrl}/specific`, model, {headers: headers});
+    params = params.append('pageNumber', pageNumber);
+    params = params.append('pageSize', pageSize);
+    return this.http.post(`${this.backUrl}/specific`, model, {params} );
   }
 
 }
