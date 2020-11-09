@@ -31,6 +31,7 @@
     "ion-rangeslider": "^2.3.1",
     "izitoast": "^1.4.0",
     "jquery": "^3.5.1",
+    "jw-angular-pagination": "^1.2.0",
     "moment": "^2.29.1",
     "ngx-bootstrap": "^6.1.0",
     "ngx-izitoast": "^1.0.1",

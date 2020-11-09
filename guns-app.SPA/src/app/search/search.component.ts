@@ -12,6 +12,9 @@ import { IziAlertService } from '../_services/iziAlert.service';
 })
 export class SearchComponent implements OnInit {
 
+  items = [];
+  pageOfItems: Array<any>;
+
   models = {
     ceil: "999",
     floor: "0",
@@ -27,18 +30,29 @@ export class SearchComponent implements OnInit {
     this.route.data.subscribe((res:any) => {
       console.log(res);
       this.guns = res.gun.guns; //.slice(7,13);
+      this.items = res.gun.guns;
     })
   }
 
   retrieveItems()
   {
       //get specific guns: price range, category, etc
-      console.log(this.models);
+      // console.log(this.models);
+
+      // const toSearch = {
+      //   searchQuery: this.models,
+      //   pageParams: {
+      //     pageNo: 1,
+      //     pageSize: 4
+      //   }
+      // }
+
       this.gunServ.getSpecGuns(this.models)
         .subscribe((res:any) => 
           {
             console.log(res);
             this.guns = res.guns;
+            this.items = res.guns;
           }, err => {
             
             this.izi.error('Error occured during retriving data');
@@ -46,6 +60,13 @@ export class SearchComponent implements OnInit {
           {
             this.models.searchInput = '';
           })
-  } 
+  }
+
+
+  onChangePage(pageOfItems: Array<Gun>) {
+    // update current page of items
+    this.pageOfItems = pageOfItems;
+  }
+
 
 }

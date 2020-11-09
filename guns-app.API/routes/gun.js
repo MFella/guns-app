@@ -34,6 +34,7 @@ router.get('/all', (req,res,next) =>
 
         if(guns)
         {
+            guns.sort((a,b) => (a.name > b.name)? 1: ((b.name > a.name)? -1 : 0));
             res.json({guns: guns});
             return;
         }
@@ -52,7 +53,9 @@ router.post('/specific', (req,res,next) =>
 
         if(guns)
         {
-            res.json({guns: guns});
+            guns.sort((a,b) => (a.name > b.name)? 1: ((b.name > a.name)? -1 : 0));
+            console.log(guns.length);
+            res.json({guns: guns});         
             return;
         }
 

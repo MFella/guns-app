@@ -41,16 +41,22 @@ module.exports.getSpecificGuns = (model, callback) =>
 
     
     const [parsedFloor, parsedCeil] = [parseFloat(model.floor), parseFloat(model.ceil)];
-    console.log(parsedCeil);
-    const query = { 
-        name: new RegExp('^' + model.searchInput),
+    let query = { 
+        //name: new RegExp('^' + model.searchInput),
+        name: new RegExp('^' +model.searchInput, 'i'),
         price: {$gte: parsedFloor, $lte: parsedCeil},
         category: model.category
     }
 
-    //$gte: parsedFloor,
+    if(model.category.length === 0)
+    {
+        query = { 
+            //name: new RegExp('^' + model.searchInput),
+            name: new RegExp('^' +model.searchInput, 'i'),
+            price: {$gte: parsedFloor, $lte: parsedCeil}
+        }
+    }
 
-    console.log(query);
     Gun.find(query, callback);
 }
 

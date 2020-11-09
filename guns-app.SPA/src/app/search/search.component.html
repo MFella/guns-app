@@ -74,6 +74,7 @@
               <li class="list-group-item text-center">Category
                 <select size="1" class="form-control" id="exampleFormControlSelect2" onfocus='this.size=3;' 
                 onblur='this.size=1;' onchange='this.size=1; this.blur();' [(ngModel)]="this.models.category">
+                  <option value="">Any type</option>
                   <option value="Handgun">Handgun</option>
                   <option value="Submachine Gun">Submachine Gun</option>
                   <option value="Shotgun">Shotgun</option>
@@ -111,8 +112,14 @@
                 <li class="list-group-item col-md-12">{{gun.name}}</li>
               </ul> -->
 
+              <div class="row d-flex justify-content-center mb-4">
+                <div class="card-footer pb-0 pt-3">
+                  <jw-pagination [items]="this.items" (changePage)="onChangePage($event)" [pageSize]="3"></jw-pagination>
+                </div>
+              </div>
+
               <div class="row">
-                <div class="col-md-4" *ngFor="let gun of this.guns">
+                <div class="col-md-4" *ngFor="let gun of this.pageOfItems">
                   <div class="card">
                     <img class="card-img-top" src="../../assets/gun2.svg" alt="Card image cap">
                     <hr>
@@ -124,7 +131,6 @@
                     </div>
                   </div>
                 </div>
-
               </div>
 
               <div class="alert alert-secondary" role="alert" *ngIf="this.guns.length === 0">

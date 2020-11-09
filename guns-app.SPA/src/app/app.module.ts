@@ -20,7 +20,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { SearchResolver } from './_resolvers/search.resolver';
-
+import {JwPaginationModule} from 'jw-angular-pagination';
 
 @NgModule({
   declarations: [		
@@ -43,7 +43,8 @@ import { SearchResolver } from './_resolvers/search.resolver';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     BsDatepickerModule.forRoot(),
-    NgxIziToastModule
+    NgxIziToastModule,
+    JwPaginationModule
   ],
   providers: [
     FormBuilder,
