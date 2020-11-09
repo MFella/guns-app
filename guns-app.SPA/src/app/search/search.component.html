@@ -79,7 +79,7 @@
                   <option value="Submachine Gun">Submachine Gun</option>
                   <option value="Shotgun">Shotgun</option>
                   <option value="Assault Rifle">Assault Rifle</option>
-                  <option value="4">Sniper Rifle</option>
+                  <option value="Sniper Rifle">Sniper Rifle</option>
                   <option value="Machine Gun">Machine Gun</option>
                   <option value="Grenade Launcher">Grenade Launcher</option>
                   <option value="Rocket">Rocket</option>
@@ -114,7 +114,13 @@
 
               <div class="row d-flex justify-content-center mb-4">
                 <div class="card-footer pb-0 pt-3">
-                  <jw-pagination [items]="this.items" (changePage)="onChangePage($event)" [pageSize]="3"></jw-pagination>
+                  <!-- <jw-pagination [items]="this.items" (changePage)="onChangePage($event)" [pageSize]="3"></jw-pagination> -->
+                  <p>Restricted size with rotation:</p>
+                  <pagination [boundaryLinks]="true" [totalItems]="this.pagination.totalItems" [rotate]="rotate" 
+                  [maxSize]="maxSize" firstText="&laquo;" lastText="&raquo;"
+                  (pageChanged)="pageChanged($event)" [itemsPerPage]="this.pagination.itemsPerPage"></pagination>
+                  <!-- <pagination [boundaryLinks]="true" [totalItems]="20" [itemsPerPage]="3" [(ngModel)]="page"
+        (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination> -->
                 </div>
               </div>
 

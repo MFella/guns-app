@@ -11,7 +11,7 @@ const MongoClient = require('mongodb').MongoClient;
 //     console.log('connected');
 // });
 
-console.log(data[1]);
+console.log(data.length);
 
 let done = 0;
 

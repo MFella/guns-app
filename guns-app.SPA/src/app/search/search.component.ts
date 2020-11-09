@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot, RouterOutlet } from '@angular/router';
 import { Gun } from '../_models/gun';
+import { Pagination } from '../_models/pagination';
 import { GunsService } from '../_services/guns.service';
 import { IziAlertService } from '../_services/iziAlert.service';
 
@@ -14,6 +15,12 @@ export class SearchComponent implements OnInit {
 
   items = [];
   pageOfItems: Array<any>;
+  page = 1;
+  currentPage = 4;
+  smallnumPages = 0;
+  rotate = true;
+  maxSize = 5;
+  pagination: Pagination;
 
   models = {
     ceil: "999",
@@ -27,6 +34,13 @@ export class SearchComponent implements OnInit {
     private izi: IziAlertService) { }
 
   ngOnInit(): void {
+    console.log(this.pagination);
+    this.pagination = {
+      currentPage: 1,
+      itemsPerPage: 3,
+      totalItems: 12,
+      totalPages: 3
+    }
     this.route.data.subscribe((res:any) => {
       console.log(res);
       this.guns = res.gun.guns; //.slice(7,13);
@@ -68,5 +82,9 @@ export class SearchComponent implements OnInit {
     this.pageOfItems = pageOfItems;
   }
 
+  pageChanged(e: Event)
+  {
+    console.log(e);
+  } 
 
 }

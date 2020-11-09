@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -19,6 +19,9 @@ constructor(private http: HttpClient) { }
   {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
+    //headers.append('pageNo', '1');
+    let params = new HttpParams();
+    params = params.append('min', '100');
     return this.http.post(`${this.backUrl}/specific`, model, {headers: headers});
   }
 

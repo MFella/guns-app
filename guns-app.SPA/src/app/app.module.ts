@@ -12,6 +12,7 @@ import * as $ from 'jquery';
 import { SearchComponent } from './search/search.component';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import {PaginationModule} from 'ngx-bootstrap/pagination';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { NgxIziToastModule } from 'ngx-izitoast';
 import { AuthService } from './_services/auth.service';
@@ -43,8 +44,9 @@ import {JwPaginationModule} from 'jw-angular-pagination';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     BsDatepickerModule.forRoot(),
-    NgxIziToastModule,
-    JwPaginationModule
+    PaginationModule.forRoot(),
+    NgxIziToastModule
+   // JwPaginationModule
   ],
   providers: [
     FormBuilder,
