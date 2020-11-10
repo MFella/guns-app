@@ -17,7 +17,7 @@ export class AuthService {
   currentUser: any;
 
   constructor(private http: HttpClient, private izi: IziAlertService) { 
-    this.currentUser = JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) : null;
+    this.currentUser = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
     //console.log(this.currentUser);
   }
 
@@ -37,7 +37,13 @@ export class AuthService {
     return this.http.post<User>(`${env.environment.backUrl}/login`, creds, {headers})
     .pipe(
       tap(r => this.setSession(r)),
-      shareReplay()
+      shareReplay(),
+      map((res: any) => {
+        if(res)
+        {
+          this.currentUser = res.user;
+        }
+      })
     )
   }
 

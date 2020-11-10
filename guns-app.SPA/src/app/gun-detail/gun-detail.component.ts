@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Gun } from '../_models/gun';
+import { AuthService } from '../_services/auth.service';
 import { IziAlertService } from '../_services/iziAlert.service';
+
+declare const stopCarousel: any;
 
 @Component({
   selector: 'app-gun-detail',
@@ -13,9 +16,10 @@ export class GunDetailComponent implements OnInit {
   gun: Gun;
   
   constructor(private route: ActivatedRoute, private izi: IziAlertService,
-    private router: Router) { }
+    private router: Router, public authServ: AuthService) { }
 
   ngOnInit() {
+    stopCarousel();
 
     this.route.data.subscribe((res: any) => 
     {
@@ -25,6 +29,11 @@ export class GunDetailComponent implements OnInit {
       this.izi.error('Cant retrieve data!');
       this.router.navigate(['/search']);
     });
+  }
+
+  changeMain(e: any)
+  {
+    (<any>document.querySelector('.img_main')).src = e.target.src;
   }
 
 }

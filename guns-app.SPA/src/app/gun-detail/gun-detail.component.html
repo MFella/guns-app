@@ -1,10 +1,158 @@
 
-<div class="container pt-4">
-  <div class="row pt-2">
-    <div class="col-md-12">
-      <p>Name: {{this.gun.name}}</p>
-      <p>Description: {{this.gun.description}}</p>
-      <p>Price: {{this.gun.price}}</p>
+
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a [routerLink]="['/']">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Library</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Data</li>
+          </ol>
+        </nav>
+      </div>
+
+      <!-- <div class="col-md-12">
+        <p>Name: {{this.gun.name}}</p>
+        <p>Description: {{this.gun.description}}</p>
+        <p>Price: {{this.gun.price}}</p>
+      </div> -->
+      <div class="col-md-8">
+
+
+          <img src="../../assets/register_back.png" class="d-block w-100 img_main" alt="...">
+
+
+        <div class="d-flex flex-direction-row justify-content-around smart_list">
+          <!-- <i class="caret"></i>
+          <img src="../../assets/register_back.png" alt="..." class="img-thumbnail" (click)="changeMain($event)">
+          <img src="../../assets/register_back.png" alt="..." class="img-thumbnail">
+          <img src="../../assets/register_back.png" alt="..." class="img-thumbnail">
+          <i class="caret"></i> -->
+
+          <div id="carousel_control" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="d-flex flex-direction-row justify-content-center">
+                  <img class="d-block w-20" src="../../assets/register_back.png" alt="First slide" (click)="changeMain($event)">
+                  <img class="d-block w-20" src="../../assets/register_back.png" alt="Second slide" (click)="changeMain($event)">
+                  <img class="d-block w-20" src="../../assets/register_back.png" alt="Second slide" (click)="changeMain($event)">
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="d-flex flex-direction-row justify-content-center">
+                  <img class="d-block w-20" src="../../assets/register_back.png" alt="First slide" (click)="changeMain($event)">
+                  <img class="d-block w-20" src="../../assets/login_back.png" alt="Second slide" (click)="changeMain($event)">
+                  <img class="d-block w-20" src="../../assets/register_back.png" alt="Second slide" (click)="changeMain($event)">
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="d-flex flex-direction-row justify-content-center">
+                  <img class="d-block w-20" src="../../assets/register_back.png" alt="First slide" (click)="changeMain($event)">
+                  <img class="d-block w-20" src="../../assets/register_back.png" alt="First slide"(click)="changeMain($event)">
+                  <img class="d-block w-20" src="../../assets/register_back.png" alt="Second slide"(click)="changeMain($event)">
+                </div>
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carousel_control" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel_control" role="button" data-slide="next">
+              <span class="pr-4 carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <!-- <img src="../../assets/register_back.png" class="img-fluid img_main" alt="Responsive image">      -->
+
+        <div class="card-group">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title d-flex justify-content-between">               
+                <span>{{this.gun.name}} </span>
+                  <div class="text-right">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+              </h4>     
+              <span class="price_gen">{{this.gun.price}} &euro; / each</span>   
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <hr>
+              <p class="card-text d-flex justify-content-between">Shipments starts from 5 &euro;<i class="fa fa-truck"></i></p>
+              <hr>
+              <p class="card-text d-flex justify-content-between">Two weeks  to withdraw from the contract <i class="fa fa-arrow-circle-o-right"></i></p>
+              <hr>
+              <p class="card-text form-group d-flex justify-content-between align-items-center"> 
+                <!--d-flex justify-content-between align-items-center-->
+                <label for="amount">Amount</label>
+                <input type="number" class="form-control form-control-sm amount" min=1 max=100 value=1> </p>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+              <!-- <small class="text-muted">Last updated 3 mins ago</small> -->
+
+              <button class="btn btn-info" *ngIf="this.authServ.currentUser !== null">To Bastet <i class="fa fa-shopping-cart"></i></button>
+              <button class="btn btn-warning ">Purchase now <i class="fa fa-euro"></i></button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
+
+        <!-- <div class="row">
+          <div class="col-md-12">
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Description</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Technicalities</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Comments</a>
+              </li>
+            </ul>
+          </div>
+        </div> -->
+
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#description" role="tab" aria-controls="nav-home" aria-selected="true">Description</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="nav-profile" aria-selected="false">Technicalities</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#comments" role="tab" aria-controls="nav-contact" aria-selected="false">Comments</a>
+          </div>
+        </nav>
+        <div class="tab-content description" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="nav-home-tab">
+
+            <div class="row d-flex justify-content-center">
+              <div class="col-md-10 pt-2">
+                <span>{{this.gun.name}}</span>
+                <p class="pt-2">
+                  {{this.gun.description}}
+                </p>
+                <!-- <p class="pt-2">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse euismod fringilla libero, pharetra aliquet justo laoreet eu. 
+                  Maecenas a elit justo. Vestibulum vel orci justo. Quisque nec ipsum laoreet, commodo enim sed, maximus dolor. Nullam sit amet blandit urna, nec bibendum nunc.
+                   Maecenas pulvinar sem id molestie tincidunt. Quisque finibus bibendum massa, at eleifend enim cursus quis. Phasellus ut velit rutrum, vehicula tellus quis, aliquam lorem. 
+                  Mauris fringilla mauris turpis, nec ultricies mauris elementum eget. Proin congue a nisi facilisis vulputate. Duis eu nunc quis purus feugiat posuere.
+                </p> -->
+              </div>
+            </div>
+            
+          </div>
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="nav-profile-tab">Technicalities</div>
+          <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="nav-contact-tab">Comments</div>
+        </div>
+
   </div>
-</div>
+</main>

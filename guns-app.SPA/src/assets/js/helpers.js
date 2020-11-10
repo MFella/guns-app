@@ -37,3 +37,16 @@
 //     }
 // });
 
+function stopCarousel()
+{
+    $('.carousel').carousel({
+    interval: false,
+    })
+}
+
+// function changePhotos(currMain, nextMain)
+// {
+//     let currMainUrl = currMain.target.src;
+//     let nextMainUrl = nextMain.style.src;
+//     console.log(nextMainUrl);
+// }

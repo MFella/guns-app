@@ -1,0 +1,113 @@
+main 
+{
+    //height: 170vh;
+    background-image: linear-gradient(50deg, #70e1f5 0%, #ffd194 100%);
+    background-repeat: no-repeat;
+    //background-size: 28.80rem 18.80rem;
+    background-size: cover;
+    margin: auto auto;
+    height: 100rem;
+    padding-top: 2rem;
+}
+
+.container
+{
+    padding-top: 2rem;
+    border-radius: .6rem;
+    background-color: #ffffff;
+    box-shadow: 6px 6px 54px 0px rgba(0,0,0,0.75);
+    max-width: 70rem;
+    height: 80rem;
+}
+
+.img_main
+{
+    margin: auto auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    width: 900px;
+    height: 350px;
+}
+
+.smart_list
+{
+    //display: none;
+    padding: 1rem;
+    a.carousel-control-prev
+    {
+        filter: invert(100%);
+        transform: translateX(-5.3rem);
+        transition: all .2s;
+        &:hover
+        {
+            transform: translateX(-5.5rem);
+        }
+    }
+
+    a.carousel-control-next
+    {
+        filter: invert(100%);
+        transform: translateX(5.3rem);
+        transition: all .2s;
+        &:hover
+        {
+            transform: translateX(5.5rem);
+        }
+    }
+
+    //spacing between elements
+    .carousel-inner
+    {
+        width: 36rem;
+    }
+
+    img{
+        width: 10rem;
+        //display: none;
+        margin: 1rem;
+        background-color: inherit;
+        border: inherit;
+        transition: all .4s;
+        &:hover
+        {
+            cursor: pointer;
+            opacity: .7;
+        }
+
+    }
+}
+
+.fa-truck
+{
+    filter: invert(30%);
+}
+
+.amount
+{
+    width: 5rem;
+    margin-bottom: .7rem;
+}
+
+.price_gen
+{
+    font-size: 1.4rem;
+}
+
+.tab-content.description
+{
+    span{
+        font-size: 3rem;
+        margin-top: 2rem;
+    }
+
+    p{
+        font-size: 1rem;
+    }
+}
+
+
+
+// .carousel-control-next,
+// .carousel-control-prev /*, .carousel-indicators */ {
+//     filter: invert(100%);
+// }
