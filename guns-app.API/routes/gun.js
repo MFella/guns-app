@@ -80,3 +80,29 @@ router.post('/specific', (req,res,next) =>
         res.json({});
     })
 })
+
+//Get gun by name 
+router.get('/detail', (req, res, next) => {
+
+    console.log(req.query);
+
+    Gun.getGunByName(req.query.name, (err, gun) => 
+    {
+        if(err) throw err;
+
+        console.log(gun);
+
+        if(gun)
+        {
+            res.json({complete: true, gun: gun});
+            return;
+        }
+
+        res.json({complete: false, msg: 'Cant find that gun!'});
+
+    })
+
+    
+})
+
+

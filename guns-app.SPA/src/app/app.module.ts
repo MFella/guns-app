@@ -22,9 +22,11 @@ import { ProfileComponent } from './profile/profile.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { SearchResolver } from './_resolvers/search.resolver';
 import {JwPaginationModule} from 'jw-angular-pagination';
+import { GunDetailComponent } from './gun-detail/gun-detail.component';
+import { GunDetailResolver } from './_resolvers/gun-detail.resolver';
 
 @NgModule({
-  declarations: [		
+  declarations: [			
     AppComponent,
     NavComponent,
     AuthComponent,
@@ -32,7 +34,8 @@ import {JwPaginationModule} from 'jw-angular-pagination';
     RegisterComponent,
     SearchComponent,
       FooterComponent,
-      ProfileComponent
+      ProfileComponent,
+      GunDetailComponent
    ],
   imports: [
     MatSliderModule,
@@ -55,7 +58,8 @@ import {JwPaginationModule} from 'jw-angular-pagination';
       useClass: AuthInterceptorInterceptor,
       multi: true
     },
-    SearchResolver
+    SearchResolver,
+    GunDetailResolver
   ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]

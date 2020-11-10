@@ -22,7 +22,7 @@ const Gun = module.exports = mongoose.model("Gun", gunSchema);
 
 module.exports.getGunByName = (name, callback) => 
 {
-    Gun.findOne({name: name}, callback);
+    Gun.find({name: new RegExp('^' +name, 'i')}, callback);
 }
 
 module.exports.deleteAllRecords = () => {
@@ -59,5 +59,4 @@ module.exports.getSpecificGuns = (model, callback) =>
 
     Gun.find(query, callback);
 }
-
 //module.exports = Gun;

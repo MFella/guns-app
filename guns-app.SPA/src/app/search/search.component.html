@@ -118,13 +118,14 @@
                   <pagination [boundaryLinks]="true" [totalItems]="this.pagination.totalItems" [rotate]="rotate" 
                   [maxSize]="maxSize" firstText="&laquo;" lastText="&raquo;"
                   (pageChanged)="pageChanged($event)" [itemsPerPage]="this.pagination.itemsPerPage"></pagination>
-                  <span class="mt-3">{{this.pagination.currentPage}} / {{this.pagination.totalItems}} guns loaded</span>
+                  <span class="mt-3">{{this.pagination.currentPage * this.pagination.itemsPerPage > this.pagination.totalItems ? 
+                    this.pagination.totalItems : this.pagination.currentPage * this.pagination.itemsPerPage}} / {{this.pagination.totalItems}} guns loaded</span>
                 </div>
               </div>
 
               <div class="row renderGuns">
                 <div class="col-md-4" *ngFor="let gun of this.guns">
-                  <div class="card card_render">
+                  <div class="card card_render" (click)="toDetails()" [routerLink]="['/search/', gun.name]">
                     <img class="card-img-top" src="../../assets/gun2.svg" alt="Card image cap">
                     <hr>
                     <div class="card-body">

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, Router, RouterOutlet } from '@angular/router';
 import { setTime } from 'ngx-bootstrap/chronos/utils/date-setters';
 import { Gun } from '../_models/gun';
 import { Pagination } from '../_models/pagination';
@@ -32,7 +32,7 @@ export class SearchComponent implements OnInit {
   guns: Array<Gun> = [];
 
   constructor(private route: ActivatedRoute, private gunServ: GunsService,
-    private izi: IziAlertService) { }
+    private izi: IziAlertService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -101,6 +101,11 @@ export class SearchComponent implements OnInit {
       $('pagination').delay(200).css('pointer-events', 'auto')
       this.retrieveItems();
     }, 450);
+  }
+
+  toDetails()
+  {
+    //this.router.navigate(['/name'],{relativeTo: this.route});
   }
 
 }

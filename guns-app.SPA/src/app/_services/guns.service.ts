@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,18 @@ constructor(private http: HttpClient) { }
     params = params.append('pageNumber', pageNumber);
     params = params.append('pageSize', pageSize);
     return this.http.post(`${this.backUrl}/specific`, model, {params} );
+  }
+
+  getGunByName(name: string)
+  {
+    let params = new HttpParams();
+    params = params.append('name', name);
+    return this.http.get(`${this.backUrl}/detail`, {params})
+      // .pipe(
+      //   map((res: any) => {
+      //     return {complete : res.body.gun.complete, gun: res.body.gun.gun[0]};
+      //   })
+      // )
   }
 
 }
