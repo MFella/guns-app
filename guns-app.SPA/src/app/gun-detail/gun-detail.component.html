@@ -150,8 +150,69 @@
             </div>
             
           </div>
-          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="nav-profile-tab">Technicalities</div>
-          <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="nav-contact-tab">Comments</div>
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+              <div class="row pt-2 d-flex justify-content-center">
+
+                <!-- To change -->
+                <div class="col-10">
+                  <table class="table mt-4">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Params name</th>
+                        <th scope="col">Value</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let tech of this.gun.techs; let i = index">
+                      <tr>
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{tech.name}}</td>
+                        <td>{{tech.value}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+          </div>
+          <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="nav-contact-tab">
+
+            <div class="row pt-2 d-flex justify-content-center">
+              <div class="col-10 pt-2">
+                <div class="comment border rounded p-3 mt-2">
+                  <div class="d-flex justify-content-between">
+                    <strong>Autor: Kaczyński </strong>
+                    <strong>Ocena: 5/5</strong>
+                    <strong>Data: asd</strong>
+                  </div>
+                  <hr>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tempus tempus libero, vitae maximus magna iaculis quis. Integer mattis fermentum 
+                      ex, in pulvinar nulla. Donec mollis, enim eget dapibus pellentesque, enim nunc commodo nisi, in pharetra magna odio et arcu. Vivamus pretium quam vel 
+                      commodo porttitor. Nam consectetur turpis non elit iaculis, nec iaculis enim vehicula. Mauris non dignissim neque, nec mollis nisi. Donec ornare suscipit 
+                      pretium. Duis ligula dolor, venenatis in posuere et, accumsan ut purus. Aenean sagittis ex in sem tristique, a suscipit ligula interdum. Mauris sit amet nunc odio. 
+                      Nunc sit amet lacinia ante. Praesent malesuada lectus massa, sit amet pulvinar erat pharetra eget. Nulla posuere dolor turpis, imperdiet laoreet massa sollicitudin quis. 
+                      Proin sed fringilla enim. Curabitur quis sapien id augue efficitur condimentum vitae vel lectus.
+                    </p>
+                </div>
+                <div class="comment border rounded p-1 mt-2">
+                  <div class="d-flex justify-content-between">
+                    <strong>Autor: Kaczyński </strong>
+                    <strong>Ocena: 5/5</strong>
+                    <strong>Data: asd</strong>
+                  </div>
+                  <hr>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tempus tempus libero, vitae maximus magna iaculis quis. Integer mattis fermentum 
+                      ex, in pulvinar nulla. Donec mollis, enim eget dapibus pellentesque, enim nunc commodo nisi, in pharetra magna odio et arcu. Vivamus pretium quam vel 
+                      commodo porttitor. Nam consectetur turpis non elit iaculis, nec iaculis enim vehicula. Mauris non dignissim neque, nec mollis nisi. Donec ornare suscipit 
+                      pretium. Duis ligula dolor, venenatis in posuere et, accumsan ut purus. Aenean sagittis ex in sem tristique, a suscipit ligula interdum. Mauris sit amet nunc odio. 
+                      Nunc sit amet lacinia ante. Praesent malesuada lectus massa, sit amet pulvinar erat pharetra eget. Nulla posuere dolor turpis, imperdiet laoreet massa sollicitudin quis. 
+                      Proin sed fringilla enim. Curabitur quis sapien id augue efficitur condimentum vitae vel lectus.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
 
   </div>

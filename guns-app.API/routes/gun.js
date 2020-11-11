@@ -1,5 +1,6 @@
 
 const Gun = require('../models/gun');
+const Comment = require('../models/comment');
 const express = require('express');
 const router = express.Router();
 
@@ -101,8 +102,10 @@ router.get('/detail', (req, res, next) => {
         res.json({complete: false, msg: 'Cant find that gun!'});
 
     })
-
-    
 })
+
+//retrieve comments
+// router.get('/getComms')
+
 
 

@@ -5,6 +5,8 @@ const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
+const routes = require('./routes/routes');
+
 
 require('./config/passport')(passport);
 
@@ -22,6 +24,7 @@ const app = express();
 
 const users = require('./routes/users');
 const guns = require('./routes/gun');
+const comments = require('./routes/comment');
 const port = 3000;
 
 //CORS Middleware
@@ -43,7 +46,10 @@ app.listenerCount(passport.session());
 //
 
 app.use('/users', users);
-app.use('/guns', guns);
+//app.use('/guns', guns);
+//app.use('/comments', comments);
+app.use(routes);
+
 
 // Index Route
 app.get('/', (req, res) => {

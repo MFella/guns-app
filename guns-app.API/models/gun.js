@@ -3,7 +3,7 @@ const user = require("./user");
 const Schema = mongoose.Schema;
 
 
-const gunSchema = Schema({
+const gunSchema = new mongoose.Schema({
     name: {
         type: String
     },
@@ -15,14 +15,21 @@ const gunSchema = Schema({
     },
     price: {
         type: String
-    }
+    },
+    techs: {
+        type: Array
+    },
+    comments: [{
+        type: Schema.Types.ObjectId,
+        ref: "Comment"
+    }]
 });
 
 const Gun = module.exports = mongoose.model("Gun", gunSchema);
 
 module.exports.getGunByName = (name, callback) => 
 {
-    Gun.find({name: new RegExp('^' +name, 'i')}, callback);
+    Gun.find({name: new RegExp('^' +name, 'i')}, callback).populate('comments');
 }
 
 module.exports.deleteAllRecords = () => {

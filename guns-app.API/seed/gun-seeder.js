@@ -11,7 +11,7 @@ const MongoClient = require('mongodb').MongoClient;
 //     console.log('connected');
 // });
 
-console.log(data.length);
+console.log(data[1].techs);
 
 let done = 0;
 
@@ -27,7 +27,8 @@ MongoClient.connect(db.database, (err,db) => {
             let category = el.category;
             let description = el.description;
             let price = el.price;
-            let gun = new Gun({name, category, description, price});
+            let techs = el.techs;
+            let gun = new Gun({name, category, description, price, techs});
 
             dbo.collection('guns').insertOne(gun, (err,res) => {
                 done++;
