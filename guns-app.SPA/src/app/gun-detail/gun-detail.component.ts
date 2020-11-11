@@ -14,6 +14,7 @@ declare const stopCarousel: any;
 export class GunDetailComponent implements OnInit {
 
   gun: Gun;
+  stars = [1,1,1,1,1];
   
   constructor(private route: ActivatedRoute, private izi: IziAlertService,
     private router: Router, public authServ: AuthService) { }
@@ -23,8 +24,7 @@ export class GunDetailComponent implements OnInit {
 
     this.route.data.subscribe((res: any) => 
     {
-      this.gun = res.gun.gun[0];
-      console.log(res);
+      this.gun = res.gun[0];
     }, (err) => {
       this.izi.error('Cant retrieve data!');
       this.router.navigate(['/search']);

@@ -6,9 +6,9 @@ router.get('/', (req, res) => res.send('ok'));
 
 
 //Guns routes:
-router.get('/gun/all', Gun.getAllGuns);
-router.post('/gun/specific', Gun.getSpecificGun);
-router.get('/gun/detail', Gun.getGunDetailed);
+router.get('/guns/all', Gun.getAllGuns);
+router.post('/guns/specific', Gun.getSpecificGun);
+router.get('/guns/detail', Gun.getGunDetailed);
 
 //Comments routes:
 router.post('/comment/create/', Comment.create); 

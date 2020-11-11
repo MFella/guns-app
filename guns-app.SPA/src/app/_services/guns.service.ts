@@ -23,6 +23,7 @@ constructor(private http: HttpClient) { }
     let params = new HttpParams();
     params = params.append('pageNumber', pageNumber);
     params = params.append('pageSize', pageSize);
+    console.log('get spec')
     return this.http.post(`${this.backUrl}/specific`, model, {params} );
   }
 

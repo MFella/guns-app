@@ -61,7 +61,7 @@ module.exports = {
             category: category
         }
     
-        if(model.category.length === 0)
+        if(category.length === 0)
         {
             query = { 
                 //name: new RegExp('^' + model.searchInput),
@@ -71,7 +71,7 @@ module.exports = {
         }
     
         Gun.find(query, (err, guns) => 
-        {
+        { 
             if(err) throw err;
 
             if(guns)
@@ -94,9 +94,25 @@ module.exports = {
 
     getGunDetailed: async(req, res) => 
     {
-        const {gunName} = req.params;
-        const gun = Gun.find({name: new RegExp('^' + gunName, 'i')}).populate('comments');
-        res.send(gun.comments);
+        const {gunName} = req.query.name;
+        console.log(req.query.name);
+        const gun = await Gun.find({name: new RegExp('^' + req.query.name, 'i')}, (err, guns) => {
+
+            if(err) throw err;
+            // /console.log(guns);
+        }).populate('comments');
+        
+        console.log(gun);
+        res.send(gun);
+        // if(gun)
+        // {
+        //     res.json({gun: gun});
+        //     return;
+        // }
+        
+        //res.json({err: 'Cant retrieve gun details'});
+        //res.send(gun);
+        
     }
 }
 
