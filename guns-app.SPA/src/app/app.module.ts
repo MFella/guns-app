@@ -24,6 +24,7 @@ import { SearchResolver } from './_resolvers/search.resolver';
 import {JwPaginationModule} from 'jw-angular-pagination';
 import { GunDetailComponent } from './gun-detail/gun-detail.component';
 import { GunDetailResolver } from './_resolvers/gun-detail.resolver';
+import { ShortPipe } from './_pipes/short.pipe';
 
 @NgModule({
   declarations: [			
@@ -33,9 +34,10 @@ import { GunDetailResolver } from './_resolvers/gun-detail.resolver';
     HomeComponent,
     RegisterComponent,
     SearchComponent,
-      FooterComponent,
-      ProfileComponent,
-      GunDetailComponent
+    FooterComponent,
+    ProfileComponent,
+    GunDetailComponent,
+    ShortPipe
    ],
   imports: [
     MatSliderModule,
@@ -60,6 +62,9 @@ import { GunDetailResolver } from './_resolvers/gun-detail.resolver';
     },
     SearchResolver,
     GunDetailResolver
+  ],
+  exports: [
+    ShortPipe
   ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]

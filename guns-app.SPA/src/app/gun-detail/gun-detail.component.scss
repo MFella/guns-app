@@ -128,6 +128,16 @@ main
     margin-top: 2rem;
     width: 40rem;
     text-align: center;
+} 
+
+i.fa.fa-star.comment
+{
+    color: black;
+    &:hover
+    {
+        cursor: pointer;
+
+    }
 }
 
 

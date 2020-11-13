@@ -1,6 +1,7 @@
 import {Comment} from './comment';
 
 export interface Gun {
+    _id?: string,
     name: string;
     category: string;
     description: string;

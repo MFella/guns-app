@@ -74,6 +74,18 @@ export class RegisterComponent implements OnInit {
 
         (res.success)? this.izi.success(res.msg) : this.izi.error(res.msg);
 
+        if(res.success)
+        {
+          this.authServ.login({email: newUser.email, password: newUser.password})
+            .subscribe(res => 
+              {
+                this.izi.info('Auto logged In');
+              }, err => 
+              {
+                this.izi.error('Cannot login you right now');
+              });
+        }
+
       }, err => 
       {
         this.izi.error(err);

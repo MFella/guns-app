@@ -1,6 +1,7 @@
 import { style } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ShortPipe } from '../_pipes/short.pipe';
 import { AuthService } from '../_services/auth.service';
 
 @Component({

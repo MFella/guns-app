@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import {Comment} from '../_models/comment';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,13 @@ constructor(private http: HttpClient) { }
       //     return {complete : res.body.gun.complete, gun: res.body.gun.gun[0]};
       //   })
       // )
+  }
+
+  commentGun(comment: Comment, id: string)
+  {
+    let params = new HttpParams();
+    params = params.append('id', id);
+    return this.http.post(`http://localhost:3000/comment/create`, comment, {params});
   }
 
 }

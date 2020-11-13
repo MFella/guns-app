@@ -75,12 +75,13 @@
             <div class="card-body">
               <h4 class="card-title d-flex justify-content-between">               
                 <span>{{this.gun?.name}} </span>
-                  <div class="text-right">
+                  <div class="text-right" *ngFor="let item of this.stars; let i = index;">
+                    <i class="fa fa-star"></i>
+                    <!-- <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i> 
+                  [ngStyle]="{'color': '' + Math.ceil(this.gun.comments.reduce((a,b) => a.rate+b.rate, 0)/this.gun.comments.length)}"-->
                   </div>
               </h4>     
               <span class="price_gen">{{this.gun.price}} &euro; / each</span>   
@@ -218,14 +219,15 @@
             <form class="mt-4">
             <div class="form-group">
               <label for="exampleFormControlTextarea1">Comment:</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="content" name="content"></textarea>
             </div>
 
             <div class="d-flex justify-content-between text-center">
-              <button class="btn btn-secondary">Add Comment!</button>
-              <div class="ratings">Your rating: 
+              <button class="btn btn-secondary" [disabled]="this.content?.length < 4 || this.rate === 0"
+              (click)="addComment()">Add Comment!</button>
+              <div class="ratings d-flex flex-direction-row">Your rating: 
                 <div *ngFor="let x of this.stars; let i = index">
-                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star comment" (click)="letShine(i)"></i>
                 </div>
               </div>
             </div>
