@@ -52,12 +52,12 @@ app.use(routes);
 
 
 // Index Route
-app.get('/', (req, res) => {
+app.get('/', (req, res) => { 
     res.send('Invalid Endpoint');
 });
 
 
-//Start Server
+//Start Server 
 app.listen(port, () => {
     console.log('Server started on port ' + port );
-});
+});   

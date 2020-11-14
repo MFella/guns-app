@@ -14,4 +14,6 @@ router.get('/guns/detail', Gun.getGunDetailed);
 router.post('/comment/create/', Comment.create); 
 router.get('/comment/all', Comment.getAllComments);
 
+//User routes: - to continue
+
 module.exports = router; 

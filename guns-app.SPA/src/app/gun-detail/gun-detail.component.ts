@@ -17,6 +17,7 @@ export class GunDetailComponent implements OnInit {
 
   gun: Gun;
   rate: number = 0;
+  avg_rate: number = 0;
   content: any = '';
   stars = new Array(5).fill(false);
 
@@ -30,6 +31,14 @@ export class GunDetailComponent implements OnInit {
     {
       this.gun = res.gun[0];
       console.log(this.gun);
+      //this.avg_rate = Math.floor(this.gun.comments.reduce((rating, {b}) => parseInt(rating) + b, 0));
+      this.gun.comments.forEach((el,index) => 
+      {
+        this.avg_rate += parseFloat(el.rating);
+      })
+      this.avg_rate = Math.floor(this.avg_rate/this.gun.comments.length);
+
+      this.setStarsColor(this.avg_rate);
     }, (err) => {
       this.izi.error('Cant retrieve data!');
       this.router.navigate(['/search']);
@@ -69,9 +78,19 @@ export class GunDetailComponent implements OnInit {
     this.gunsServ.commentGun(comm, this.gun._id)
       .subscribe((res) =>
       {
+        
         this.izi.success('Your comment has been added!;)');
         this.gun.comments.push(comm);
         this.resetCommentsField();
+        
+        this.avg_rate = 0;
+        this.gun.comments.forEach((el,index) => 
+        {
+          this.avg_rate += parseFloat(el.rating);
+        })
+        this.avg_rate = Math.floor(this.avg_rate/this.gun.comments.length);
+  
+        this.setStarsColor(this.avg_rate);
       }, (err) =>
       {
         this.izi.error('Cannot add this comment'); 
@@ -84,6 +103,22 @@ export class GunDetailComponent implements OnInit {
     this.content = '';
     (<NodeListOf<HTMLElement>>document.querySelectorAll('i.fa.fa-star.comment'))
       .forEach(el => el.style.color = 'black');
+  }
+
+  setStarsColor(i: number)
+  {
+    const stars = <NodeListOf<HTMLElement>>document.querySelectorAll('.fa.fa-star.head');
+    stars.forEach((el,index) =>{
+
+      if((index) < i)
+      {
+        (<HTMLElement>el).style.color = 'yellow';
+      } else
+      {
+        (<HTMLElement>el).style.color = 'black';
+      }
+    })
+  
   }
 
 }

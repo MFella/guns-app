@@ -6,7 +6,7 @@ main
     //background-size: 28.80rem 18.80rem;
     background-size: cover;
     margin: auto auto;
-    height: 80rem;
+    height: 85rem;
     padding-top: 2rem;
     padding-bottom: 1rem;
 }
@@ -18,8 +18,8 @@ main
     background-color: #ffffff;
     box-shadow: 6px 6px 54px 0px rgba(0,0,0,0.75);
     max-width: 70rem;
-    height: 70rem;
-    overflow-y: scroll;
+    height: 80rem;
+    //overflow-y: scroll;
 }
 
 .img_main
@@ -125,10 +125,19 @@ main
 
 .nothing_alert
 {
-    margin-top: 2rem;
+    margin-top: auto;
+    margin-bottom: auto;
     width: 40rem;
+    height: 3rem;
     text-align: center;
 } 
+
+.comment_format
+{
+    margin-top: 1rem;
+    height: 25rem;
+    overflow-y: scroll;
+}
 
 i.fa.fa-star.comment
 {
@@ -138,6 +147,18 @@ i.fa.fa-star.comment
         cursor: pointer;
 
     }
+}
+
+i.fa.fa-arrow-right
+{
+    transform: translateX(1rem);
+    color: #41a25f;
+}
+
+i.fa.fa-arrow-up
+{
+    transform: translateX(-1rem);
+    color: #41a25f;
 }
 
 

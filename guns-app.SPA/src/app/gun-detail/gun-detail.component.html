@@ -75,13 +75,12 @@
             <div class="card-body">
               <h4 class="card-title d-flex justify-content-between">               
                 <span>{{this.gun?.name}} </span>
-                  <div class="text-right" *ngFor="let item of this.stars; let i = index;">
-                    <i class="fa fa-star"></i>
-                    <!-- <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i> 
-                  [ngStyle]="{'color': '' + Math.ceil(this.gun.comments.reduce((a,b) => a.rate+b.rate, 0)/this.gun.comments.length)}"-->
+                  <div class="text-right">
+                    <i class="fa fa-star head"></i>
+                     <i class="fa fa-star head"></i>
+                    <i class="fa fa-star head"></i>
+                    <i class="fa fa-star head"></i>
+                    <i class="fa fa-star head"></i>
                   </div>
               </h4>     
               <span class="price_gen">{{this.gun.price}} &euro; / each</span>   
@@ -99,7 +98,7 @@
             <div class="card-footer d-flex justify-content-between">
               <!-- <small class="text-muted">Last updated 3 mins ago</small> -->
 
-              <button class="btn btn-info" *ngIf="this.authServ.currentUser !== null">To Bastet <i class="fa fa-shopping-cart"></i></button>
+              <button class="btn btn-info" *ngIf="this.authServ.currentUser !== null">To Basket <i class="fa fa-shopping-cart"></i></button>
               <button class="btn btn-warning ">Purchase now <i class="fa fa-euro"></i></button>
 
             </div>
@@ -179,13 +178,13 @@
           </div>
           <div class="tab-pane comments fade" id="comments" role="tabpanel" aria-labelledby="nav-contact-tab">
 
-            <div class="row pt-2 d-flex justify-content-center">
+            <div class="row pt-2 d-flex justify-content-center comment_format">
               <div class="col-10 pt-2" *ngFor="let comment of this.gun.comments;">
                 <div class="comment border rounded p-3 mt-2">
                   <div class="d-flex justify-content-between">
                     <strong>Autor: {{comment.remarker}} </strong>
                     <strong>Ocena: {{comment.rating}}/5</strong>
-                    <strong>Data: {{comment.date | date}}</strong>
+                    <strong>Data: {{comment.date | date: 'short'}}</strong>
                   </div>
                   <hr>
                     <p>
@@ -223,8 +222,11 @@
             </div>
 
             <div class="d-flex justify-content-between text-center">
-              <button class="btn btn-secondary" [disabled]="this.content?.length < 4 || this.rate === 0"
-              (click)="addComment()">Add Comment!</button>
+                <button class="btn btn-secondary" [disabled]="this.content?.length < 4 || this.rate === 0"
+                (click)="addComment()">Add Comment!</button>
+              <strong *ngIf="this.content?.length < 4 || this.rate === 0"> <i class="fa fa-arrow-up">
+
+              </i> Fill the comment and dont forget about your rating! <i class="fa fa-arrow-right"></i></strong>
               <div class="ratings d-flex flex-direction-row">Your rating: 
                 <div *ngFor="let x of this.stars; let i = index">
                   <i class="fa fa-star comment" (click)="letShine(i)"></i>
