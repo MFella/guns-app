@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import { slider, imFaded} from './route-animations';
 import {fadeIn, fadeOut} from './helpers/help';
@@ -15,6 +15,8 @@ import {fadeIn, fadeOut} from './helpers/help';
 })
 export class AppComponent {
   title = 'guns-app';
+  currencies: Map<string, string>;
+
 
 
   prepareRoute(outlet: RouterOutlet)

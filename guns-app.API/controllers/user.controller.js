@@ -1,10 +1,15 @@
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const config = require('../config/database');
 
 module.exports = {
     addUser: async(req, res) => 
     {
-        if(this.userExists(req.body.email))
+
+        let newUser = new User(req.body);
+
+        if(module.exports.userExists(req.body.email))
         {
             res.json({success: false, msg: 'User already exists!'});
         }
@@ -40,13 +45,18 @@ module.exports = {
         });
     },
 
+    getUserByEmail: (email, callback) => 
+    {
+        User.findOne({email: email}, callback);
+    },
+
     loginUser: (req, res, next) => 
     {
 
         const email = req.body.email;
-        const password = req.body.password;
+        const password = req.body.password; 
     
-        this.getUserByEmail(email, (err, user) => {
+        module.exports.getUserByEmail(email, (err, user) => {
     
             if(err) throw err;
     
@@ -86,11 +96,6 @@ module.exports = {
 
     },
 
-    getUserByEmail: (email, callback) => 
-    {
-        User.findOne({email: email}, callback);
-    },
-
     userExists: (user) => 
     {
         User.findOne({email: user.email}, (err, res) =>
@@ -106,3 +111,5 @@ module.exports = {
 
     }
 }
+
+//module.exports = 

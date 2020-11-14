@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { APP_INITIALIZER, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +25,14 @@ import {JwPaginationModule} from 'jw-angular-pagination';
 import { GunDetailComponent } from './gun-detail/gun-detail.component';
 import { GunDetailResolver } from './_resolvers/gun-detail.resolver';
 import { ShortPipe } from './_pipes/short.pipe';
+import { CurrencyResolver } from './_resolvers/currency.resolver';
+import { AppConfigService } from './_config/appconfig.service';
+
+
+export function appInit(confServ: AppConfigService){
+  return  () => confServ.load().then(conf => console.log(conf));
+}
+
 
 @NgModule({
   declarations: [			
@@ -61,7 +69,15 @@ import { ShortPipe } from './_pipes/short.pipe';
       multi: true
     },
     SearchResolver,
-    GunDetailResolver
+    GunDetailResolver,
+    CurrencyResolver,
+    AppConfigService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appInit,
+      deps: [AppConfigService],
+      multi: true
+    }
   ],
   exports: [
     ShortPipe

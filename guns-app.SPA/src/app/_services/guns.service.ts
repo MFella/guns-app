@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import {Comment} from '../_models/comment';
 
@@ -10,7 +10,7 @@ export class GunsService {
 
   backUrl: string = `http://localhost:3000/guns`
 
-constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   getAllGuns()
   {
@@ -45,6 +45,17 @@ constructor(private http: HttpClient) { }
     let params = new HttpParams();
     params = params.append('id', id);
     return this.http.post(`http://localhost:3000/comment/create`, comment, {params});
+  }
+
+  getCurrs()
+  {
+    return this.http.get(`http://localhost:3000/currencyrate`)
+      .pipe(
+        map((res: any) => 
+        {
+          return {rates: res.data[0].rates[0]};
+        })
+      )
   }
 
 }

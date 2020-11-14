@@ -45,7 +45,7 @@ app.listenerCount(passport.session());
 
 //
 
-app.use('/users', users);
+//app.use('/users', users);
 //app.use('/guns', guns);
 //app.use('/comments', comments);
 app.use(routes);

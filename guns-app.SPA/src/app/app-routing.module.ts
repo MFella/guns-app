@@ -7,6 +7,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { SearchComponent } from './search/search.component';
 import { AuthGuard } from './_guards/auth.guard';
+import { CurrencyResolver } from './_resolvers/currency.resolver';
 import { GunDetailResolver } from './_resolvers/gun-detail.resolver';
 import { SearchResolver } from './_resolvers/search.resolver';
 
@@ -16,7 +17,7 @@ const routes: Routes = [
   {path: 'login', component: AuthComponent, data: {animation: 'isLeft'}},
   {path: 'register', component: RegisterComponent, data: {animation: 'isRight'}},
   {path: 'search', component: SearchComponent, data: {animation: 'isRight'}, resolve:{
-    gun: SearchResolver
+    gun: SearchResolver //, rates: CurrencyResolver
   }},
   {path: 'search/:name', component: GunDetailComponent, data: {animation: 'isLeft'}, resolve: {
     gun: GunDetailResolver

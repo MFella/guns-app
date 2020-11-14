@@ -22,10 +22,7 @@
 
             should contains 
             
-            <span [ngStyle]="{'color': (this.registerForm.get('name').errors?.pattern != null || 
-            this.registerForm.get('surname').errors?.pattern != null || 
-            this.registerForm.get('name').errors?.pattern != null || 
-            this.registerForm.get('surname').errors?.pattern != null)? 'red': 'black'}">only letters</span> 
+            <span [ngStyle]="{'color': ((this.apprFormat[2] && this.apprFormat[3])) ? 'black' : 'red'}">only letters</span> 
             
             and length between 
             

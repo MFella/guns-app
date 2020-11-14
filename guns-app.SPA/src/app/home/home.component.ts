@@ -1,6 +1,7 @@
 import { style, transition } from '@angular/animations';
 //import{ setInterval, clearInterval} from 'timers';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {changeQuote} from '../helpers/help';
 import { AuthService } from '../_services/auth.service';
 
@@ -11,7 +12,7 @@ import { AuthService } from '../_services/auth.service';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  constructor(public authServ: AuthService) { }
+  constructor(public authServ: AuthService, private route: ActivatedRoute) { }
   quotes: Array<Array<string>>;
   homeInterval: any;
 

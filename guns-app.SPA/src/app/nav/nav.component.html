@@ -6,13 +6,10 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
         <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link" [routerLink]="['/']">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">Link</a>
+          <a class="nav-link" [routerLink]="['/']"> <i class="fa fa-home"></i> Home</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['search']">Search</a>
+          <a class="nav-link" [routerLink]="['search']"> <i class="fa fa-search"></i> Search</a>
         </li>
         <li class="nav-item" routerLinkActive="active" *ngIf="this.authServ.currentUser === null">
             <a class="nav-link" [routerLink]="['login']" >Login</a>
@@ -20,6 +17,10 @@
         <li class="nav-item" routerLinkActive="active" *ngIf="this.authServ.currentUser === null">
           <a class="nav-link" [routerLink]="['register']" >Register</a>
         </li>
+        <li class="nav-time" routerLinkActive="active" *ngIf="this.authServ.currentUser !== null">
+          <a [routerLink]="['order']" class="nav-link"> <i class="fa fa-list-alt"></i> My Orders</a>
+        </li>
+
         <!-- <li class="nav-item" *ngIf="this.authServ.currentUser == null">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Logged as...</a>
         </li>
@@ -32,16 +33,20 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               |{{this.authServ?.currentUser.email.split('@')[0] | short}}|
-            </a>
-              <!-- Here's the magic. Add the .animate and .slide-in classes to your .dropdown-menu and you're all set! -->
+              </a>
+
               <div class="dropdown-menu dropdown-menu-right animate slideIn text-center" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item"> <i class="fa fa-cogs pr-2"></i> Settings <i class="fa fa-cogs pr-2" style="transform: rotateY(180deg)"></i></a>
+                <a class="dropdown-item"><i class="fa fa-caret-left pr-4"></i> Currency <i class="fa fa-euro pr-2"></i><span class="caret"></span></a>
                 <a class="dropdown-item" [routerLink]="['/profile']"><i class="fa fa-user pr-2"></i> Profile <i class="fa fa-user pl-2"></i></a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" (click)="this.authServ.logout()" [routerLink]="['/']">Log<strong>out</strong></a>
               </div>
             </li>
           </ul>
+                    
+
+
+
         </div>
 
       </ul>

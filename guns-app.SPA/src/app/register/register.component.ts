@@ -22,14 +22,15 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    console.log(this.registerForm.get('name'));
   }
 
 
   initForm()
   {
     this.registerForm = this.fb.group({
-      name: ['', [Validators.required, Validators.maxLength(32), Validators.minLength(3), Validators.pattern(/[a-zA-Z]+/)]],
-      surname: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(3), Validators.pattern(/[a-zA-Z]+/)]],
+      name: ['', [Validators.required, Validators.maxLength(32), Validators.minLength(3), Validators.pattern(/^[a-zA-Z\s]*$/)]],
+      surname: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(3), Validators.pattern(/^[a-zA-Z\s]*$/)]],
       email: ['', [Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)]],
       emailRepeat: ['', [Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)]],
       date: ['', Validators.required],
@@ -108,5 +109,11 @@ export class RegisterComponent implements OnInit {
     this.apprFormat[3] = (this.registerForm.get('surname').errors == null || this.registerForm.get('surname').value.length == 0);
 
     this.apprFormat[4] = this.registerForm.get('date').value <= new Date().setFullYear(new Date().getFullYear() - 18).toString();
+  }
+
+  showMe()
+  {
+    console.log(this.registerForm.get("name"));
+    console.log(this.registerForm.get("surname"));
   }
 }
