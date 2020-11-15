@@ -20,6 +20,7 @@ nav
 
 .navbar-brand
 {
+    z-index: 1;
     padding-top: .4em;
     transform: $transHow;
     color: $transCol;
@@ -32,6 +33,11 @@ nav
     {
         color: #389900;
         transform: skewX(4deg);
+    }
+
+    .navbar-nav
+    {
+        transform: skewX(-4deg);
     }
 }
 
@@ -60,6 +66,27 @@ nav
     }
 }
 
+#first_ffs
+{
+
+        border-radius: .8rem;
+        margin-left: 2rem;
+        width: 11rem;
+        text-align: center;
+        transition: all .4s;
+        &:hover
+        {
+            transform: translateY(0rem);
+            //background-color: #e7b2e7;
+            box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+        }
+    
+        &:target
+        {
+            display: none;
+        }
+}
+
 .nav-item.active
 {
     //animation: activeRoute 3s linear infinite;
@@ -72,6 +99,7 @@ nav
     animation-fill-mode: forwards; 
     //box-shadow: inset 0px 0px 6px -1px rgba(0,0,0,0.75);
 }
+
 
 
 .logo_wolf
@@ -98,6 +126,12 @@ nav
 #navbarSupportedContent
 {
     z-index: 1;
+}
+
+#shortDropCurr
+{
+    max-height: 10rem;
+    overflow-y: scroll;
 }
 
 @media (min-width: 992px) {

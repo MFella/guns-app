@@ -13,11 +13,13 @@ module.exports = {
             const parsedCurrs = JSON.parse(response.body);
 
             const currs =  await module.exports.saveCurrencies(parsedCurrs);
+            const newCurrs = { currentCurrency: 'EUR', ...currs};
+
             console.log(currs);
 
             try{
 
-                await res.json({success: true, data: currs});
+                await res.json({success: true, data: newCurrs});
 
             }catch(e)
             {
@@ -30,6 +32,7 @@ module.exports = {
 
         });
     },
+
     saveCurrencies: async(toSave) => 
     {
         const comments = await CurrencyRate.find({date: toSave.date});
@@ -55,4 +58,18 @@ module.exports = {
         }
 
     },
+
+    // setMyCurrency: async(req, res) => 
+    // {
+    //     const {prevCurr, newCurr} = req.body;
+    //     let xd = await CurrencyRate.updateOne({currentCurrency: prevCurr}, newCurr);
+
+    //     if(xd)
+    //     {
+    //         res.json({success: true, msg: 'Updated', currs: xd});
+    //         return;
+    //     }
+    //     res.json({success: false, msg: 'Cant updated'});
+
+    // }
 }

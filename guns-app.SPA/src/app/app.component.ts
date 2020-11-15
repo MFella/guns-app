@@ -18,7 +18,6 @@ export class AppComponent {
   currencies: Map<string, string>;
 
 
-
   prepareRoute(outlet: RouterOutlet)
   {
     // let temp = outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];

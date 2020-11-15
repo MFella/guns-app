@@ -30,7 +30,15 @@ import { AppConfigService } from './_config/appconfig.service';
 
 
 export function appInit(confServ: AppConfigService){
-  return  () => confServ.load().then(conf => console.log(conf));
+  return  () => confServ.load().then(conf => {
+    console.log(conf.rates);
+    localStorage.setItem('rates', JSON.stringify(conf.rates));
+
+    if(!localStorage.getItem('currentRate'))
+    {
+      localStorage.setItem('currentRate', 'EUR');
+    }
+  });
 }
 
 

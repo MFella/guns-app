@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ShortPipe } from '../_pipes/short.pipe';
 import { AuthService } from '../_services/auth.service';
+import { GunsService } from '../_services/guns.service';
 
 @Component({
   selector: 'app-nav',
@@ -11,10 +12,16 @@ import { AuthService } from '../_services/auth.service';
 })
 export class NavComponent implements OnInit {
 
-  constructor(private router: Router, public authServ: AuthService) { }
+  currs: Array<any> = [];
+
+  constructor(private router: Router, public authServ: AuthService,
+    public gunsServ: GunsService) { }
 
   ngOnInit(): void {
-    console.log(this.authServ.isLoggedIn());
+    let temper = Object.keys(this.gunsServ.rates).sort();
+
+    this.currs = Object.assign(this.currs, temper);
+
   }
 
 
@@ -27,6 +34,14 @@ export class NavComponent implements OnInit {
 
     //(<NodeListOf<HTMLElement>>document.querySelectorAll('.navbar-nav > li'))[2].style.display = 'none';
     //this.router.navigate(['/search']);
+  }
+
+  changeCurr(curr: string)
+  {
+    console.log(curr);
+    this.gunsServ.myRate = curr;
+    //localStorage.removeItem('currentRate');
+    localStorage.setItem('currentRate', curr);
   }
 
 }

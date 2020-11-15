@@ -21,6 +21,7 @@ router.post('/users/register', User.addUser);
 router.post('/users/login', User.loginUser);
 
 //Retrieve Curriensies
-router.get('/currencyrate', CurrencyRate.retrieveCurrency)
+router.get('/currencyrate', CurrencyRate.retrieveCurrency);
+// router.get('/currencyrate/update', CurrencyRate.setMyCurrency);
 
 module.exports = router; 

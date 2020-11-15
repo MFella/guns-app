@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import {map, share, shareReplay, tap} from 'rxjs/operators';
 import { User } from '../_models/user';
 import * as env from '../../environments/environment';
@@ -20,6 +20,7 @@ export class AuthService {
     this.currentUser = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
     //console.log(this.currentUser);
   }
+
 
 
   registerUser(user: User)
