@@ -40,8 +40,15 @@ export class NavComponent implements OnInit {
   {
     console.log(curr);
     this.gunsServ.myRate = curr;
-    //localStorage.removeItem('currentRate');
-    localStorage.setItem('currentRate', curr);
+
+    for(const [key, value] of Object.entries(this.gunsServ.rates))
+    {
+      if(key === curr)
+      {
+        localStorage.setItem('currentRate', curr);
+        localStorage.setItem('currentRateValue', value);
+      }
+    }
   }
 
 }

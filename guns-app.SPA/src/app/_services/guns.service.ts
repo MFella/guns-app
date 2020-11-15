@@ -19,7 +19,7 @@ export class GunsService {
     this.myRate = localStorage.getItem('currentRate').toString();
     let as = "THB";
     //Object.keys, Object.values
-    let xd = localStorage.getItem('rates').split(',').filter(el => el.includes(as))[0].split(":")[1];
+    //let xd = localStorage.getItem('rates').split(',').filter(el => el.includes(as))[0].split(":")[1];
   }
 
   getAllGuns()

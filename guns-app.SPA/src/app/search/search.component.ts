@@ -22,6 +22,7 @@ export class SearchComponent implements OnInit {
   rotate = true;
   maxSize = 5;
   pagination: Pagination;
+  currRate: number;
 
   models = {
     ceil: "999",
@@ -31,11 +32,16 @@ export class SearchComponent implements OnInit {
   };
   guns: Array<Gun> = [];
 
-  constructor(private route: ActivatedRoute, private gunServ: GunsService,
+  constructor(private route: ActivatedRoute, public gunServ: GunsService,
     private izi: IziAlertService, private router: Router) { }
 
   ngOnInit(): void {
 
+    this.currRate = Math.round(parseFloat(localStorage.getItem('currentRateValue'))*10)/10;
+    console.log(this.gunServ.rates);
+
+
+    console.log(this.gunServ.rates);
     this.pagination = {
       currentPage: 1,
       itemsPerPage: 3,
@@ -46,6 +52,11 @@ export class SearchComponent implements OnInit {
     this.route.data.subscribe((res:any) => {
       console.log(res);
       this.guns = res.gun.guns; //.slice(7,13);
+      this.guns.forEach( el => 
+      {
+          el.price = Math.round(el.price*10)/10;
+      })
+
       this.pageOfItems = this.guns.slice(0,3);
       this.items = res.gun.guns;
       this.pagination = res.gun.pag;
@@ -87,6 +98,10 @@ export class SearchComponent implements OnInit {
 
   pageChanged(e: any)
   {
+
+    this.currRate = Math.round(parseFloat(localStorage.getItem('currentRateValue'))*10)/10;
+    console.log(this.currRate);
+
     this.pagination.currentPage = e.page;
     this.pagination.itemsPerPage = e.itemsPerPage;
 

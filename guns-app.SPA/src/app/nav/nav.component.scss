@@ -31,8 +31,9 @@ nav
     
     &:hover
     {
-        color: #389900;
-        transform: skewX(4deg);
+        cursor: pointer;
+        //color: #389900;
+        //transform: skewX(4deg);
     }
 
     .navbar-nav
