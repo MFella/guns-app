@@ -83,7 +83,8 @@
                     <i class="fa fa-star head"></i>
                   </div>
               </h4>     
-              <span class="price_gen d-flex flex-direction-row justify-content-between">{{this.gun.price}} &euro; ({{this.afterParse}} {{this.native_curr}})
+              <span class="price_gen d-flex flex-direction-row justify-content-between">{{this.gun.price}} &euro; 
+                <span *ngIf="!(this.native_curr === 'EUR')">({{this.afterParse}} {{this.native_curr}})</span> 
                 <span class="text-warning">/ each</span>
               </span>   
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -110,22 +111,6 @@
 
     </div>
 
-        <!-- <div class="row">
-          <div class="col-md-12">
-            <ul class="nav nav-tabs">
-              <li class="nav-item">
-                <a class="nav-link active" href="#">Description</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Technicalities</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Comments</a>
-              </li>
-            </ul>
-          </div>
-        </div> -->
-
         <nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#description" role="tab" aria-controls="nav-home" aria-selected="true">Description</a>
@@ -142,12 +127,6 @@
                 <p class="pt-2">
                   {{this.gun.description}}
                 </p>
-                <!-- <p class="pt-2">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse euismod fringilla libero, pharetra aliquet justo laoreet eu. 
-                  Maecenas a elit justo. Vestibulum vel orci justo. Quisque nec ipsum laoreet, commodo enim sed, maximus dolor. Nullam sit amet blandit urna, nec bibendum nunc.
-                   Maecenas pulvinar sem id molestie tincidunt. Quisque finibus bibendum massa, at eleifend enim cursus quis. Phasellus ut velit rutrum, vehicula tellus quis, aliquam lorem. 
-                  Mauris fringilla mauris turpis, nec ultricies mauris elementum eget. Proin congue a nisi facilisis vulputate. Duis eu nunc quis purus feugiat posuere.
-                </p> -->
               </div>
             </div>
             
@@ -212,30 +191,36 @@
                   <div *ngIf="this.gun.comments.length === 0" class="alert alert-warning nothing_alert" role="alert">
                     Nobody leave comment yet. Be first one! <i class="fa fa-arrow-down"></i> 
                     <br>
-                    <span class="req_login" *ngIf="this.authServ.currentUser === null">But first of all, you should be <strong>logged In!</strong></span>
+                    <!-- <span class="req_login" *ngIf="this.authServ.currentUser === null">But first of all, you should be <strong>logged In!</strong></span> -->
                   </div>
 
             </div>
 
-            <form class="mt-4">
-            <div class="form-group">
-              <label for="exampleFormControlTextarea1">Comment:</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="content" name="content"></textarea>
-            </div>
+            <form class="mt-4"
+              [ngStyle]="{'opacity': (this.authServ.currentUser !== null)? '1': '0.2',
+              'pointer-events': (this.authServ.currentUser !== null)? 'auto': 'none',
+              'user-select': (this.authServ.currentUser !== null)? 'auto': 'none'
+                }"
+              >
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1">Comment:</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="content" name="content"></textarea>
+              </div>
 
-            <div class="d-flex justify-content-between text-center">
-                <button class="btn btn-secondary" [disabled]="this.content?.length < 4 || this.rate === 0"
-                (click)="addComment()">Add Comment!</button>
-              <strong *ngIf="this.content?.length < 4 || this.rate === 0"> <i class="fa fa-arrow-up">
+              <div class="d-flex justify-content-between text-center">
+                  <button class="btn btn-secondary" [disabled]="this.content?.length < 4 || this.rate === 0"
+                  (click)="addComment()">Add Comment!</button>
+                <strong *ngIf="this.content?.length < 4 || this.rate === 0"> <i class="fa fa-arrow-up">
 
-              </i> Fill the comment and dont forget about your rating! <i class="fa fa-arrow-right"></i></strong>
-              <div class="ratings d-flex flex-direction-row">Your rating: 
-                <div *ngFor="let x of this.stars; let i = index">
-                  <i class="fa fa-star comment" (click)="letShine(i)"></i>
+                </i> Fill the comment and dont forget about your rating! <i class="fa fa-arrow-right"></i></strong>
+                <div class="ratings d-flex flex-direction-row">Your rating: 
+                  <div *ngFor="let x of this.stars; let i = index">
+                    <i class="fa fa-star comment" (click)="letShine(i)"></i>
+                  </div>
                 </div>
               </div>
-            </div>
           </form>
+          <span class="req_login" *ngIf="this.authServ.currentUser === null">But first of all, you should be <strong>logged In!</strong></span>
 
           </div>
         </div>

@@ -88,9 +88,6 @@
                 </select>
               </li>
             </ul>
-            <!-- <div class="card-body text-center ap_but">
-              <button class="btn btn-info">Apply</button>
-            </div> -->
           </div>
           
 
@@ -108,13 +105,9 @@
             </form>
 
             <div class="container pt-2">
-              <!-- <ul class="list-group" *ngFor="let gun of this.guns">
-                <li class="list-group-item col-md-12">{{gun.name}}</li>
-              </ul> -->
 
               <div class="row d-flex justify-content-end mb-4">
                 <div class="card-footer pb-1 pt-3">
-                  <!-- <jw-pagination [items]="this.items" (changePage)="onChangePage($event)" [pageSize]="3"></jw-pagination> -->
                   <pagination [boundaryLinks]="true" [totalItems]="this.pagination.totalItems" [rotate]="rotate" 
                   [maxSize]="maxSize" firstText="&laquo;" lastText="&raquo;"
                   (pageChanged)="pageChanged($event)" [itemsPerPage]="this.pagination.itemsPerPage"
@@ -126,18 +119,8 @@
               </div>
 
               <div class="row renderGuns">
-                <div class="col-md-4" *ngFor="let gun of this.guns; let i = index;">
-                  <div class="card card_render" (click)="toDetails()" [routerLink]="['/search/', gun.name]">
-                    <img class="card-img-top" src="../../assets/gun2.svg" alt="Card image cap">
-                    <hr>
-                    <div class="card-body">
-                      <h5 class="card-title">{{gun.name}}</h5>
-                      <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-                      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                      <span class="mt-4">{{gun.price}} &euro; / {{ this.current_prices[i]}}</span>
-                    </div>
-                  </div>
-                </div>
+
+                <app-search-item *ngFor="let gun of this.guns; let i = index;" [gun]="gun" [receivedRate]="currRate"></app-search-item>
               </div>
 
               <div class="alert alert-secondary" role="alert" *ngIf="this.guns.length === 0">

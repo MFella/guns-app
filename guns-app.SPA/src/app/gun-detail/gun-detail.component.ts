@@ -24,7 +24,7 @@ export class GunDetailComponent implements OnInit {
   stars = new Array(5).fill(false);
 
   constructor(private route: ActivatedRoute, private izi: IziAlertService,
-    private router: Router, public authServ: AuthService, private gunsServ: GunsService) { }
+    private router: Router, public authServ: AuthService, public gunsServ: GunsService) { }
 
   ngOnInit() {
     stopCarousel();
@@ -34,6 +34,16 @@ export class GunDetailComponent implements OnInit {
       this.gun = res.gun[0];
       this.native_curr = localStorage.getItem('currentRate');
       console.log(localStorage.getItem('currentRate'));
+
+      this.gunsServ.emitRate.subscribe((rate: Array<string>) => 
+      {
+        if(rate !== null)
+        {
+          this.native_curr = rate[0];
+          this.afterParse = parseFloat(rate[1]) * this.gun.price;
+          this.afterParse = +parseFloat(this.afterParse.toString()).toFixed(2);
+        }
+      })
 
       this.afterParse = ((+parseFloat(localStorage.getItem('currentRateValue')).toFixed(2))
       *(+parseFloat(this.gun.price.toString()).toFixed(2)));

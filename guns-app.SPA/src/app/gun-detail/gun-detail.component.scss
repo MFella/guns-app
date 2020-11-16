@@ -109,12 +109,14 @@ main
 
 .tab-pane.comments
 {
-
-    span
+    .req_login
     {
-        padding-top: 1rem;
+        user-select: none;
+        position: absolute;
+        margin-bottom: 10rem;
         font-size: 1.5rem;
         color: red;
+        transform: translate(1rem, -8rem);
     }
     textarea
     {
@@ -124,7 +126,8 @@ main
 
 .nothing_alert
 {
-    margin-top: 6rem;
+    user-select: none;
+    margin-top: 8rem;
     width: 40rem;
     height: 3rem;
     text-align: center;
@@ -159,6 +162,7 @@ i.fa.fa-arrow-up
     transform: translateX(-1rem);
     color: #41a25f;
 }
+
 
 
 

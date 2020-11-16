@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router, RouterOutlet } from '@angular/router';
 import { setTime } from 'ngx-bootstrap/chronos/utils/date-setters';
 import { Gun } from '../_models/gun';
@@ -23,8 +23,6 @@ export class SearchComponent implements OnInit {
   maxSize = 5;
   pagination: Pagination;
   currRate: number;
-  current_prices: Array<number> = [];
-
 
   models = {
     ceil: "999",
@@ -57,18 +55,18 @@ export class SearchComponent implements OnInit {
       {
           el.price = +parseFloat(el.price.toString()).toFixed(10);
           let temper = el.price * this.currRate;
-          this.current_prices.push(+parseFloat(temper.toString()).toFixed(2));
       })
 
       this.pageOfItems = this.guns.slice(0,3);
       this.items = res.gun.guns;
       this.pagination = res.gun.pag;
+
     })
+
   }
 
   retrieveItems()
   {
-    this.current_prices = [];
 
     this.gunServ.getSpecGuns(this.models, this.pagination.currentPage.toString(), this.pagination.itemsPerPage.toString())
         .subscribe((res:any) => 
@@ -80,7 +78,6 @@ export class SearchComponent implements OnInit {
               {
                 el.price = +parseFloat((el.price.toString())).toFixed(2);
                 let temper = el.price * this.currRate;
-                this.current_prices.push(+parseFloat(temper.toString()).toFixed(2));
               })
 
             this.pagination.totalItems = res.itemsCount;

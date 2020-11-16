@@ -27,29 +27,36 @@ import { GunDetailResolver } from './_resolvers/gun-detail.resolver';
 import { ShortPipe } from './_pipes/short.pipe';
 import { CurrencyResolver } from './_resolvers/currency.resolver';
 import { AppConfigService } from './_config/appconfig.service';
+import { SearchItemComponent } from './search/search-item/search-item.component';
+import { CommonModule } from '@angular/common';
 
 
 export function appInit(confServ: AppConfigService){
   return  () => confServ.load().then(conf => {
-    console.log(conf.rates);
-    localStorage.setItem('rates', JSON.stringify(conf.rates));
+    conf.rates.EUR = 1;
 
-    if(!localStorage.getItem('currentRate'))
+    localStorage.setItem('rates', JSON.stringify(conf.rates));
+    //localStorage.setItem('currentRate', 'EUR');
+    const firstStart = localStorage.getItem('currentRate');
+    if(firstStart === null)
     {
       localStorage.setItem('currentRate', 'EUR');
     }
+
+    
   });
 }
 
 
 @NgModule({
-  declarations: [			
+  declarations: [
     AppComponent,
     NavComponent,
     AuthComponent,
     HomeComponent,
     RegisterComponent,
     SearchComponent,
+    SearchItemComponent,
     FooterComponent,
     ProfileComponent,
     GunDetailComponent,
@@ -66,7 +73,8 @@ export function appInit(confServ: AppConfigService){
     BrowserAnimationsModule,
     BsDatepickerModule.forRoot(),
     PaginationModule.forRoot(),
-    NgxIziToastModule
+    NgxIziToastModule,
+    CommonModule
    // JwPaginationModule
   ],
   providers: [

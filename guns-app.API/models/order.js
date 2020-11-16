@@ -4,6 +4,9 @@ const config = require('../config/database');
 const { response } = require('express');
 
 const OrderSchema = mongoose.Schema({
+    userId:{
+        type: number
+    },
     
 
 

@@ -1,99 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap');
 
-// nav
-// {
-//     font-family: 'Lato', 'sans-serif';
-//     height:2.7rem;
-//     display: none;
-//     background-image: linear-gradient(50deg, #D9AFD9 0%, #ffd194 100%);
-//     box-shadow: inset 1px -1px 10px -1px rgba(0,0,0,0.75);
-// }
-
-// input.search_input
-// {
-//     width: 35rem;
-//     height:1.8rem;
-//     border-radius: .5em;
-//     opacity: .8;
-// }
-
-// *:focus
-// {
-//     box-shadow: none;
-// }
-
-// .arrows
-// {
-//     position: absolute;
-//     width: 2.5rem;
-//     height: 2.5rem;
-//     border: 1px rgb(255, 201, 201) solid;
-//     border-radius: 1.5rem;
-// }
-
-// .arr_l
-// {
-//     margin-right: 90vw;
-//     animation-name: knock_left;
-//     animation-duration: 10s;
-//     animation-delay: 4s;
-//     animation-iteration-count: infinite;
-// }
-
-// .arr_r
-// {
-//     margin-left: 90vw;
-//     animation-name: knock_right;
-//     animation-duration: 10s;
-//     animation-delay: 2s;
-//     animation-iteration-count: infinite;
-// }
-
-// @keyframes knock_right
-// {
-//     0%{transform: translateX(0rem);}
-//     50%{transform: translateX(.5rem);}
-//     100%{transform: translateX(0rem);}
-// }
-
-// @keyframes knock_left
-// {
-//     0%{transform: translateX(0rem);}
-//     47%{transform: translateX(0rem);}
-//     50%{transform: translateX(-.5rem);}
-//     53%{transform: translateX(0rem);}
-//     100%{transform: translateX(0rem);}
-// }
 .container
 {
     max-width: 1400px;
-}
-.card_render
-{
-    //width: 15vw;
-    //height: 50vh;
-    padding: 1.4rem;
-    border-radius: 1rem;
-    cursor: pointer;
-    transition: all .4s;
-
-    &:hover
-    {
-        background-color: #e6e6e6;
-        transform: translateY(-.7rem);
-        box-shadow: 0px 6px 20px 0px rgba(0,0,0,0.75);
-    }
-}
-
-.col-md-4
-{
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-}
-
-.card-body > span
-{
-    font-size: 2rem;
 }
 
 main 
@@ -119,18 +28,6 @@ span
     animation-iteration-count: infinite;
     transform: translateX(4rem);
 }
-
-// jw-pagination
-// {
-//     background-color: blue;
-//     font-size: 1.1rem;
-//     transition: all .4s;
-//     &:hover
-//     {
-//         cursor: pointer;
-//         transform: scale(1.3);
-//     }
-// }
 
 @keyframes animateSand
 {

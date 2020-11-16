@@ -58,13 +58,14 @@ export class AuthService {
     localStorage.setItem('id_token', authRes.token);
     localStorage.setItem('expires_at', JSON.stringify(expireDate.valueOf()));
 
-    console.log(localStorage);
   }
 
   logout()
   {
     this.currentUser = null;
-    localStorage.clear();
+    localStorage.removeItem('user');
+    localStorage.removeItem('id_token');
+    localStorage.removeItem('expires_at');
     this.izi.info('You have been logged out properly');
   } 
 

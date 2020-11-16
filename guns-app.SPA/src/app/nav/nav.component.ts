@@ -1,5 +1,5 @@
 import { style } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ShortPipe } from '../_pipes/short.pipe';
 import { AuthService } from '../_services/auth.service';
@@ -45,8 +45,10 @@ export class NavComponent implements OnInit {
     {
       if(key === curr)
       {
+        localStorage.removeItem('currentRate');
         localStorage.setItem('currentRate', curr);
         localStorage.setItem('currentRateValue', value);
+        this.gunsServ.emitRate.next([key, value]);
       }
     }
   }

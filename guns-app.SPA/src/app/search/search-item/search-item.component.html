@@ -1,0 +1,12 @@
+<div class="col-md-4">
+  <div class="card card_render" [routerLink]="['/search/', gun.name]">
+    <img class="card-img-top" src="../../assets/gun2.svg" alt="Card image cap">
+    <hr>
+    <div class="card-body">
+      <h5 class="card-title">{{gun.name}}</h5>
+      <span class="mt-4">{{gun.price}} &euro;</span>
+      
+      <p class="text-muted"><span>{{priceAfterParsing}} {{currency_code}}</span></p>
+    </div>
+  </div>
+</div>
