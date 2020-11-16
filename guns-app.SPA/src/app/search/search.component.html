@@ -126,7 +126,7 @@
               </div>
 
               <div class="row renderGuns">
-                <div class="col-md-4" *ngFor="let gun of this.guns">
+                <div class="col-md-4" *ngFor="let gun of this.guns; let i = index;">
                   <div class="card card_render" (click)="toDetails()" [routerLink]="['/search/', gun.name]">
                     <img class="card-img-top" src="../../assets/gun2.svg" alt="Card image cap">
                     <hr>
@@ -134,7 +134,7 @@
                       <h5 class="card-title">{{gun.name}}</h5>
                       <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                       <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                      <span class="mt-4">{{gun.price}} &euro; / {{ gun.price * this.currRate}}</span>
+                      <span class="mt-4">{{gun.price}} &euro; / {{ this.current_prices[i]}}</span>
                     </div>
                   </div>
                 </div>

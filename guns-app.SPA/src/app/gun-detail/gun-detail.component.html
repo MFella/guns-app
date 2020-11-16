@@ -83,7 +83,9 @@
                     <i class="fa fa-star head"></i>
                   </div>
               </h4>     
-              <span class="price_gen">{{this.gun.price}} &euro; / each</span>   
+              <span class="price_gen d-flex flex-direction-row justify-content-between">{{this.gun.price}} &euro; ({{this.afterParse}} {{this.native_curr}})
+                <span class="text-warning">/ each</span>
+              </span>   
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               <hr>
               <p class="card-text d-flex justify-content-between">Shipments starts from 5 &euro;<i class="fa fa-truck"></i></p>

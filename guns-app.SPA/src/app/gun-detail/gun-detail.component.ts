@@ -18,6 +18,8 @@ export class GunDetailComponent implements OnInit {
   gun: Gun;
   rate: number = 0;
   avg_rate: number = 0;
+  afterParse: number = 0;
+  native_curr: string = '';
   content: any = '';
   stars = new Array(5).fill(false);
 
@@ -30,8 +32,13 @@ export class GunDetailComponent implements OnInit {
     this.route.data.subscribe((res: any) => 
     {
       this.gun = res.gun[0];
-      console.log(this.gun);
-      //this.avg_rate = Math.floor(this.gun.comments.reduce((rating, {b}) => parseInt(rating) + b, 0));
+      this.native_curr = localStorage.getItem('currentRate');
+      console.log(localStorage.getItem('currentRate'));
+
+      this.afterParse = ((+parseFloat(localStorage.getItem('currentRateValue')).toFixed(2))
+      *(+parseFloat(this.gun.price.toString()).toFixed(2)));
+      this.afterParse = +parseFloat(this.afterParse.toString()).toFixed(2);
+
       this.gun.comments.forEach((el,index) => 
       {
         this.avg_rate += parseFloat(el.rating);

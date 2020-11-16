@@ -23,6 +23,8 @@ export class SearchComponent implements OnInit {
   maxSize = 5;
   pagination: Pagination;
   currRate: number;
+  current_prices: Array<number> = [];
+
 
   models = {
     ceil: "999",
@@ -37,9 +39,8 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.currRate = Math.round(parseFloat(localStorage.getItem('currentRateValue'))*10)/10;
-    console.log(this.gunServ.rates);
-
+    let temp = localStorage.getItem('currentRateValue');
+    this.currRate = +parseFloat(temp).toFixed(2);
 
     console.log(this.gunServ.rates);
     this.pagination = {
@@ -54,7 +55,9 @@ export class SearchComponent implements OnInit {
       this.guns = res.gun.guns; //.slice(7,13);
       this.guns.forEach( el => 
       {
-          el.price = Math.round(el.price*10)/10;
+          el.price = +parseFloat(el.price.toString()).toFixed(10);
+          let temper = el.price * this.currRate;
+          this.current_prices.push(+parseFloat(temper.toString()).toFixed(2));
       })
 
       this.pageOfItems = this.guns.slice(0,3);
@@ -65,21 +68,21 @@ export class SearchComponent implements OnInit {
 
   retrieveItems()
   {
-      //get specific guns: price range, category, etc
-      // console.log(this.models);
+    this.current_prices = [];
 
-      // const toSearch = {
-      //   searchQuery: this.models,
-      //   pageParams: {
-      //     pageNo: 1,
-      //     pageSize: 4
-      //   }
-      // }
-      this.gunServ.getSpecGuns(this.models, this.pagination.currentPage.toString(), this.pagination.itemsPerPage.toString())
+    this.gunServ.getSpecGuns(this.models, this.pagination.currentPage.toString(), this.pagination.itemsPerPage.toString())
         .subscribe((res:any) => 
           {
             this.guns = res.guns;
             this.items = res.guns;
+
+            this.guns.forEach(el =>
+              {
+                el.price = +parseFloat((el.price.toString())).toFixed(2);
+                let temper = el.price * this.currRate;
+                this.current_prices.push(+parseFloat(temper.toString()).toFixed(2));
+              })
+
             this.pagination.totalItems = res.itemsCount;
           }, err => {
             
@@ -98,9 +101,9 @@ export class SearchComponent implements OnInit {
 
   pageChanged(e: any)
   {
+    let temp = localStorage.getItem('currentRateValue');
 
-    this.currRate = Math.round(parseFloat(localStorage.getItem('currentRateValue'))*10)/10;
-    console.log(this.currRate);
+    this.currRate = +parseFloat(temp).toFixed(2);
 
     this.pagination.currentPage = e.page;
     this.pagination.itemsPerPage = e.itemsPerPage;
