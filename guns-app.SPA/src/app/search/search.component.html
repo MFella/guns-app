@@ -72,21 +72,56 @@
                 </div>
               </li>
               <li class="list-group-item text-center">Category
-                <select size="1" class="form-control" id="exampleFormControlSelect2" onfocus='this.size=3;' 
-                onblur='this.size=1;' onchange='this.size=1; this.blur();' [(ngModel)]="this.models.category">
-                  <option value="">Any type</option>
-                  <option value="Handgun">Handgun</option>
-                  <option value="Submachine Gun">Submachine Gun</option>
-                  <option value="Shotgun">Shotgun</option>
-                  <option value="Assault Rifle">Assault Rifle</option>
-                  <option value="Sniper Rifle">Sniper Rifle</option>
-                  <option value="Machine Gun">Machine Gun</option>
-                  <option value="Grenade Launcher">Grenade Launcher</option>
-                  <option value="Rocket">Rocket</option>
-                  <option value="Explosives">Explosives</option>
-                  <option value="Mounted Weapon">Mounted Weapon</option>
-                </select>
+                <div class="select_cont">   
+                    <select data-container="body" style="max-height: 10rem;">
+                      <option value="">Any type</option>
+                      <option value="Handgun">Handgun</option>
+                      <option value="Submachine Gun">Submachine Gun</option>
+                      <option value="Shotgun">Shotgun</option>
+                      <option value="Assault Rifle">Assault Rifle</option>
+                      <option value="Sniper Rifle">Sniper Rifle</option>
+                      <option value="Machine Gun">Machine Gun</option>
+                      <option value="Grenade Launcher">Grenade Launcher</option>
+                      <option value="Rocket">Rocket</option>
+                      <option value="Explosives">Explosives</option>
+                      <option value="Mounted Weapon">Mounted Weapon</option>
+                    </select>
+                </div>
               </li>
+
+<!--                size="1" class="form-control overflow-scroll" id="exampleFormControlSelect2" onfocus='this.size=1;' 
+                onblur='this.size=1;' onchange='this.size=1; this.blur();' [(ngModel)]="this.models.category"-->
+
+
+
+
+
+              <!-- <li class="text-center" id="find_specific">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item dropdown" id="first_ffs">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Currency: {{this.gunServ.myRate}}
+                    </a>
+                    
+
+                    <div class="dropdown-menu dropdown-menu-right animate slideIn text-center" aria-labelledby="navbarDropdown" id="shortDropCurr">
+                        <option value="">Any type</option>
+                        <option value="Handgun">Handgun</option>
+                        <option value="Submachine Gun">Submachine Gun</option>
+                        <option value="Shotgun">Shotgun</option>
+                        <option value="Assault Rifle">Assault Rifle</option>
+                        <option value="Sniper Rifle">Sniper Rifle</option>
+                        <option value="Machine Gun">Machine Gun</option>
+                        <option value="Grenade Launcher">Grenade Launcher</option>
+                        <option value="Rocket">Rocket</option>
+                        <option value="Explosives">Explosives</option>
+                        <option value="Mounted Weapon">Mounted Weapon</option>
+                    </div>
+                  </li>
+                </ul>
+              </li> -->
+
+
             </ul>
           </div>
           
@@ -132,6 +167,7 @@
     </div>
   </div>
 </main>
-  <app-footer></app-footer>
+
+<app-footer></app-footer>
 
 

@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs')
 const config = require('../config/database');
 const { response } = require('express');
 const SALT = 10;
+const Schema = mongoose.Schema;
 
 const UserSchema = mongoose.Schema({
     name: {
@@ -24,7 +25,11 @@ const UserSchema = mongoose.Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    orders: [{
+        type: Schema.Types.ObjectId,
+        ref: "Order"
+    }]
 });
 
 const User = module.exports = mongoose.model('User', UserSchema);

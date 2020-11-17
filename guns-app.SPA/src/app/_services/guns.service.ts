@@ -63,7 +63,7 @@ export class GunsService {
         map((res: any) => 
         {
           console.log(res);
-          if(res.success)
+          if(res.success && res.data[0] !== undefined)
           {
             return {rates: res.data[0].rates[0]};
           }

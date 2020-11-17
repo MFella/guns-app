@@ -17,7 +17,7 @@ main
 
 select
 {
-    height:2rem;
+    height: 2rem;
     overflow-y: scroll;
 }
 
@@ -29,8 +29,63 @@ span
     transform: translateX(4rem);
 }
 
+.slideIn {
+    -webkit-animation-name: slideIn;
+    animation-name: slideIn;
+    a{
+        transition: all .35s;
+
+        &:hover
+        {
+            background-color: #f0ad4e;
+        }
+
+    }
+}
+
+.dropdown-menu
+{
+    max-height: 10rem;
+    height: 7rem;
+    overflow-y: scroll;
+}
+
+#shortDropCurr
+{
+    max-height: 10rem;
+    overflow-y: scroll;
+}
+
+#find_specific
+{
+    color: black;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.select_cont
+{
+    max-height: 5rem;
+    overflow-y: scroll;
+}
+
 @keyframes animateSand
 {
     0%{transform: translate(0rem);}
     100%{transform: translate(2rem);}
 }
+
+@keyframes slideIn {
+    0% {
+      transform: translateY(1rem);
+      opacity: 0;
+    }
+    100% {
+      transform:translateY(0rem);
+      opacity: 1;
+    }
+    0% {
+      transform: translateY(1rem);
+      opacity: 0;
+    }
+  }

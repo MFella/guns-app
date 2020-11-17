@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
+
     this.homeInterval = setInterval(changeQuote, 10000);
   }
 

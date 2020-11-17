@@ -13,10 +13,9 @@ import {fadeIn, fadeOut} from './helpers/help';
     imFaded
   ]
 })
-export class AppComponent {
+export class AppComponent{ 
   title = 'guns-app';
   currencies: Map<string, string>;
-
 
   prepareRoute(outlet: RouterOutlet)
   {
