@@ -1,3 +1,4 @@
+const gun = require('../models/gun');
 const Gun = require('../models/gun');
 
 
@@ -32,6 +33,7 @@ module.exports = {
                 //casual pagination:
                 let totalPages = Math.ceil(Math.round(guns.length/3));
                 
+
                 const pag = 
                 {
                     currentPage: 1,
@@ -39,7 +41,9 @@ module.exports = {
                     totalItems: guns.length,
                     totalPages
                 };
-    
+
+                //remove ids from this!
+
                 res.json({guns: guns.slice(0,3), pag: pag});
                 return;
             }

@@ -71,6 +71,8 @@ export class SearchComponent implements OnInit {
     this.gunServ.getSpecGuns(this.models, this.pagination.currentPage.toString(), this.pagination.itemsPerPage.toString())
         .subscribe((res:any) => 
           {
+            console.log(this.models);
+
             this.guns = res.guns;
             this.items = res.guns;
 
