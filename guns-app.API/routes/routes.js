@@ -4,6 +4,8 @@ const Gun = require('../controllers/gun.controller');
 const Comment = require('../controllers/comment.controller');
 const User = require('../controllers/user.controller');
 const CurrencyRate = require('../controllers/currencyrate.controller');
+const Order = require('..//controllers/order.controller');
+const OrderItem = require('../controllers/orderitem.controller');
 router.get('/', (req, res) => res.send('ok'));
 
 
@@ -23,5 +25,9 @@ router.post('/users/login', User.loginUser);
 //Retrieve Curriensies
 router.get('/currencyrate', CurrencyRate.retrieveCurrency);
 // router.get('/currencyrate/update', CurrencyRate.setMyCurrency);
+
+//Orders routes:
+router.post('/order/create/', Order.create);
+
 
 module.exports = router; 

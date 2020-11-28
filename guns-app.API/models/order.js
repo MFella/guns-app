@@ -10,11 +10,12 @@ const OrderSchema = new mongoose.Schema({
         ref: "User"
     },
     startDate: {
-        type: Date
+        type: Date,
+        default: new Date(2001,1,1)
     },
     endDate: {
         type: Date,
-        default: new Date(2000,1,1)
+        default: new Date(2010,1,1)
     },
     totalBefore: {
         type: String
