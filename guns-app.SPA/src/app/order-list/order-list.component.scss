@@ -1,0 +1,33 @@
+.container
+{
+    max-width: 2000px;
+    height: calc(100%-10rem);
+    background: #3A1C71;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #FFAF7B, #D76D77, #3A1C71);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #FFAF7B, #D76D77, #3A1C71); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    height: calc(100vh - 3rem);
+}
+
+main 
+{
+    background-image: linear-gradient(50deg, #70e1f5 0%, #ffd194 100%);
+    background-repeat: no-repeat;
+    //background-size: 28.80rem 18.80rem;
+    background-size: cover;
+    margin: auto auto;
+}
+
+ul{
+
+    width: 75%;
+    li:not(:first-child){
+
+        opacity: .75;
+        transition: all .4s;
+    
+        &:hover{
+            opacity:1;
+            cursor: pointer;
+        }
+    }
+}

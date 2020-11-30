@@ -29,6 +29,7 @@ import { CurrencyResolver } from './_resolvers/currency.resolver';
 import { AppConfigService } from './_config/appconfig.service';
 import { SearchItemComponent } from './search/search-item/search-item.component';
 import { CommonModule } from '@angular/common';
+import { OrderListComponent } from './order-list/order-list.component';
 
 
 export function appInit(confServ: AppConfigService){
@@ -49,7 +50,7 @@ export function appInit(confServ: AppConfigService){
 
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     NavComponent,
     AuthComponent,
@@ -60,7 +61,8 @@ export function appInit(confServ: AppConfigService){
     FooterComponent,
     ProfileComponent,
     GunDetailComponent,
-    ShortPipe
+    ShortPipe,
+      OrderListComponent
    ],
   imports: [
     MatSliderModule,

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 import { GunDetailComponent } from './gun-detail/gun-detail.component';
 import { HomeComponent } from './home/home.component';
+import { OrderListComponent } from './order-list/order-list.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { SearchComponent } from './search/search.component';
@@ -22,7 +23,8 @@ const routes: Routes = [
   {path: 'search/:name', component: GunDetailComponent, data: {animation: 'isLeft'}, resolve: {
     gun: GunDetailResolver
   }},
-  {path: 'profile', component: ProfileComponent, data: {animation: 'isLeft'},  canActivate: [AuthGuard]}
+  {path: 'profile', component: ProfileComponent, data: {animation: 'isLeft'},  canActivate: [AuthGuard]},
+  {path: 'order-list', component: OrderListComponent, data:{animation: 'isLeft'}, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
