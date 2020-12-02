@@ -27,7 +27,16 @@ router.get('/currencyrate', CurrencyRate.retrieveCurrency);
 // router.get('/currencyrate/update', CurrencyRate.setMyCurrency);
 
 //Orders routes:
-router.post('/order/create/', Order.create);
+router.post('/order/create/', ensureAuth, Order.create);
 
+
+function ensureAuth(req, res, next){
+    
+    console.log(req.headers['authorization']);
+    if(req.isAuthenticated())
+    {
+        return next();
+    }else res.redirect('/users/login');
+}
 
 module.exports = router; 

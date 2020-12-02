@@ -5,17 +5,23 @@ const User = require('../models/user');
 module.exports = {
     create: async(req, res) => 
     {
-        const {startDate, endDate, totalBef, discount, totalAft} = req.body;
+        const {totalBef, discount, totalAft} = req.body;
 
         user_id = req.query.id;
 
-        //throw Error(startDate);
-        const sDate = new Date(2020, 2, 20);
+        const users = await User.find();
 
+        //console.log(req);
+
+        //throw Error(startDate);
+        const today = new Date();
+        const sDate = new Date(today.getFullYear(), today.getMonth(), today.getDay());
+        const eDate = new Date(1,1,1);
+        console.log(req);
 
         const order = await Order.create({
             sDate,
-            endDate,
+            eDate,
             totalBef,
             totalAft,
             discount,
@@ -24,6 +30,7 @@ module.exports = {
 
 
         //add this to user!
+
         const user = await User.findById(user_id);
         user.orders.push(order);
         await user.save();

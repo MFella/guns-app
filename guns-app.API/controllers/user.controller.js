@@ -72,7 +72,8 @@ module.exports = {
                 if(isMatch)
                 {
                     const token = jwt.sign({user}, config.secret, { expiresIn: 604800 }); 
-    
+                    req.user = token;
+                    
                     //return user without the password!
     
                     res.json({
