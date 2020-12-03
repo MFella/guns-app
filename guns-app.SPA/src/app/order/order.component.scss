@@ -1,0 +1,76 @@
+.container
+{
+    max-width: 2000px;
+    height: calc(100%-3rem);
+    background: #3A1C71;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #FFAF7B, #D76D77, #3A1C71);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right bottom, #00416A, #a0a9b3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    height: calc(100vh - 4rem);
+    box-shadow: inset 0px 0px 32px 7px rgba(0,0,0,0.75);
+    //animation: pulsing 4s infinite;
+}
+
+#products_table
+{
+    border-radius: 1rem;
+    thead{
+
+        tr{
+            th{ 
+                border: none;
+            }
+        }
+    }
+}
+
+#orderspecs_table
+{
+    border-radius: 1rem;
+    border: none;
+   
+    thead{
+        th{
+
+            &:first-child{
+                border-top: none;
+                border-left: none;
+            }
+
+            &:last-child{
+                border-top: none;
+                border-right: none;
+            }
+        }
+    }
+
+    tbody{
+        tr{
+
+            &:last-child{
+                th{
+                    border-left: none;
+                    border-bottom: none;
+                }
+                
+            }
+        }
+    }
+
+    tr{
+        border: none;
+    }
+    td{
+        &:last-child{
+            border-right: none;
+            border-bottom: none;
+        }
+    }
+}
+
+
+@keyframes pulsing
+{
+    0%{ box-shadow: inset 0px 0px 64px 14px rgba(0,0,0,0.75);}
+    50%{ box-shadow: inset 0px 0px 64px 200px rgba(0,0,0,0.75);}
+    100%{ box-shadow: inset 0px 0px 64px 14px rgba(0,0,0,0.75);}
+}

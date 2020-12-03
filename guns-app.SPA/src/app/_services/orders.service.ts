@@ -43,6 +43,13 @@ constructor(private http: HttpClient, private authServ: AuthService) { }
 
   }
 
+  getSingleOrder(object_id: string)
+  {
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get(env.environment.trueBackUrl + `order-list/${object_id}`, {headers});
+  }
+
 
 
 }
