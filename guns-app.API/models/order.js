@@ -17,14 +17,20 @@ const OrderSchema = new mongoose.Schema({
         type: Date,
         default: new Date(2010,1,1)
     },
-    totalBefore: {
+    currencyCode:
+    {
+        type: String,
+        default: 'EUR'
+    },
+    total: {
         type: String
     },
     discount: {
         type: Number
     },
-    totalAfter: {
-        type: String
+    status: {
+        type: String,
+        nullable: true
     },
     orderItem: [{
         type: Schema.Types.ObjectId,

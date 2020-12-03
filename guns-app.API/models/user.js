@@ -26,8 +26,20 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    street:{
+        type: String,
+        nullable: true
+    },
+    city: {
+        type: String,
+        nullable: true
+    },
+    country: {
+        type: String,
+        nullable: true
+    },
     orders: [{
-        type: Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId, 
         ref: "Order"
     }]
 });

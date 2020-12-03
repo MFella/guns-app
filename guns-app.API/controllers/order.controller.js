@@ -5,25 +5,26 @@ const User = require('../models/user');
 module.exports = {
     create: async(req, res) => 
     {
-        const {totalBef, discount, totalAft} = req.body;
+        const {total, discount, status, currencyCode} = req.body;
 
-        user_id = req.query.id;
+        user_id = req.user._id
 
         const users = await User.find();
 
-        //console.log(req);
+        console.log(req.user._id);
 
         //throw Error(startDate);
         const today = new Date();
         const sDate = new Date(today.getFullYear(), today.getMonth(), today.getDay());
+        
         const eDate = new Date(1,1,1);
-        console.log(req);
 
         const order = await Order.create({
             sDate,
             eDate,
-            totalBef,
-            totalAft,
+            total,
+            currencyCode,
+            status,
             discount,
             user: user_id
         });  
@@ -38,6 +39,24 @@ module.exports = {
         //await order.save();
 
         return res.send(order);
+    },
+
+    findAll: async(req, res) => 
+    {
+        user_id = req.user._id;
+
+        if(!user_id) throw new Error("Internal error! User doesnt exists");
+
+
+        // orders = User.findById(user_id, (err, user) => 
+        // {
+        //     if(err) throw err;
+
+        // }).populate('orders');
+        orders = await Order.find({user: user_id});
+
+        res.send(orders);
+
     }
 
 }

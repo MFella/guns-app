@@ -38,7 +38,7 @@
         <li class="nav-item" routerLinkActive="active" *ngIf="this.authServ.currentUser === null">
           <a class="nav-link" [routerLink]="['register']" ><i class="fa fa-plus"></i> Register</a>
         </li>
-        <li class="nav-time" routerLinkActive="active" *ngIf="this.authServ.currentUser !== null">
+        <li class="nav-item" routerLinkActive="active" *ngIf="this.authServ.currentUser !== null">
           <a [routerLink]="['order-list']" class="nav-link"> <i class="fa fa-list-alt"></i> My Orders</a>
         </li>
 

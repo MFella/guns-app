@@ -31,3 +31,45 @@ ul{
         }
     }
 }
+
+table
+{
+    margin-top: 3rem;
+
+
+    thead{
+        background: linear-gradient(0.25turn,rgb(144, 238, 255,.45), rgb(144, 238, 255,1), rgb(144, 238, 255, .45));
+        
+        tr{
+            height: 4rem;
+            font-size: 1.7rem;
+        }
+    }
+
+    tbody > tr:nth-child(even){
+        background-image: linear-gradient(to left top, rgb(255, 255, 255, 1), rgba(255, 255, 255, .8));
+        box-shadow: inset 2px 0px 4px 0px rgba(0,0,0,0.75);
+
+        button{
+            
+            transition: all .3s;
+            &:hover{
+                border-top-right-radius: 1rem;
+                border-bottom-left-radius: 1rem;
+            }
+        }
+    }
+
+    tbody > tr:nth-child(odd){
+        background-image: linear-gradient(to left top, rgba(255, 255, 255, .8), rgb(255, 255, 255, 1));
+
+        button{
+            
+            transition: all .3s;
+            &:hover{
+                border-top-left-radius: 1rem;
+                border-bottom-right-radius: 1rem;
+            }
+        }
+    }
+}

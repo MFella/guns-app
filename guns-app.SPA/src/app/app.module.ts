@@ -30,6 +30,8 @@ import { AppConfigService } from './_config/appconfig.service';
 import { SearchItemComponent } from './search/search-item/search-item.component';
 import { CommonModule } from '@angular/common';
 import { OrderListComponent } from './order-list/order-list.component';
+import { OrderListResolver } from './_resolvers/order-list.resolver';
+import { OrderComponent } from './order/order.component';
 
 
 export function appInit(confServ: AppConfigService){
@@ -50,7 +52,7 @@ export function appInit(confServ: AppConfigService){
 
 
 @NgModule({
-  declarations: [	
+  declarations: [		
     AppComponent,
     NavComponent,
     AuthComponent,
@@ -62,7 +64,8 @@ export function appInit(confServ: AppConfigService){
     ProfileComponent,
     GunDetailComponent,
     ShortPipe,
-      OrderListComponent
+      OrderListComponent,
+      OrderComponent
    ],
   imports: [
     MatSliderModule,
@@ -89,6 +92,7 @@ export function appInit(confServ: AppConfigService){
     SearchResolver,
     GunDetailResolver,
     CurrencyResolver,
+    OrderListResolver,
     AppConfigService,
     {
       provide: APP_INITIALIZER,

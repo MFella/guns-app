@@ -4,12 +4,14 @@ import { AuthComponent } from './auth/auth.component';
 import { GunDetailComponent } from './gun-detail/gun-detail.component';
 import { HomeComponent } from './home/home.component';
 import { OrderListComponent } from './order-list/order-list.component';
+import { OrderComponent } from './order/order.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { SearchComponent } from './search/search.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { CurrencyResolver } from './_resolvers/currency.resolver';
 import { GunDetailResolver } from './_resolvers/gun-detail.resolver';
+import { OrderListResolver } from './_resolvers/order-list.resolver';
 import { SearchResolver } from './_resolvers/search.resolver';
 
 
@@ -24,11 +26,17 @@ const routes: Routes = [
     gun: GunDetailResolver
   }},
   {path: 'profile', component: ProfileComponent, data: {animation: 'isLeft'},  canActivate: [AuthGuard]},
-  {path: 'order-list', component: OrderListComponent, data:{animation: 'isLeft'}, canActivate: [AuthGuard]}
+  {path: 'order-list', component: OrderListComponent, data:{animation: 'isLeft'}, resolve: { orders: OrderListResolver},
+   canActivate: [AuthGuard], 
+  //  children: [
+  //    {path: ':id', component: ProfileComponent, data: {animation: 'isLeft'}}
+  //  ]
+  },
+    {path:'order-list/:id', component: OrderComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { enableTracing: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

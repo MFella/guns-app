@@ -1,5 +1,6 @@
 const express = require('express');
 const router = new express.Router;
+const passport = require('passport');
 const Gun = require('../controllers/gun.controller');
 const Comment = require('../controllers/comment.controller');
 const User = require('../controllers/user.controller');
@@ -27,16 +28,22 @@ router.get('/currencyrate', CurrencyRate.retrieveCurrency);
 // router.get('/currencyrate/update', CurrencyRate.setMyCurrency);
 
 //Orders routes:
-router.post('/order/create/', ensureAuth, Order.create);
+router.post('/order/create/', 
+    passport.authenticate('jwt', { session: false }), 
+    Order.create);
+
+router.get('/order-list',
+    passport.authenticate('jwt', {session: false}),
+    Order.findAll);
 
 
-function ensureAuth(req, res, next){
+// function ensureAuth(req, res, next){
     
-    console.log(req.headers['authorization']);
-    if(req.isAuthenticated())
-    {
-        return next();
-    }else res.redirect('/users/login');
-}
+//     console.log(req.headers['authorization']);
+//     if(req.isAuthenticated())
+//     {
+//         return next();
+//     }else res.redirect('/users/login');
+// }
 
 module.exports = router; 
