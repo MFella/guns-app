@@ -41,6 +41,12 @@ router.get('/order-list/:id',
     Order.findById
 );
 
+//OrderItems routes:
+router.post('/order-item/', 
+    passport.authenticate('jwt', {session: false}),
+    OrderItem.create
+    )
+
 // function ensureAuth(req, res, next){
     
 //     console.log(req.headers['authorization']);

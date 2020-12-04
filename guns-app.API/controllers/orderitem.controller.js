@@ -6,23 +6,37 @@ module.exports = {
     create: async(req, res) => 
     {
         const {orderId, gunId, quantity} = req.body;
-         
-        const gunFromDb = Gun.findById(gunId);
-        const orderFromDb = Order.findById(orderId);
+        console.log(req.body); 
+        console.log(req.user);
 
-        if(gunFromDb === null || orderFromDb === null || quantity === 0)
+        user_id = req.user._id;
+
+        const gunFromDb = await Gun.findById(gunId);
+        const orderFromDb = await Order.findById(orderId);
+        console.log(gunFromDb);
+
+        if(gunFromDb == undefined || orderFromDb == undefined || quantity == 0)
         {
-            res.status(400)
+            return res.status(400)
             .json({success: false, reason: "Gun doesnt exist or order doesnt exist"});
+            
+        }
+
+        
+        if(user_id.toString() != orderFromDb.user.toString())
+        {
+            return res.status(401).json({success: false, reason: 'You are not allowed!'});
         }
 
         //a co, jezeli to juz istnieje? ;O
 
-        const orderItem = OrderItem.create({
+        const orderItem = await OrderItem.create({
             gunId, orderId, quantity
         });
 
-        return res.send(orderItem);
+        console.log(orderItem);
+
+        return res.status(201).send(orderItem);
 
     }
 

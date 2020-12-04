@@ -13,6 +13,12 @@ const OrderItemSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: "Order"
     },
+    gunId:{
+        type: String
+    },
+    orderId: {
+        type: String
+    },
     quantity: {
         type: Number,
         default: 0
