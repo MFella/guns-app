@@ -36,6 +36,10 @@ router.get('/order-list',
     passport.authenticate('jwt', {session: false}),
     Order.findAll);
 
+router.get('/order-list/:id',
+    passport.authenticate('jwt', {session: false}),
+    Order.findById
+);
 
 // function ensureAuth(req, res, next){
     

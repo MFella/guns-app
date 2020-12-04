@@ -32,6 +32,7 @@ import { CommonModule } from '@angular/common';
 import { OrderListComponent } from './order-list/order-list.component';
 import { OrderListResolver } from './_resolvers/order-list.resolver';
 import { OrderComponent } from './order/order.component';
+import { OrderResolver } from './_resolvers/order.resolver';
 
 
 export function appInit(confServ: AppConfigService){
@@ -93,6 +94,7 @@ export function appInit(confServ: AppConfigService){
     GunDetailResolver,
     CurrencyResolver,
     OrderListResolver,
+    OrderResolver,
     AppConfigService,
     {
       provide: APP_INITIALIZER,

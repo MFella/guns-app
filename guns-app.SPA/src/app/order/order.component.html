@@ -2,27 +2,25 @@
   <div class="row pt-4">
     <div class="col-md-4">
       <table class="table table-bordered bg-light w-75 mx-auto" id="orderspecs_table">
-        <thead>
+        <!-- <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">First</th>
             <th scope="col">Last</th>
           </tr>
-        </thead>
+        </thead> -->
         <tbody>
           <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
+            <td>Start Date</td>
+            <td>{{order.startDate}}</td>
           </tr>
           <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
+            <td>End Date</td>
+            <td>{{order.endDate}}</td>
           </tr>
           <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
+            <td>Currency Code</td>
+            <td>{{order.currencyCode}}</td>
           </tr>
         </tbody>
       </table>

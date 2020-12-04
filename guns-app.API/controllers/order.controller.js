@@ -1,3 +1,4 @@
+const order = require("../models/order");
 const Order = require("../models/order");
 const OrderItem = require("../models/orderItem");
 const User = require('../models/user');
@@ -57,6 +58,27 @@ module.exports = {
 
         res.send(orders);
 
+    },
+
+    findById: async(req, res) => 
+    {
+        user_id = req.user._id;
+        order_id = req.params.id;
+
+        const order = await Order.find({_id: order_id});
+
+        if(order.length === 0)
+        {
+            return res.send({"msg": "Order doesnt exists!"});
+            
+        }
+
+        if(order[0].user.toString() != user_id.toString())
+        {
+            return res.send({"msg": "You havent got an access to that!"});
+        }
+
+        return res.send(order);
     }
 
 }

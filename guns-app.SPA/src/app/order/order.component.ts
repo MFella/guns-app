@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Order } from '../_models/order';
 
 @Component({
   selector: 'app-order',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderComponent implements OnInit {
 
-  constructor() { }
+  order: Order;
+
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
+
+    this.route.data.subscribe(
+      (res: any) => 
+      {
+        this.order = res.order;
+
+        console.log(this.order);
+      }
+    )
+
   }
 
 }

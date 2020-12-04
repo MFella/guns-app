@@ -12,6 +12,7 @@ import { AuthGuard } from './_guards/auth.guard';
 import { CurrencyResolver } from './_resolvers/currency.resolver';
 import { GunDetailResolver } from './_resolvers/gun-detail.resolver';
 import { OrderListResolver } from './_resolvers/order-list.resolver';
+import { OrderResolver } from './_resolvers/order.resolver';
 import { SearchResolver } from './_resolvers/search.resolver';
 
 
@@ -32,11 +33,11 @@ const routes: Routes = [
   //    {path: ':id', component: ProfileComponent, data: {animation: 'isLeft'}}
   //  ]
   },
-    {path:'order-list/:id', component: OrderComponent, canActivate: [AuthGuard]}
+    {path:'order-list/:id', component: OrderComponent, canActivate: [AuthGuard], resolve: {order: OrderResolver}}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { enableTracing: true })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

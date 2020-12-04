@@ -14,7 +14,8 @@ export class OrderResolver implements Resolve<Order> {
 
         resolve(route: ActivatedRouteSnapshot): Observable<Order>
         {
-            return this.orderServ.getSingleOrder(route.data.id).pipe(
+            console.log(route);
+            return this.orderServ.getSingleOrder(route.params.id).pipe(
                 catchError(err => {
                     this.izi.error('Problem occured during retriving data');
                     this.router.navigate(['/']);
