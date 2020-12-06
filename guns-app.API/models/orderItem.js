@@ -13,11 +13,19 @@ const OrderItemSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: "Order"
     },
-    gunId:{
-        type: String
+    // gunId:{
+    //     type: String
+    // },
+    // orderId: {
+    //     type: String
+    // },
+    name: {
+        type: String,
+        nullable: true
     },
-    orderId: {
-        type: String
+    price: {
+        type: String,
+        nullable: true
     },
     quantity: {
         type: Number,

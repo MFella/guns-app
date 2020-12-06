@@ -5,7 +5,7 @@ const Gun = require('../models/gun');
 module.exports = {
     create: async(req, res) => 
     {
-        const {orderId, gunId, quantity} = req.body;
+        const {item, order, orderId, gunId, quantity} = req.body;
         console.log(req.body); 
         console.log(req.user);
 
@@ -31,7 +31,7 @@ module.exports = {
         //a co, jezeli to juz istnieje? ;O
 
         const orderItem = await OrderItem.create({
-            gunId, orderId, quantity
+            item, order, gunId, orderId, quantity
         });
 
         console.log(orderItem);

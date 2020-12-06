@@ -67,22 +67,52 @@ module.exports = {
         user_id = req.user._id;
         order_id = req.params.id;
 
-        const order = await Order.find({_id: order_id}); //.populate('orderItem')
-        const orderItems = await OrderItem.find({orderId: order_id});
-        //pipe data assiociated with orderItems:
-        orderItems.forEach(async(el, index, arr) => 
+        const order = await Order.findById(order_id, (err, res) => 
         {
-            const singleProduct = await Gun.findById(el.gunId);
+            if(err) throw err;
 
-            el.gunPrice = singleProduct.price;
+        }).populate('orderItem');
 
-            //console.log(singleProduct.price);
-            console.log(orderItemsToReturn);
-            delete el.orderId;
+        const orderItems = await OrderItem.find({orderId: order_id});
+        
+        orderItems.forEach(async(el) => 
+        {
+            let gunAsItem = await Gun.findById(el.gunId);
+            el.price = gunAsItem.price;
+            el.name = gunAsItem.name;
+
         })
 
+
+        //pipe data assiociated with orderItems:
+        order.orderItem = orderItems;
+
+        // orderItems.forEach(async(el, index, arr) => 
+        // {
+        //     const singleProduct = await Gun.findById(el.gunId);
+        //    // el.gunPrice = singleProduct.price;
+        //     orderItemsPiped.push({
+        //         name: singleProduct.name,
+        //         price: singleProduct.price, 
+        //         quantity: el.quantity
+        //     });
+        //     // orderItemsPiped[index].name = singleProduct.name;
+        //     // orderItemsPiped[index].gunPrice = singleProduct.price;
+        //     // orderItemsPiped[index].quantity = el.quantity;
+        //     //orderItemsPiped[index]. = el.quantity;
+        //     //delete el.orderId;
+        //     //console.log(`${index} and ${arr.length}`);
+
+        //     if(index == arr.length-1)
+        //     {
+        //         console.log('Przypisanie');
+        //         order[0].orderItem.push(orderItemsPiped[0]);
+        //     }
+        // })
+        
        
-        order[0].orderItem = orderItems;
+        //order[0].orderItem = orderItems;
+        //console.log(order);
 
         if(order.length === 0)
         {
@@ -90,13 +120,17 @@ module.exports = {
             
         }
 
-        if(order[0].user.toString() != user_id.toString())
+        if(order.user.toString() != user_id.toString())
         {
             return res.send({"msg": "You havent got an access to that!"});
         }
 
-        console.log(order);
+        //console.log(order);
         return res.send(order);
+    },
+
+    extractInfo(order,){
+
     }
 
 }
