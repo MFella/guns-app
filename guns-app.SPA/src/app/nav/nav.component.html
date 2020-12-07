@@ -41,6 +41,9 @@
         <li class="nav-item" routerLinkActive="active" *ngIf="this.authServ.currentUser !== null">
           <a [routerLink]="['order-list']" class="nav-link"> <i class="fa fa-list-alt"></i> My Orders</a>
         </li>
+        <li class="nav-item" routerLinkActive="active" *ngIf="this.authServ.currentUser !== null">
+          <a [routerLink]="['basket']" class="nav-link"> <i class="fa fa-shopping-basket"></i> Basket</a>
+        </li>
 
         <!-- <li class="nav-item" *ngIf="this.authServ.currentUser == null">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Logged as...</a>

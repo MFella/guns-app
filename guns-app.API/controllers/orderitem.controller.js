@@ -5,14 +5,12 @@ const Gun = require('../models/gun');
 module.exports = {
     create: async(req, res) => 
     {
-        const {item, order, orderId, gunId, quantity} = req.body;
-        console.log(req.body); 
-        console.log(req.user);
+        const {item, order, quantity} = req.body;
 
         user_id = req.user._id;
 
-        const gunFromDb = await Gun.findById(gunId);
-        const orderFromDb = await Order.findById(orderId);
+        const gunFromDb = await Gun.findById(item);
+        const orderFromDb = await Order.findById(order);
         console.log(gunFromDb);
 
         if(gunFromDb == undefined || orderFromDb == undefined || quantity == 0)
@@ -31,8 +29,10 @@ module.exports = {
         //a co, jezeli to juz istnieje? ;O
 
         const orderItem = await OrderItem.create({
-            item, order, gunId, orderId, quantity
+            item, order, quantity
         });
+
+        orderFromDb.orderItem.push(orderItem);
 
         console.log(orderItem);
 

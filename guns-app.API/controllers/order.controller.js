@@ -1,4 +1,3 @@
-const order = require("../models/order");
 const Order = require("../models/order");
 const OrderItem = require("../models/orderItem");
 const User = require('../models/user');
@@ -73,46 +72,9 @@ module.exports = {
 
         }).populate('orderItem');
 
-        const orderItems = await OrderItem.find({orderId: order_id});
-        
-        orderItems.forEach(async(el) => 
-        {
-            let gunAsItem = await Gun.findById(el.gunId);
-            el.price = gunAsItem.price;
-            el.name = gunAsItem.name;
-
-        })
-
-
-        //pipe data assiociated with orderItems:
+        const orderItems = await OrderItem.find({order: order_id}).populate('item');
         order.orderItem = orderItems;
-
-        // orderItems.forEach(async(el, index, arr) => 
-        // {
-        //     const singleProduct = await Gun.findById(el.gunId);
-        //    // el.gunPrice = singleProduct.price;
-        //     orderItemsPiped.push({
-        //         name: singleProduct.name,
-        //         price: singleProduct.price, 
-        //         quantity: el.quantity
-        //     });
-        //     // orderItemsPiped[index].name = singleProduct.name;
-        //     // orderItemsPiped[index].gunPrice = singleProduct.price;
-        //     // orderItemsPiped[index].quantity = el.quantity;
-        //     //orderItemsPiped[index]. = el.quantity;
-        //     //delete el.orderId;
-        //     //console.log(`${index} and ${arr.length}`);
-
-        //     if(index == arr.length-1)
-        //     {
-        //         console.log('Przypisanie');
-        //         order[0].orderItem.push(orderItemsPiped[0]);
-        //     }
-        // })
         
-       
-        //order[0].orderItem = orderItems;
-        //console.log(order);
 
         if(order.length === 0)
         {
@@ -126,7 +88,7 @@ module.exports = {
         }
 
         //console.log(order);
-        return res.send(order);
+        return res.status(200).send(order);
     },
 
     extractInfo(order,){

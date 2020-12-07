@@ -51,11 +51,24 @@ constructor(private http: HttpClient, private authServ: AuthService) { }
       .pipe(
         map((res:any) => {
           
-          res = res[0];
+          //res = res[0];
+          res.total = 0;
           res.endDate = res.endDate.split('T')[0] + ' ' + res.endDate.split('T')[1].split('.')[0];
           res.startDate = res.startDate.split('T')[0] + ' ' + res.startDate.split('T')[1].split('.')[0];
-          delete res.user;
 
+          res.orderItem.forEach(el => 
+          {
+            el.price = el.item.price;
+            el.name = el.item.name;
+            el.total = parseFloat(el.price) * parseInt(el.quantity);
+            res.total += el.total;
+            console.log(el.total);
+            delete el.item;
+          })
+
+          //delete res.user;
+          //res.total = res.orderItem.reduce((a,b) => parseFloat(a.total) + parseFloat(b.total), 0);
+          console.log(res);
           return res;
 
         })

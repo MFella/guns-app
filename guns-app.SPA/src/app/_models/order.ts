@@ -7,5 +7,6 @@ export interface Order{
     endDate: string;
     discount: string;
     currencyCode: string;
-    orderItems: OrderItem[];
+    orderItem: OrderItem[];
+    total: string;
 }

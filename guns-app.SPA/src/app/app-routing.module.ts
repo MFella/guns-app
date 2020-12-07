@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
+import { BasketComponent } from './basket/basket.component';
 import { GunDetailComponent } from './gun-detail/gun-detail.component';
 import { HomeComponent } from './home/home.component';
 import { OrderListComponent } from './order-list/order-list.component';
@@ -33,7 +34,9 @@ const routes: Routes = [
   //    {path: ':id', component: ProfileComponent, data: {animation: 'isLeft'}}
   //  ]
   },
-    {path:'order-list/:id', component: OrderComponent, canActivate: [AuthGuard], resolve: {order: OrderResolver}}
+    {path:'order-list/:id', component: OrderComponent, canActivate: [AuthGuard], resolve: {order: OrderResolver}},
+    {path: 'basket', component: BasketComponent, canActivate: [AuthGuard]},
+    {path: '**', redirectTo: ''}
 ];
 
 @NgModule({

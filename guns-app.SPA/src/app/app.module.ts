@@ -33,6 +33,7 @@ import { OrderListComponent } from './order-list/order-list.component';
 import { OrderListResolver } from './_resolvers/order-list.resolver';
 import { OrderComponent } from './order/order.component';
 import { OrderResolver } from './_resolvers/order.resolver';
+import { BasketComponent } from './basket/basket.component';
 
 
 export function appInit(confServ: AppConfigService){
@@ -53,7 +54,7 @@ export function appInit(confServ: AppConfigService){
 
 
 @NgModule({
-  declarations: [		
+  declarations: [			
     AppComponent,
     NavComponent,
     AuthComponent,
@@ -66,7 +67,8 @@ export function appInit(confServ: AppConfigService){
     GunDetailComponent,
     ShortPipe,
       OrderListComponent,
-      OrderComponent
+      OrderComponent,
+      BasketComponent
    ],
   imports: [
     MatSliderModule,

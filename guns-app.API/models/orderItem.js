@@ -19,14 +19,14 @@ const OrderItemSchema = new mongoose.Schema({
     // orderId: {
     //     type: String
     // },
-    name: {
-        type: String,
-        nullable: true
-    },
-    price: {
-        type: String,
-        nullable: true
-    },
+    // name: {
+    //     type: String,
+    //     nullable: true
+    // },
+    // price: {
+    //     type: String,
+    //     nullable: true
+    // },
     quantity: {
         type: Number,
         default: 0

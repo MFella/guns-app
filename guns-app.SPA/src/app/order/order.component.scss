@@ -12,12 +12,30 @@
 
 #products_table
 {
-    border-radius: 1rem;
+    //border-radius: 1rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    box-shadow: 0px 0px 24px 8px rgba(0,0,0,0.75);
     thead{
 
         tr{
             th{ 
                 border: none;
+            }
+        }
+    }
+    tbody{
+
+        tr{
+
+            th{
+                cursor: pointer;
+            }
+            
+            &:last-child{
+                background-color: rgba(248, 66, 66, 0.35);
+                border-radius: 1rem;
+                border-collapse: separate;
             }
         }
     }
@@ -49,7 +67,7 @@
         &:last-child{
             td{
                 border-bottom: none;
-            }      
+            }     
         }
     }
 

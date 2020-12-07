@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Order } from '../_models/order';
 
 @Component({
@@ -11,7 +11,7 @@ export class OrderComponent implements OnInit {
 
   order: Order;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
 
@@ -20,10 +20,16 @@ export class OrderComponent implements OnInit {
       {
         this.order = res.order;
 
+        
         console.log(this.order);
       }
     )
 
+  }
+
+  showGunDetails(name: string)
+  {
+    this.router.navigate(['/search', name]);
   }
 
 }
