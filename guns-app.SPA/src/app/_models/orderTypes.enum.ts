@@ -1,0 +1,6 @@
+export enum OrderTypes {
+    BASKET = 'BASKET',
+    WAITING_FOR_PAYMENT= 'WAITING_FOR_PAYMENT',
+    PAID = 'PAID',
+    ARCHIEVED = 'ARCHIEVED'
+}

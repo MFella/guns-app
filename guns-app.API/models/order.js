@@ -15,7 +15,7 @@ const OrderSchema = new mongoose.Schema({
     },
     endDate: {
         type: Date,
-        default: new Date(2010,1,1)
+        default: new Date(1111,1,1)
     },
     currencyCode:
     {
@@ -23,14 +23,17 @@ const OrderSchema = new mongoose.Schema({
         default: 'EUR'
     },
     total: {
-        type: String
+        type: String,
+        default: '0.00'
     },
     discount: {
-        type: Number
+        type: Number,
+        default: '0.00'
     },
     status: {
         type: String,
-        nullable: true
+        nullable: true,
+        default: "BASKET"
     },
     orderItem: [{
         type: Schema.Types.ObjectId,

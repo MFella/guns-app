@@ -19,6 +19,7 @@ module.exports = {
         const today = new Date();
         const sDate = new Date(today.getFullYear(), today.getMonth(), today.getDay());
         
+        //dummy date;
         const eDate = new Date(1,1,1);
 
         const order = await Order.create({
@@ -43,6 +44,65 @@ module.exports = {
         return res.send(order);
     },
 
+    changeOrderStatus: async(req, res) => 
+    {
+        user_id = req.user._id;
+        const {orderId, newStatus} = req.body;
+
+        const order = await Order.findById(orderId);
+
+
+        if(order == undefined)
+        {
+            return res.status(500).send({"msg": "Order doesnt exist!"});
+        }
+
+        console.log(`${order.user} and ${user_id}`)
+
+        if(order.user.toString() != user_id.toString())
+        {
+            return res.status(401).send({"msg": "Thats not your basket"});
+        }
+
+        order.update({
+            status: newStatus
+        }, (err, affected, resp) => 
+        {
+            if (err) throw err;
+            
+        });
+
+        if(newStatus.toString() == "WAITING FOR PAYMENT")
+        {
+            const dateNow = Date.now();
+
+            order.update({
+                startDate: new Date(dateNow)
+            }, (err, aff, res) => 
+            {
+                if(err) throw err;
+            })
+
+        }
+
+        return res.status(200).send({"msg": "Order status has been updated!", "order": order});
+
+    },
+
+    takeBasket: async(req, res) => 
+    {
+        const basket = await Order.findOne({status: "BASKET"});
+
+        if(basket === null)
+        {
+            //create basket
+           const basket =  await Order.create({});
+           return res.send({"basket": basket});
+        }
+
+        return res.send({"basket": basket});
+    },
+
     findAll: async(req, res) => 
     {
         user_id = req.user._id;
@@ -58,7 +118,6 @@ module.exports = {
         orders = await Order.find({user: user_id});
 
         res.send(orders);
-
     },
 
     findById: async(req, res) => 

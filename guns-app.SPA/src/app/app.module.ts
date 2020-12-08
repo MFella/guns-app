@@ -34,6 +34,7 @@ import { OrderListResolver } from './_resolvers/order-list.resolver';
 import { OrderComponent } from './order/order.component';
 import { OrderResolver } from './_resolvers/order.resolver';
 import { BasketComponent } from './basket/basket.component';
+import { BasketResolver } from './_resolvers/basket.resolver';
 
 
 export function appInit(confServ: AppConfigService){
@@ -97,6 +98,7 @@ export function appInit(confServ: AppConfigService){
     CurrencyResolver,
     OrderListResolver,
     OrderResolver,
+    BasketResolver,
     AppConfigService,
     {
       provide: APP_INITIALIZER,

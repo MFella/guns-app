@@ -75,6 +75,15 @@ constructor(private http: HttpClient, private authServ: AuthService) { }
       )
   }
 
+  getBasket()
+  {
+
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get(env.environment.trueBackUrl + 'basket/', {headers});
+
+  }
+
 
 
 }

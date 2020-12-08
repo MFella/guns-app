@@ -32,6 +32,16 @@ router.post('/order/create/',
     passport.authenticate('jwt', { session: false }), 
     Order.create);
 
+router.put('/order/update/',
+    passport.authenticate('jwt', {session: false}),
+    Order.changeOrderStatus
+)
+
+router.get('/basket/',
+    passport.authenticate('jwt', {session: false}),
+    Order.takeBasket
+)
+
 router.get('/order-list',
     passport.authenticate('jwt', {session: false}),
     Order.findAll);
@@ -40,6 +50,8 @@ router.get('/order-list/:id',
     passport.authenticate('jwt', {session: false}),
     Order.findById
 );
+
+
 
 //OrderItems routes:
 router.post('/order-item/', 

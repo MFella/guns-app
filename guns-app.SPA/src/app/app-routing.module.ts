@@ -10,6 +10,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { SearchComponent } from './search/search.component';
 import { AuthGuard } from './_guards/auth.guard';
+import { BasketResolver } from './_resolvers/basket.resolver';
 import { CurrencyResolver } from './_resolvers/currency.resolver';
 import { GunDetailResolver } from './_resolvers/gun-detail.resolver';
 import { OrderListResolver } from './_resolvers/order-list.resolver';
@@ -35,7 +36,7 @@ const routes: Routes = [
   //  ]
   },
     {path:'order-list/:id', component: OrderComponent, canActivate: [AuthGuard], resolve: {order: OrderResolver}},
-    {path: 'basket', component: BasketComponent, canActivate: [AuthGuard]},
+    {path: 'basket', component: BasketComponent, canActivate: [AuthGuard], resolve: {basket: BasketResolver}},
     {path: '**', redirectTo: ''}
 ];
 
