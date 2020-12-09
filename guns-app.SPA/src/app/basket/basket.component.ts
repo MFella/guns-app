@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Basket } from '../_models/basket';
 
 @Component({
   selector: 'app-basket',
@@ -10,11 +11,16 @@ export class BasketComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) { }
 
+  userBasket:Basket
+
+
   ngOnInit() {
 
     this.route.data.subscribe((res) => 
     {
-      console.log(res);
+
+      this.userBasket = res.basket;
+      console.log(this.userBasket.orderItem.length);
     })
   }
 

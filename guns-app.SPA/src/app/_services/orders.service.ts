@@ -80,7 +80,16 @@ constructor(private http: HttpClient, private authServ: AuthService) { }
 
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.get(env.environment.trueBackUrl + 'basket/', {headers});
+    return this.http.get(env.environment.trueBackUrl + 'basket/', {headers})
+      .pipe(
+        map((res:any) => 
+        {
+          delete res.basket.startDate;
+          delete res.basket.endDate;
+          delete res.basket.status;
+          return res.basket;
+        })
+      )
 
   }
 
