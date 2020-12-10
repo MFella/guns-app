@@ -1,10 +1,15 @@
+main{
+
+}
+
 .container
 {
-    max-width: 2000px;
-    height: calc(100%-3rem);
-    background: #3A1C71;  /* fallback for old browsers */
-    background: linear-gradient(to right bottom, #544a7d, #ffd452); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    height: calc(100vh - 4rem);
-    box-shadow: inset 0px 0px 32px 7px rgba(0,0,0,0.75);
-    //animation: pulsing 4s infinite;
+    border: 1px solid black;
+}
+
+.card-body
+{
+    img{
+        width: 3rem;
+    }
 }
