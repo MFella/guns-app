@@ -48,9 +48,11 @@ i.fa.fa-truck{
 {
     width: 10rem;
     height: 10rem;
-    background-color: rgba(0,0,0,.1);
+    background-color: rgba(0,0,0,.15);
     border-radius: 2rem;
+    transition: all .4s;
     &:hover{
+        background-color: rgba(0,0,0,.07);
         cursor: pointer;
     }
 }
@@ -58,4 +60,18 @@ i.fa.fa-truck{
 .payments
 {
     margin: auto;
+}
+
+.delivery_cont
+{
+    label{
+        font-size: 1.4rem;
+        padding-top: .5rem;
+    }
+
+    img{
+        width: 5rem;
+        padding-right: 1rem;
+    }
+
 }
