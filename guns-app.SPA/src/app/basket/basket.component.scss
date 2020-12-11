@@ -1,15 +1,61 @@
 main{
-
 }
 
 .container
 {
-    border: 1px solid black;
+    //border: 1px solid black;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 77px -15px rgba(0,0,0, 1);
+    background-color: rgba(0,0,0,.06);
 }
 
 .card-body
 {
     img{
-        width: 3rem;
+        width: 10rem;
     }
+}
+
+h1{
+    border-radius: 1rem;
+}
+
+input[type=number]
+{
+    max-width: 7rem;
+}
+
+input[type=text]
+{
+    border-radius: 1.7rem;
+}
+
+.form-check
+{
+    height: 7rem;
+}
+
+i.fa.fa-truck{
+    transform: rotateY(180deg);
+}
+
+.col-5 > i.fa.fa-truck
+{
+    font-size: 3rem;
+}
+
+.col-5.d-flex
+{
+    width: 10rem;
+    height: 10rem;
+    background-color: rgba(0,0,0,.1);
+    border-radius: 2rem;
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.payments
+{
+    margin: auto;
 }

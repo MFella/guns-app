@@ -1,40 +1,12 @@
-<main>
+<main class="py-4">
   
-  <div class="container mt-3 py-4">
+  <div class="container mt-3 p-4">
     <div class="row">
 
       <div class="col-12">
-        <h1 class="text-center bg-primary py-4 w-75 mx-auto"> <i class="fa fa-shopping-cart"></i> BASKET</h1>
+        <h1 class="text-center bg-warning py-4 w-100 mx-auto border-round"> <i class="fa fa-shopping-cart"></i> BASKET</h1>
       </div>
       
-      <!-- <div class="col-12">
-        <div class="card border-info">
-          <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 mt-1">
-        <div class="card border-info">
-          <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 mt-1">
-        <div class="card border-info">
-          <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div> -->
-
       <ul class="col-12 list-group mx-auto px-4">
         <li class="list-group-item">
           <div class="card border-info">
@@ -44,11 +16,8 @@
               <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
           </div>
-
-
-
         </li>
-        <li class="list-group-item">
+        <!-- <li class="list-group-item">
           <div class="card border-info">
             <div class="card-body">
               <h5 class="card-title">Special title treatment</h5>
@@ -56,17 +25,77 @@
               <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
           </div>
-
-
-
-        </li>
-        <li class="list-group-item">
+        </li> -->
+        <li class="list-group-item" *ngFor="let item of [1,1,1]">
           <div class="card border-info">
             <div class="card-body">
-              <img class="card-img" src="../../assets/wolf-icon.png" alt="Card image">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <div class="row">
+                <div class="col-8">
+                  <img class="card-img" src="../../assets/wolf-icon.png" alt="Card image">
+                </div>
+
+                <div class="col-4 d-flex flex-column justify-content-around">
+                  <h5 class="card-title">Name: M4A4</h5>
+                  <div class="d-flex flex-row">
+                    <p class="card-text pt-2 pr-2">Quantity: </p>
+                    <input type="number" class="form-control"> 
+                  </div>
+                  <button class="btn btn-danger w-50"> Delete</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </li>
+
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-6">
+              <h2>Redeem code</h2>
+              <div class="d-flex flex-column justify-content-around">
+                <label for="luck"></label>
+                <input type="text" class="form-control w-50" placeholder="Try your luck">
+              </div>
+              <hr>
+              <h2>Type of payment</h2>
+              <div class="row p-4 payments">
+                <div class="col-5 d-flex justify-content-center align-items-center m-1">
+                  <i class="fa fa-truck"></i>
+
+                </div>
+                <div class="col-5 d-flex justify-content-center align-items-center m-1">
+                  <i class="fa fa-truck"></i>
+                </div>
+                <div class="col-5 d-flex justify-content-center align-items-center m-1">
+                  <i class="fa fa-truck"></i>
+                </div>
+                <div class="col-5 d-flex justify-content-center align-items-center m-1">
+                  <i class="fa fa-truck"></i>
+                </div>
+              </div>
+              <hr>
+              <h1>Checkout</h1>
+            </div>
+            <div class="col-6 p-1">
+
+              <h2>Choose type of delivery<i class="fa fa-truck ml-4"></i></h2>
+              
+                <div *ngFor="let item of [1,2,3,2]">
+                  <hr>
+                  <div class="form-check d-flex flex-row align-items-center">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                    <label class="form-check-label" for="exampleRadios1">
+                      Default radio
+                    </label>
+                  </div>
+                 
+                </div>
+
+
+
+
+
+
             </div>
           </div>
 
