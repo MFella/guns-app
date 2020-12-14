@@ -55,3 +55,33 @@ export const changeQuote = () =>
 
     },401)
 }
+
+
+// export const changeBack = () => 
+// {
+
+//     document.querySelector('form.delivery_types').forEach(el =>
+//     {
+
+//         el.querySelectorAll('input').foreach(another => 
+//         {
+//             if(another.checked)
+//             {
+
+//             }
+
+
+//         })
+
+
+//         if(el.querySelector('input').checked)
+//         {
+
+//         }else{
+//             el.style.backgroundColor = "#123123";
+//         }
+    
+//     })
+
+
+// }

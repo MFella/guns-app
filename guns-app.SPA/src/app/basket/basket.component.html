@@ -7,7 +7,7 @@
         <h1 class="text-center bg-warning py-4 w-100 mx-auto border-round"> <i class="fa fa-shopping-cart"></i> BASKET</h1>
       </div>
       
-      <ul class="col-12 list-group mx-auto px-4">
+      <ul class="col-md-12 list-group mx-auto px-4">
         <li class="list-group-item">
           <div class="card border-info">
             <div class="card-body">
@@ -30,11 +30,11 @@
           <div class="card border-info">
             <div class="card-body">
               <div class="row">
-                <div class="col-8">
+                <div class="col-md-8 col-xs-12">
                   <img class="card-img" src="../../assets/wolf-icon.png" alt="Card image">
                 </div>
 
-                <div class="col-4 d-flex flex-column justify-content-around">
+                <div class="col-md-4 col-xs-12 d-flex flex-column justify-content-around">
                   <h5 class="card-title">Name: M4A4</h5>
                   <div class="d-flex flex-row">
                     <p class="card-text pt-2 pr-2">Quantity: </p>
@@ -50,70 +50,105 @@
 
         <li class="list-group-item">
           <div class="row">
-            <div class="col-6">
-              <h2>Redeem code</h2>
-              <div class="d-flex flex-column justify-content-around">
-                <label for="luck"></label>
-                <input type="text" class="form-control w-50" placeholder="Try your luck">
-              </div>
-              <hr>
-              <h2>Type of payment</h2>
-              <div class="row p-4 payments">
-                <div class="col-5 d-flex justify-content-center align-items-center m-1">
-                  <i class="fa fa-truck"></i>
 
-                </div>
-                <div class="col-5 d-flex justify-content-center align-items-center m-1">
-                  <i class="fa fa-truck"></i>
-                </div>
-                <div class="col-5 d-flex justify-content-center align-items-center m-1">
-                  <i class="fa fa-truck"></i>
-                </div>
-                <div class="col-5 d-flex justify-content-center align-items-center m-1">
-                  <i class="fa fa-truck"></i>
-                </div>
-              </div>
-              <hr>
-              <h1>Checkout</h1>
-            </div>
-            <div class="col-6 p-1">
+           
+                <form class="col-md-6 col-xs-12 payment_types">
+                  
+                  <div class="d-flex flex-row justify-content-between mt-2">
+                    <h2>Redeem code</h2>
+                    <input type="text" class="form-control w-50 mr-4" placeholder="Try your luck">
+                  </div>
+                  <hr>
+                  <h2>Type of payment</h2>
+                  <div class="row p-4 payments">
+                    
+                    <label class="col-5 d-flex flex-column paysafe justify-content-center align-items-center m-1 pt-4" (click)="changeBack($event, 'paysafe')">
+                      <!-- <i class="fa fa-truck"></i> -->
+                      <img src="../../assets/paysafecard.webp" alt="paysafe" class="payment_type">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="paysafe" value="Paysafe card">
+                        <div class="form-check-label" for="exampleRadios1">
+                          Paysafe card
+                        </div>
+                      </div>
+                    </label>
+                  
+
+                    <label class="col-5 d-flex flex-column online justify-content-center align-items-center m-1 pt-4" (click)="changeBack($event, 'online')">
+                      <!-- <i class="fa fa-truck"></i> -->
+                      <img src="../../assets/online_banking.webp" alt="paysafe" class="payment_type">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="online" value="Online Banking" >
+                        <div class="form-check-label" for="exampleRadios1">
+                          Online banking
+                        </div>
+                      </div>
+                    </label>
+                    <label class="col-5 d-flex flex-column cash justify-content-center align-items-center m-1 pt-4" (click)="changeBack($event, 'cash')">
+                      <!-- <i class="fa fa-truck"></i> -->
+                      <img src="../../assets/cash_on_delivery.png" alt="paysafe" class="payment_type">
+        
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="exampleRadios" id="cash" value="Cash on delivery">
+                          <div class="form-check-label" for="exampleRadios1">
+                            Cash on delivery
+                          </div>
+                        </div>
+
+                        
+                    </label>
+                    <label class="col-5 d-flex flex-column debet justify-content-center align-items-center m-1 pt-4" (click)="changeBack($event, 'debet')">
+                      <!-- <i class="fa fa-truck"></i> -->
+                      <img src="../../assets/credit_debet_card.png" alt="paysafe" class="payment_type pt-4">
+                      <div class="form-check pt-4">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="debet" value="Debet card">
+                        <div class="form-check-label" for="exampleRadios1">
+                          Debet card
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                </form>
+            <form class="col-md-6 col-xs-12 p-1 delivery_types">
 
               <h2>Choose type of delivery<i class="fa fa-truck ml-4"></i></h2>
               
                 <div class="delivery_cont">
                   <hr>
-                  <div class="form-check d-flex flex-row align-items-center justify-content-between">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">Registered Post</label>
+                  <label class="form-check d-flex flex-row align-items-center justify-content-between">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="registered" value="registered" checked>
+                    <!-- <label class="form-check-label" for="exampleRadios1">Registered Post</label> -->
+                    <div>Registered Post</div>
                     <img src="../../assets/registered_post.png" alt="registered post">
-                  </div>
+                  </label>
                 </div>
                 <div class="delivery_cont">
                   <hr>
-                  <div class="form-check d-flex flex-row align-items-center justify-content-between">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">Parcel locker</label>
+                  <label class="form-check d-flex flex-row align-items-center justify-content-between">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="locker" value="locker" >
+                    <!-- <label class="form-check-label" for="exampleRadios1">Parcel locker</label> -->
+                    <div>Parcel Locker</div>
                     <img src="../../assets/parcel_locker.svg" alt="parcel locker">
-                  </div>
+                  </label>
                 </div>
 
                 <div class="delivery_cont">
                   <hr>
-                  <div class="form-check d-flex flex-row align-items-center justify-content-between">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">Pickup</label>
+                  <label class="form-check d-flex flex-row align-items-center justify-content-between">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="pickup" value="pickup">
+                    <!-- <label class="form-check-label" for="exampleRadios1">Pickup</label> -->
+                    <div>Pickup</div>
                     <img src="../../assets/pin.svg" alt="pickup">
-                  </div>
+                  </label>
                 </div>
                 <hr>
 
-
-
-
-
-
-
-            </div>
+                <div class="d-flex flex-row justify-content-between pt-2">
+                  <h1>Checkout</h1>
+                  <button class="btn btn-lg btn-info mr-1" type="button">Checkout >></button>
+                </div>
+                
+            </form>
           </div>
 
         </li>

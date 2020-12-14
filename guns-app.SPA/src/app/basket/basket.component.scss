@@ -53,9 +53,15 @@ i.fa.fa-truck{
     transition: all .4s;
     &:hover{
         background-color: rgba(0,0,0,.07);
+        //background-color: rgb(72, 219, 91);
         cursor: pointer;
     }
 }
+
+input[type=radio]:checked{
+    border: 1px solid blue;
+}
+
 
 .payments
 {
@@ -72,6 +78,26 @@ i.fa.fa-truck{
     img{
         width: 5rem;
         padding-right: 1rem;
+    }
+
+}
+
+.payment_type
+{
+    max-width: 5rem;
+}
+
+label{
+
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+@media only screen and (min-width: 991px)
+{
+    ul{
+        width: 100vw;
     }
 
 }

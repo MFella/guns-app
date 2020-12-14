@@ -50,3 +50,9 @@ function stopCarousel()
 //     let nextMainUrl = nextMain.style.src;
 //     console.log(nextMainUrl);
 // }
+
+const changeColor = (el) => 
+{
+    el.style.backgroundColor = "rgb(72, 219, 91);";
+
+}
