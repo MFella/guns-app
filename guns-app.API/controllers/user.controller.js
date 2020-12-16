@@ -2,6 +2,8 @@ const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('../config/database');
+const Order = require('../models/order');
+
 
 module.exports = {
     addUser: async(req, res) => 
@@ -56,7 +58,7 @@ module.exports = {
         const email = req.body.email;
         const password = req.body.password; 
     
-        module.exports.getUserByEmail(email, (err, user) => {
+        module.exports.getUserByEmail(email, async(err, user) => {
     
             if(err) throw err;
     
@@ -65,7 +67,7 @@ module.exports = {
                 return res.json({success: false, msg:'User not found ;/'});
             }
     
-            User.comparePassword(password, user.password, (err, isMatch) => {
+            User.comparePassword(password, user.password, async (err, isMatch) => {
     
                 if(err) throw err;
     
@@ -75,7 +77,15 @@ module.exports = {
                     req.user = token;
                     
                     //return user without the password!
-    
+                    //retrieve basket
+                    const basket = await Order.findOne({status: "BASKET"});
+
+                    if(basket === null)
+                    {
+                        //create basket
+                       const basket =  await Order.create({});
+                    }
+
                     res.json({
                         success: true, 
                         token: 'JWT ' + token,
@@ -83,9 +93,10 @@ module.exports = {
                             id: user._id,
                             name: user.name,
                             surname: user.surname,
-                            email: user.email
+                            email: user.email,
+                            basketId: basket._id
                         }
-                    })
+                    }) 
                 } else
                 {
                     return res.json({success: false, msg: 'Wrong password'});

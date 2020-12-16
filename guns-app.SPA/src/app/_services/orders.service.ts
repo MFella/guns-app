@@ -4,6 +4,7 @@ import { OrderRecord } from '../_models/orderrecord';
 import { AuthService } from './auth.service';
 import * as env from '../../environments/environment';
 import { map } from 'rxjs/operators';
+import { OrderItemDto } from '../_models/Dtos/orderItemDto';
 
 @Injectable({
   providedIn: 'root'
@@ -90,6 +91,13 @@ constructor(private http: HttpClient, private authServ: AuthService) { }
           return res.basket;
         })
       )
+  }
+
+  addItemToBasket(body: OrderItemDto)
+  {
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(env.environment.trueBackUrl + 'order-item/', body, {headers})
 
   }
 

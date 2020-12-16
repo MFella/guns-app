@@ -96,12 +96,13 @@
               <p class="card-text form-group d-flex justify-content-between align-items-center"> 
                 <!--d-flex justify-content-between align-items-center-->
                 <label for="amount">Amount</label>
-                <input type="number" class="form-control form-control-sm amount" min=1 max=100 value=1> </p>
+                <input type="number" class="form-control form-control-sm amount" min=1 max=100 value=1 [(ngModel)]="this.quantity"> 
+              </p>
             </div>
             <div class="card-footer d-flex justify-content-between">
               <!-- <small class="text-muted">Last updated 3 mins ago</small> -->
 
-              <button class="btn btn-info" *ngIf="this.authServ.currentUser !== null">To Basket <i class="fa fa-shopping-cart"></i></button>
+              <button class="btn btn-info" *ngIf="this.authServ.currentUser !== null" (click)="addToBasket()">To Basket <i class="fa fa-shopping-cart"></i></button>
               <button class="btn btn-warning ">Purchase now <i class="fa fa-euro"></i></button>
 
             </div>

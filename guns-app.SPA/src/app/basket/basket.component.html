@@ -10,7 +10,7 @@
       <ul class="col-md-12 list-group mx-auto px-4">
         <li class="list-group-item">
           <div class="card border-info">
-            <div class="card-body">
+            <div class="card-body bg">
               <h5 class="card-title">Special title treatment</h5>
               <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
               <a href="#" class="btn btn-primary">Go somewhere</a>
@@ -59,7 +59,7 @@
                     <input type="text" class="form-control w-50 mr-4" placeholder="Try your luck">
                   </div>
                   <hr>
-                  <h2>Type of payment</h2>
+                  <h1> <i class="fa fa-money pr-3"></i> Type of payment</h1>
                   <div class="row p-4 payments">
                     
                     <label class="col-5 d-flex flex-column paysafe justify-content-center align-items-center m-1 pt-4" (click)="changeBack($event, 'paysafe')">
@@ -111,20 +111,20 @@
                 </form>
             <form class="col-md-6 col-xs-12 p-1 delivery_types">
 
-              <h2>Choose type of delivery<i class="fa fa-truck ml-4"></i></h2>
+              <h1 class="pl-4">Choose type of delivery<i class="fa fa-truck ml-4"></i></h1>
               
-                <div class="delivery_cont">
-                  <hr>
-                  <label class="form-check d-flex flex-row align-items-center justify-content-between">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="registered" value="registered" checked>
+                <div class="delivery_cont registered mt-4">
+                  <hr class="m-0">
+                  <label class="form-check d-flex flex-row align-items-center justify-content-between " (click)="changeForDelivery($event, 'registered')">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="registered" value="registered">
                     <!-- <label class="form-check-label" for="exampleRadios1">Registered Post</label> -->
                     <div>Registered Post</div>
                     <img src="../../assets/registered_post.png" alt="registered post">
                   </label>
                 </div>
-                <div class="delivery_cont">
-                  <hr>
-                  <label class="form-check d-flex flex-row align-items-center justify-content-between">
+                <div class="delivery_cont locker">
+                  <hr class="m-0">
+                  <label class="form-check d-flex flex-row align-items-center justify-content-between " (click)="changeForDelivery($event, 'locker')">
                     <input class="form-check-input" type="radio" name="exampleRadios" id="locker" value="locker" >
                     <!-- <label class="form-check-label" for="exampleRadios1">Parcel locker</label> -->
                     <div>Parcel Locker</div>
@@ -132,23 +132,63 @@
                   </label>
                 </div>
 
-                <div class="delivery_cont">
-                  <hr>
-                  <label class="form-check d-flex flex-row align-items-center justify-content-between">
+                <div class="delivery_cont pickup">
+                  <hr class="m-0">
+                  <label class="form-check d-flex flex-row align-items-center justify-content-between " (click)="changeForDelivery($event, 'pickup')">
                     <input class="form-check-input" type="radio" name="exampleRadios" id="pickup" value="pickup">
                     <!-- <label class="form-check-label" for="exampleRadios1">Pickup</label> -->
                     <div>Pickup</div>
                     <img src="../../assets/pin.svg" alt="pickup">
                   </label>
                 </div>
-                <hr>
+                <!-- <hr>
 
                 <div class="d-flex flex-row justify-content-between pt-2">
                   <h1>Checkout</h1>
                   <button class="btn btn-lg btn-info mr-1" type="button">Checkout >></button>
-                </div>
+                </div> -->
                 
             </form>
+            
+            
+            <div class="col-12 py-4">
+              <hr>
+                <!-- <h1 class="text-center">Summary</h1> -->
+                <div class="card w-75 mx-auto mt-4 bg-info">
+                  <h3 class="card-header d-flex flex-row justify-content-between">
+
+                      Summary 
+                    <i class="fa fa-check"></i>
+                  </h3>
+                  <div class="card-body">
+
+                    <div class="d-flex flex-row justify-content-between">
+                      <p class="card-text"> <strong>Total:</strong></p>   
+                      <p class="card-text">203 EUR</p> 
+                    </div>
+                    <hr class="mt-0">
+                    <div class="d-flex flex-row justify-content-between">
+                      <p class="card-text"> <strong>Type of delivery</strong> </p>   
+                      <p class="card-text">{{this.curr_delivery.length === 0? "N/A": this.curr_delivery | uppercase}}</p> 
+                    </div>
+                    <hr class="mt-0">
+                    <div class="d-flex flex-row justify-content-between">
+                      <p class="card-text"><strong>Type of payment</strong></p>   
+                      <p class="card-text">{{this.curr_payment.length === 0? "N/A": this.curr_payment | uppercase}}</p> 
+                    </div>
+                    <hr class="m-0">
+                    <div class="d-flex flex-row justify-content-between">
+                      <p class="card-text"><strong></strong></p>   
+                      <button class="mt-4 btn btn-warning" 
+                      [disabled]="this.curr_delivery.length === 0 || this.curr_payment.length === 0">Checkout >></button>
+                    </div>
+                    
+                  </div>
+                </div>
+
+            </div>
+
+
           </div>
 
         </li>

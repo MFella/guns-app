@@ -6,6 +6,8 @@ import { AuthService } from '../_services/auth.service';
 import { GunsService } from '../_services/guns.service';
 import { IziAlertService } from '../_services/iziAlert.service';
 import {Comment} from '../_models/comment';
+import { OrdersService } from '../_services/orders.service';
+import { OrderItemDto } from '../_models/Dtos/orderItemDto';
 declare const stopCarousel: any;
 
 @Component({
@@ -19,12 +21,15 @@ export class GunDetailComponent implements OnInit {
   rate: number = 0;
   avg_rate: number = 0;
   afterParse: number = 0;
+
   native_curr: string = '';
+  quantity: any = 1;
   content: any = '';
   stars = new Array(5).fill(false);
 
   constructor(private route: ActivatedRoute, private izi: IziAlertService,
-    private router: Router, public authServ: AuthService, public gunsServ: GunsService) { }
+    private router: Router, public authServ: AuthService, public gunsServ: GunsService,
+    private orderServ: OrdersService) { }
 
   ngOnInit() {
     stopCarousel();
@@ -33,7 +38,8 @@ export class GunDetailComponent implements OnInit {
     {
       this.gun = res.gun[0];
       this.native_curr = localStorage.getItem('currentRate');
-      console.log(localStorage.getItem('currentRate'));
+      console.log(res);
+      console.log(this.authServ.currentUser)
 
       this.gunsServ.emitRate.subscribe((rate: Array<string>) => 
       {
@@ -136,6 +142,27 @@ export class GunDetailComponent implements OnInit {
       }
     })
   
+  }
+
+  addToBasket()
+  {
+      const body: OrderItemDto = {
+        item: this.gun._id,
+        order: this.authServ.currentUser.basketId,
+        quantity: this.quantity
+      };
+
+      this.orderServ.addItemToBasket(body)
+        .subscribe(res => 
+        {
+          console.log(res);
+          this.izi.success("Item has been added successfully!");
+
+        }, err => 
+        {
+          this.izi.error("Error occured during adding item to basket");
+        });
+
   }
 
 }

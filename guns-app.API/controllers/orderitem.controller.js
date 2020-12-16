@@ -10,7 +10,8 @@ module.exports = {
         user_id = req.user._id;
 
         const gunFromDb = await Gun.findById(item);
-        const orderFromDb = await Order.findById(order);
+        const orderFromDb = await Order.findById(order).populate('user');
+
 
         if(gunFromDb == undefined || orderFromDb == undefined || quantity == 0)
         {
@@ -18,11 +19,13 @@ module.exports = {
             .json({success: false, reason: "Gun doesnt exist or order doesnt exist"});
         }
 
-        if(gunFromDb.status !== 'BASKET')
+        if(orderFromDb.status !== 'BASKET')
         {
             return res.status(400)
             .send({"msg": "Cant add item - this basket havent got status of BASKET"});
         }
+
+        console.log(orderFromDb);
 
         
         if(user_id.toString() != orderFromDb.user.toString())

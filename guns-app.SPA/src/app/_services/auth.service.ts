@@ -15,6 +15,7 @@ export class AuthService {
 
   backUrl: string = 'http://localhost:3000/users';
   currentUser: any;
+  basket: any;
 
   constructor(private http: HttpClient, private izi: IziAlertService) { 
     this.currentUser = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;

@@ -9,6 +9,9 @@ import { Basket } from '../_models/basket';
 })
 export class BasketComponent implements OnInit {
 
+  curr_delivery: string = '';
+  curr_payment: string = '';
+
   constructor(private route: ActivatedRoute) { }
 
   userBasket:Basket
@@ -18,9 +21,8 @@ export class BasketComponent implements OnInit {
 
     this.route.data.subscribe((res) => 
     {
-
       this.userBasket = res.basket;
-      console.log(this.userBasket.orderItem.length);
+      console.log(res);
     })
   }
 
@@ -28,6 +30,7 @@ export class BasketComponent implements OnInit {
   {
     console.log(type);
     console.log(e.target);
+    this.curr_payment = type;
 
     const green  = 'rgb(72, 219, 91)';
     const gray = 'rgba(0,0,0,.15)';
@@ -56,9 +59,38 @@ export class BasketComponent implements OnInit {
         (<HTMLElement>document.querySelector('label.cash')).style.backgroundColor = gray;
         (<HTMLElement>document.querySelector('label.paysafe')).style.backgroundColor = gray;
       break;
-      default:
-        console.log('dasdasd');
     }
   }
+
+  changeForDelivery(e: Event, type: string)
+  {
+
+    const green  = 'rgb(72, 219, 91)';
+    //const gray = 'rgba(0,0,0,.15)';
+    this.curr_delivery = type;
+
+    switch(type)
+    {
+      case 'registered':
+        (<HTMLElement>document.querySelector('.delivery_cont.registered')).style.backgroundColor = green;
+        (<HTMLElement>document.querySelector('.delivery_cont.pickup')).style.backgroundColor = "#ffffff";
+        (<HTMLElement>document.querySelector('.delivery_cont.locker')).style.backgroundColor = "#ffffff";
+      break;
+      case 'pickup':
+        (<HTMLElement>document.querySelector('.delivery_cont.registered')).style.backgroundColor = "#ffffff";
+        (<HTMLElement>document.querySelector('.delivery_cont.pickup')).style.backgroundColor = green;
+        (<HTMLElement>document.querySelector('.delivery_cont.locker')).style.backgroundColor = "#ffffff";
+      break;
+      case 'locker':
+        (<HTMLElement>document.querySelector('.delivery_cont.registered')).style.backgroundColor = "#ffffff";
+        (<HTMLElement>document.querySelector('.delivery_cont.pickup')).style.backgroundColor = "#ffffff";
+        (<HTMLElement>document.querySelector('.delivery_cont.locker')).style.backgroundColor = green;
+      break;
+    }
+
+  }
+
+
+
 
 }
