@@ -9,7 +9,7 @@ import {Comment} from '../_models/comment';
 })
 export class GunsService {
 
-  backUrl: string = `http://localhost:3000/guns`;
+  backUrl: string = `http://localhost:3090/guns`;
   rates: string = localStorage.getItem('rates');
   myRate: string;
   public emitRate = new BehaviorSubject<Array<string>>(null);
@@ -52,12 +52,12 @@ export class GunsService {
   {
     let params = new HttpParams();
     params = params.append('id', id);
-    return this.http.post(`http://localhost:3000/comment/create`, comment, {params});
+    return this.http.post(`http://localhost:3090/comment/create`, comment, {params});
   }
 
   getCurrs()
   {
-    return this.http.get(`http://localhost:3000/currencyrate`)
+    return this.http.get(`http://localhost:3090/currencyrate`)
       .pipe(
         map((res: any) => 
         {
@@ -67,7 +67,6 @@ export class GunsService {
           }
           else
           {
-            //throw new Error("WTF error");
             window.location.reload();
           }
         })

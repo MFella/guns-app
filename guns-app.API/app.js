@@ -25,13 +25,13 @@ const app = express();
 const users = require('./routes/users');
 const guns = require('./routes/gun');
 const comments = require('./routes/comment');
-const port = 3000;
+const port = 3090;
 
 //CORS Middleware
-// app.use(cors({
-//     origin: 'http://localhost:4200'
-// }));
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:4200'
+}));
+//app.use(cors());
 
 
 app.use(express.static(path.join(__dirname, 'public')));

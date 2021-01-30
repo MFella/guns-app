@@ -13,7 +13,7 @@ export class AuthService {
 
   //everything only for testing purposes
 
-  backUrl: string = 'http://localhost:3000/users';
+  backUrl: string = 'http://localhost:3090/users';
   currentUser: any;
   basket: any;
 
@@ -21,8 +21,6 @@ export class AuthService {
     this.currentUser = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
     //console.log(this.currentUser);
   }
-
-
 
   registerUser(user: User)
   { 
@@ -58,7 +56,6 @@ export class AuthService {
     localStorage.setItem('user', JSON.stringify(authRes.user));
     localStorage.setItem('id_token', authRes.token);
     localStorage.setItem('expires_at', JSON.stringify(expireDate.valueOf()));
-
   }
 
   logout()

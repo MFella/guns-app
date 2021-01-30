@@ -1,12 +1,9 @@
 <nav class="navbar navbar-expand-lg" #nL> <!-- fixed-top -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
     <a class="navbar-brand d-flex flex-direction-row"> <img class="logo_wolf" src="../../assets/wolf-icon.png" alt="Logo"> 
       
       <span [routerLink]="['']" class="pt-2">73Guns</span>    
 
-      <div class="collapse navbar-collapse mb-2" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse mb-2" id="navbarSupportedContent_currencies">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item dropdown" id="first_ffs">
             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -24,7 +21,10 @@
       </div>
 
     </a>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse other_options" id="navbarTogglerDemo03">
       <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
         <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
           <a class="nav-link" [routerLink]="['/']"> <i class="fa fa-home"></i> Home</a>
@@ -52,8 +52,8 @@
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">{{this.authServ?.currentUser?.surname}}</a>
         </li> -->
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="this.authServ.currentUser !== null">
-          <ul class="navbar-nav ml-auto">
+        <!-- <li class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="this.authServ.currentUser !== null">
+          <ul class="navbar-nav ml-auto"> -->
             <li class="nav-item dropdown second">
               <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               |{{this.authServ?.currentUser.email.split('@')[0] | short}}|
@@ -71,8 +71,8 @@
             </li>
           </ul>
                     
-        </div>
+        <!-- </li>
 
-      </ul>
+      </ul> -->
     </div>
-  </nav>
+</nav>
