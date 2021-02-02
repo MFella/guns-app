@@ -1,8 +1,10 @@
 <main>
 <form [formGroup]="registerForm" class="form-signin" (ngSubmit)="register()">
-    <div class="text-left mb-4 d-flex justify-content-around card_head">      
-      <h1 class="h3 mb-4 font-weight-bold"><i class="fa fa-users mr-5" style="font-size:3rem;"></i>Register Yourself! </h1>
-      <span class="inv_feed">
+    <div class="text-left mb-4 d-flex justify-content-around card_head">   
+      <div class="row w-100">
+
+      <h1 class="h3 mb-4 font-weight-bold col-xs-12 mx-auto"><i class="fa fa-users mr-5" style="font-size:3rem;"></i>Register Yourself! </h1>
+      <span class="inv_feed col-xs-12 mx-auto">
         <ul class="list-group">
           <li>
             <i class="fa fa-arrow-right pr-2"
@@ -69,6 +71,7 @@
            </li>
         </ul>
       </span>
+    </div> 
  </div>
 
 

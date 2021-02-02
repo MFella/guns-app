@@ -18,6 +18,7 @@ export class NavComponent implements OnInit {
     public gunsServ: GunsService) { }
 
   ngOnInit(): void {
+
     let temper = Object.keys(this.gunsServ.rates).sort();
 
     this.currs = Object.assign(this.currs, temper);
@@ -51,6 +52,18 @@ export class NavComponent implements OnInit {
         this.gunsServ.emitRate.next([key, value]);
       }
     }
+  }
+
+  toggle()
+  {
+    const temp  = document.querySelector('.navbar-collapse.collapse.show'); 
+
+    if(temp !== null)
+    {
+      temp.classList.toggle('show');
+    }
+
+
   }
 
 }

@@ -29,7 +29,7 @@ const port = 3090;
 
 //CORS Middleware
 app.use(cors({
-    origin: 'http://localhost:4200'
+    origin: 'http://localhost:4100'
 }));
 //app.use(cors());
 

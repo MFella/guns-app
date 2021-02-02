@@ -7,6 +7,8 @@ main
     //background-size: 28.80rem 18.80rem;
     background-size: cover;
     margin: auto auto;
+    padding-bottom: 1rem;
+    min-height: calc(100vh - 6rem);
 }
 // .container
 // {
@@ -73,4 +75,37 @@ display: none;
     .genHead{
         font-size: 3rem;
     }
+}
+
+@media only screen and (max-width: 768px)
+{
+    .gun_l, .gun_r
+    {
+        display: none !important;
+    }
+
+    .authCard
+    {
+        width: 35vw !important;
+    }
+
+}
+
+@media only screen and (max-width: 576px)
+{
+    .authCard, .card
+    {
+        width: 80vw !important;
+        //margin-top: 1rem;
+    }
+
+    .card{
+        margin-top: 1.5rem;
+    }
+
+    .col-sm-6{
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
 }

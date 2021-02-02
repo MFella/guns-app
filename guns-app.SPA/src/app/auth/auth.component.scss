@@ -29,7 +29,7 @@ h1{
     button
     {
         margin-top: 2.6rem;
-        width:20rem;
+        max-width:20rem;
         margin-left: auto;
         margin-right: auto;
     }
@@ -47,8 +47,8 @@ h1{
     }
 
     background-image: url('../../assets/login_back.png');
-    position: relative;
-    width: 30rem;
+    //position: relative;
+    max-width: 30rem;
     //max-width: 420px;
     padding: 2rem;
     margin: 0 auto;
@@ -115,6 +115,19 @@ h1{
         opacity: 1;
         transform: translateY(-.1rem);
         box-shadow: -3px 9px 28px -11px rgba(0,0,0,0.75);
+    }
+}
+
+@media only screen and (max-width: 576px)
+{
+    main{
+        padding-top: .4rem;
+        padding-left: .5rem;
+        padding-right: .5rem;
+    }
+    
+    h1{
+        animation: none;
     }
 }
 

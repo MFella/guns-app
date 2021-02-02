@@ -19,6 +19,7 @@ export class AuthService {
 
   constructor(private http: HttpClient, private izi: IziAlertService) { 
     this.currentUser = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
+
     //console.log(this.currentUser);
   }
 
