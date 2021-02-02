@@ -32,6 +32,9 @@ export class GunDetailComponent implements OnInit {
     private orderServ: OrdersService) { }
 
   ngOnInit() {
+
+
+    console.log('My basket id is: ' + this.authServ.currentUser.basketId);
     stopCarousel();
 
     this.route.data.subscribe((res: any) => 

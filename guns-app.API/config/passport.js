@@ -16,11 +16,11 @@ module.exports = (passport) => {
                 return done(err, false);
             }
 
-            console.log(user);
+            // console.log(user);
 
             if(user)
             {
-                console.log('There is user!');
+                // console.log('There is user!');
                 return done(null, user);
             } else 
             {

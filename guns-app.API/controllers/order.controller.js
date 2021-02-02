@@ -3,6 +3,7 @@ const OrderItem = require("../models/orderItem");
 const User = require('../models/user');
 const Gun = require('../models/gun');
 const orderitemController = require("./orderitem.controller");
+const order = require("../models/order");
 
 module.exports = {
     create: async(req, res) => 
@@ -91,16 +92,44 @@ module.exports = {
 
     takeBasket: async(req, res) => 
     {
-        const basket = await Order.findOne({status: "BASKET"});
+        const basket = await Order.findOne({status: "BASKET", user: req.user._id}); //.populate('user');
 
         if(basket === null)
         {
             //create basket
-           const basket =  await Order.create({});
+           const basket =  await Order.create({user: req.user._id});
            return res.send({"basket": basket});
         }
 
-        return res.send({"basket": basket});
+        const withOrderItems = await basket.populate('orderItem').execPopulate();
+
+        const orderItems = await OrderItem.find({order: basket._id}).populate('item');
+
+
+        ///TODO: too much data goes here
+        orderItems.forEach((el) =>
+        {
+           // await el.populate('item');
+
+            withOrderItems.orderItem.push(el);
+        })
+
+        console.log('---------------------')
+        console.log('---------------------')
+        console.log('---------------------')
+        console.log(withOrderItems);
+        console.log('---------------------')
+        console.log('---------------------')
+        console.log('---------------------')
+
+        if(basket.user.toString() === req.user._id.toString())
+        {
+            return res.send({"basket": basket});
+        }else
+        {
+            res.send({'msg': 'You are not allowed!'});
+            return res.status(401);
+        }
     },
 
     findAll: async(req, res) => 
@@ -109,12 +138,6 @@ module.exports = {
 
         if(!user_id) throw new Error("Internal error! User doesnt exists");
 
-
-        // orders = User.findById(user_id, (err, user) => 
-        // {
-        //     if(err) throw err;
-
-        // }).populate('orders');
         orders = await Order.find({user: user_id});
 
         res.send(orders);

@@ -7,11 +7,20 @@ module.exports = {
     {
         const {item, order, quantity} = req.body;
 
+        console.log('---------------------')
+        console.log(item);
+        console.log('---------------------')
+        console.log(order); // that one is useless here, need to be changes
+        console.log('---------------------')
+        console.log(quantity);
+        console.log('---------------------')
+
         user_id = req.user._id;
 
         const gunFromDb = await Gun.findById(item);
-        const orderFromDb = await Order.findById(order).populate('user');
+        const orderFromDb = await Order.findOne({status: "BASKET", user: req.user._id});
 
+        console.log(orderFromDb);
 
         if(gunFromDb == undefined || orderFromDb == undefined || quantity == 0)
         {
@@ -24,9 +33,6 @@ module.exports = {
             return res.status(400)
             .send({"msg": "Cant add item - this basket havent got status of BASKET"});
         }
-
-        console.log(orderFromDb);
-
         
         if(user_id.toString() != orderFromDb.user.toString())
         {
@@ -39,7 +45,7 @@ module.exports = {
         if(hipoOrderItem !== null)
         {
             //orderItem exist -> update it
-            hipoOrderItem.update({
+            hipoOrderItem.updateOne({
                 quantity: quantity
             }, (err, aff, res) => 
             {
@@ -49,11 +55,18 @@ module.exports = {
             return res.status(200).send({"msg": "Item has been updated", "orderItem": hipoOrderItem});
         }
     
-        const orderItem = await OrderItem.create({
-            item, order, quantity
-        });
+        const orderItem = new OrderItem({item, order, quantity});
+        //await OrderItem.create(
+        //     {
+        //     item, order, quantity
+        // };
+        //);
+        orderItem.save(err =>
+            {
+                if(err) throw err;
+            })
 
-        orderFromDb.orderItem.push(orderItem);
+        await orderFromDb.orderItem.push(orderItem);
 
         console.log(orderItem);
 

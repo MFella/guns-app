@@ -85,6 +85,7 @@ constructor(private http: HttpClient, private authServ: AuthService) { }
       .pipe(
         map((res:any) => 
         {
+          console.log('Koszyk wziety')
           delete res.basket.startDate;
           delete res.basket.endDate;
           delete res.basket.status;
