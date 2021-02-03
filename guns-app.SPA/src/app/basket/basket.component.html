@@ -26,20 +26,23 @@
             </div>
           </div>
         </li> -->
-        <li class="list-group-item" *ngFor="let item of [1,1,1]">
+        <li class="list-group-item" *ngFor="let item of this.userBasket.orderItem">
           <div class="card border-info">
             <div class="card-body">
               <div class="row">
-                <div class="col-md-8 col-xs-12">
+                <div class="col-md-8 col-xs-12 photo">
                   <img class="card-img" src="../../assets/wolf-icon.png" alt="Card image">
                 </div>
 
                 <div class="col-md-4 col-xs-12 d-flex flex-column justify-content-around">
-                  <h5 class="card-title">Name: M4A4</h5>
+                  <h5 class="card-title d-flex flex-row"> <strong>Name:</strong> <div>{{item.item.name}}</div></h5>
                   <div class="d-flex flex-row">
-                    <p class="card-text pt-2 pr-2">Quantity: </p>
-                    <input type="number" class="form-control"> 
+                    <strong class="card-text pt-2 pr-2">Quantity: </strong>
+                    <input type="number" class="form-control" value="{{item.quantity}}"> 
                   </div>
+                  <p class="d-flex flex-row card-text pt-2 pr-2">
+                    <strong>Per each:</strong>{{item.item.price}} {{this.userBasket.currencyCode}}
+                  </p>
                   <button class="btn btn-danger w-50"> <i class="fa fa-trash-o"></i> Delete</button>
                 </div>
               </div>
@@ -62,7 +65,7 @@
                   <h1> <i class="fa fa-money pr-3"></i> Type of payment</h1>
                   <div class="row p-4 payments">
                     
-                    <label class="col-5 d-flex flex-column paysafe justify-content-center align-items-center m-1 pt-4" (click)="changeBack($event, 'paysafe')">
+                    <label class="col-md-5 col-xs-12 d-flex flex-column paysafe justify-content-center align-items-center pt-4" (click)="changeBack($event, 'paysafe')">
                       <!-- <i class="fa fa-truck"></i> -->
                       <img src="../../assets/paysafecard.webp" alt="paysafe" class="payment_type">
                       <div class="form-check">
@@ -72,9 +75,10 @@
                         </div>
                       </div>
                     </label>
-                  
 
-                    <label class="col-5 d-flex flex-column online justify-content-center align-items-center m-1 pt-4" (click)="changeBack($event, 'online')">
+                    <!-- <div class="col-lg-2 col-md-2 col-xs-2"></div> -->
+
+                    <label class="col-md-5 col-xs-12 ml-4 d-flex flex-column online justify-content-center align-items-center pt-4" (click)="changeBack($event, 'online')">
                       <!-- <i class="fa fa-truck"></i> -->
                       <img src="../../assets/online_banking.webp" alt="paysafe" class="payment_type">
                       <div class="form-check">
@@ -84,7 +88,7 @@
                         </div>
                       </div>
                     </label>
-                    <label class="col-5 d-flex flex-column cash justify-content-center align-items-center m-1 pt-4" (click)="changeBack($event, 'cash')">
+                    <label class="col-md-5 col-xs-12 d-flex flex-column cash justify-content-center align-items-center pt-4" (click)="changeBack($event, 'cash')">
                       <!-- <i class="fa fa-truck"></i> -->
                       <img src="../../assets/cash_on_delivery.png" alt="paysafe" class="payment_type">
         
@@ -94,10 +98,11 @@
                             Cash on delivery
                           </div>
                         </div>
-
-                        
                     </label>
-                    <label class="col-5 d-flex flex-column debet justify-content-center align-items-center m-1 pt-4" (click)="changeBack($event, 'debet')">
+                    
+                    <!-- <div class="col-lg-2 col-md-2 col-xs-2"></div> -->
+
+                    <label class="col-md-5 col-xs-12 ml-4 d-flex flex-column debet justify-content-center align-items-center pt-4" (click)="changeBack($event, 'debet')">
                       <!-- <i class="fa fa-truck"></i> -->
                       <img src="../../assets/credit_debet_card.png" alt="paysafe" class="payment_type pt-4">
                       <div class="form-check pt-4">
