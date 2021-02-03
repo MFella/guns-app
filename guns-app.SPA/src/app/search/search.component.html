@@ -1,53 +1,8 @@
-<!-- <form class="form-signin">
-    <div class="text-left mb-4">      
-      <h1 class="h3 mb-3 font-weight-normal"><i class="fa fa-users mr-5" style="font-size:3rem;"></i>Register Yourself! </h1>
- </div>
-
-    <div class="form-label-group">
-        <input type="text" id="inputName" class="form-control" placeholder="Name" required="" autofocus="">
-        <label for="inputEmail">Name</label>
-      </div>
-
-      <div class="form-label-group">
-        <input type="text" id="inputSurname" class="form-control" placeholder="Surname" required="" autofocus="">
-        <label for="inputEmail">Surname</label>
-      </div>
-
-    <div class="form-label-group">
-      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-      <label for="inputEmail">Email address</label>
-    </div>
-
-    <div class="form-label-group">
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-      <label for="inputPassword">Password</label>
-    </div>
-
-    <div class="form-label-group">
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-        <label for="inputPassword">Repeat password</label>
-      </div>
-
-    <button class="btn btn-lg btn-info btn-block" type="submit">Register</button>
-  </form> -->
-
-  <!-- <nav class="navbar navbar-expand-lg d-flex justify-content-center">
-    <button class="btn btn-info btn-sm arrows arr_l" [routerLink]="['']">
-      <i class="fa fa-arrow-left"></i>
-    </button>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2 btn-sm search_input" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-sm btn-success" type="submit">Search <i class="fa fa-search"></i></button>
-      </form>
-      <button class="btn btn-info btn-sm arrows arr_r" [routerLink]="['']">
-        <i class="fa fa-arrow-right"></i>
-      </button>
-  </nav> -->
 
   <main>
     <div class="container pt-3 ">
       <div class="row pt-4">
-        <div class="col-md-3 text-left">
+        <div class="col-md-3 col-xs-12 text-left px-2">
           
           <div class="card" style="width: 18rem;">
             <div class="card-body text-center">
@@ -89,51 +44,17 @@
                 </div>
               </li>
 
-<!--                size="1" class="form-control overflow-scroll" id="exampleFormControlSelect2" onfocus='this.size=1;' 
-                onblur='this.size=1;' onchange='this.size=1; this.blur();' [(ngModel)]="this.models.category"-->
-
-
-
-
-
-              <!-- <li class="text-center" id="find_specific">
-                <ul class="navbar-nav ml-auto">
-                  <li class="nav-item dropdown" id="first_ffs">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Currency: {{this.gunServ.myRate}}
-                    </a>
-                    
-
-                    <div class="dropdown-menu dropdown-menu-right animate slideIn text-center" aria-labelledby="navbarDropdown" id="shortDropCurr">
-                        <option value="">Any type</option>
-                        <option value="Handgun">Handgun</option>
-                        <option value="Submachine Gun">Submachine Gun</option>
-                        <option value="Shotgun">Shotgun</option>
-                        <option value="Assault Rifle">Assault Rifle</option>
-                        <option value="Sniper Rifle">Sniper Rifle</option>
-                        <option value="Machine Gun">Machine Gun</option>
-                        <option value="Grenade Launcher">Grenade Launcher</option>
-                        <option value="Rocket">Rocket</option>
-                        <option value="Explosives">Explosives</option>
-                        <option value="Mounted Weapon">Mounted Weapon</option>
-                    </div>
-                  </li>
-                </ul>
-              </li> -->
-
 
             </ul>
           </div>
           
-
-
         </div>
-        <div class="col-md-9 text-center">
+        <div class="col-md-9 col-xs-12 text-center">
           <form>
             <div class="form-group">
               <label for="exampleInputEmail1">Just type something, and let it work!</label>
-              <div class="d-flex pl-4">
-                <input type="text" name="search_Phrase" [(ngModel)]="this.models.searchInput" class="form-control mr-2 ml-4" aria-describedby="search" placeholder="Maybe some weapon? ;)">
+              <div class="d-flex pl-4 search">
+                <input type="text" name="search_Phrase" [(ngModel)]="this.models.searchInput" class="w-50 form-control mr-2 ml-4" aria-describedby="search" placeholder="Maybe some weapon? ;)">
                 <button class="btn btn-secondary" (click)="retrieveItems()">Search!</button>
               </div>
             </div>
@@ -141,13 +62,15 @@
 
             <div class="container pt-2">
 
-              <div class="row d-flex justify-content-end mb-4">
+              <div class="row d-flex justify-content-end mb-4 pagination_container">
                 <div class="card-footer pb-1 pt-3">
                   <pagination [boundaryLinks]="true" [totalItems]="this.pagination.totalItems" [rotate]="rotate" 
                   [maxSize]="maxSize" firstText="&laquo;" lastText="&raquo;"
                   (pageChanged)="pageChanged($event)" [itemsPerPage]="this.pagination.itemsPerPage"
                   *ngIf="this.pagination.totalItems !== 0"
+                  responsive="true"
                   ></pagination>
+
                   <span class="mt-3">{{this.pagination.currentPage * this.pagination.itemsPerPage > this.pagination.totalItems ? 
                     this.pagination.totalItems : this.pagination.currentPage * this.pagination.itemsPerPage}} / {{this.pagination.totalItems}} guns loaded</span>
                 </div>
@@ -155,7 +78,11 @@
 
               <div class="row renderGuns">
 
-                <app-search-item *ngFor="let gun of this.guns; let i = index;" [gun]="gun" [receivedRate]="currRate"></app-search-item>
+                <app-search-item 
+                *ngFor="let gun of this.guns; let i = index" 
+                [gun]="gun" [receivedRate]="currRate"
+                
+                ></app-search-item>
               </div>
 
               <div class="alert alert-secondary" role="alert" *ngIf="this.guns.length === 0">

@@ -100,6 +100,8 @@ export class SearchComponent implements OnInit {
 
   pageChanged(e: any)
   {
+    console.log(e);
+
     let temp = localStorage.getItem('currentRateValue');
 
     this.currRate = +parseFloat(temp).toFixed(2);

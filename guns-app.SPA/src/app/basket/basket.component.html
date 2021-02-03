@@ -28,22 +28,29 @@
         </li> -->
         <li class="list-group-item" *ngFor="let item of this.userBasket.orderItem">
           <div class="card border-info">
-            <div class="card-body">
+            <div class="card-body item">
               <div class="row">
                 <div class="col-md-8 col-xs-12 photo">
                   <img class="card-img" src="../../assets/wolf-icon.png" alt="Card image">
                 </div>
 
                 <div class="col-md-4 col-xs-12 d-flex flex-column justify-content-around">
-                  <h5 class="card-title d-flex flex-row"> <strong>Name:</strong> <div>{{item.item.name}}</div></h5>
-                  <div class="d-flex flex-row">
-                    <strong class="card-text pt-2 pr-2">Quantity: </strong>
-                    <input type="number" class="form-control" value="{{item.quantity}}"> 
+                  <h5 class="card-title d-flex flex-row justify-content-between align-items-center"> 
+                    <strong class="card-text pr-2">Name:</strong> 
+                    <div>{{item.item.name}}</div>
+                  </h5>
+                  <div class="d-flex flex-row justify-content-between align-items-center">
+                    <strong class="card-text pr-2">Quantity: </strong>
+                    <input type="number" class="form-control form-control-sm w-25" value="{{item.quantity}}"> 
                   </div>
-                  <p class="d-flex flex-row card-text pt-2 pr-2">
+                  <p class="d-flex flex-row card-text pt-2 pr-2 justify-content-between align-items-center">
                     <strong>Per each:</strong>{{item.item.price}} {{this.userBasket.currencyCode}}
                   </p>
-                  <button class="btn btn-danger w-50"> <i class="fa fa-trash-o"></i> Delete</button>
+                  <div class="d-flex flex-row justfiy-content-between">
+                    <button class="btn btn-danger btn-sm w-40 mx-auto"> <i class="fa fa-trash-o"></i> Delete</button>
+                    <button class="btn btn-success btn-sm w-40 mx-auto"> <i class="fa fa-save"></i> Save</button>
+                  </div>
+
                 </div>
               </div>
 
@@ -58,12 +65,12 @@
                 <form class="col-md-6 col-xs-12 payment_types">
                   
                   <div class="d-flex flex-row justify-content-between mt-2">
-                    <h2>Redeem code</h2>
-                    <input type="text" class="form-control w-50 mr-4" placeholder="Try your luck">
+                    <h2 class="redeem">Redeem code</h2>
+                    <input type="text" class="form-control w-50 mr-4 redeem-input" placeholder="Try your luck">
                   </div>
                   <hr>
                   <h1> <i class="fa fa-money pr-3"></i> Type of payment</h1>
-                  <div class="row p-4 payments">
+                  <div class="row py-4 px-2 payments d-flex flex-row justify-content-between">
                     
                     <label class="col-md-5 col-xs-12 d-flex flex-column paysafe justify-content-center align-items-center pt-4" (click)="changeBack($event, 'paysafe')">
                       <!-- <i class="fa fa-truck"></i> -->
@@ -115,11 +122,11 @@
                   </div>
                 </form>
             <form class="col-md-6 col-xs-12 p-1 delivery_types">
-
-              <h1 class="pl-4">Choose type of delivery<i class="fa fa-truck ml-4"></i></h1>
+              <hr class="m-0">
+              <h1 class="pl-4 pt-4">Choose type of delivery<i class="fa fa-truck ml-4"></i></h1>
               
-                <div class="delivery_cont registered mt-4">
-                  <hr class="m-0">
+                <div class="delivery_cont registered mt-1">
+                  
                   <label class="form-check d-flex flex-row align-items-center justify-content-between " (click)="changeForDelivery($event, 'registered')">
                     <input class="form-check-input" type="radio" name="exampleRadios" id="registered" value="registered">
                     <!-- <label class="form-check-label" for="exampleRadios1">Registered Post</label> -->
@@ -159,30 +166,30 @@
             <div class="col-12 py-4">
               <hr>
                 <!-- <h1 class="text-center">Summary</h1> -->
-                <div class="card w-75 mx-auto mt-4 bg-info">
+                <div class="card w-100 mx-auto mt-4 bg-info">
                   <h3 class="card-header d-flex flex-row justify-content-between">
 
                       Summary 
                     <i class="fa fa-check"></i>
                   </h3>
-                  <div class="card-body">
+                  <div class="card-body sum-up">
 
-                    <div class="d-flex flex-row justify-content-between">
-                      <p class="card-text"> <strong>Total:</strong></p>   
-                      <p class="card-text">203 EUR</p> 
+                    <div class="d-flex flex-row justify-content-between w-100">
+                      <p class="card-text"> <strong>Total </strong> </p>   
+                      <p class="card-text">{{this.userBasket.total.length === 0? "N/A": this.userBasket.total | uppercase}}</p> 
                     </div>
                     <hr class="mt-0">
-                    <div class="d-flex flex-row justify-content-between">
+                    <div class="d-flex flex-row justify-content-between w-100">
                       <p class="card-text"> <strong>Type of delivery</strong> </p>   
                       <p class="card-text">{{this.curr_delivery.length === 0? "N/A": this.curr_delivery | uppercase}}</p> 
                     </div>
                     <hr class="mt-0">
-                    <div class="d-flex flex-row justify-content-between">
+                    <div class="d-flex flex-row justify-content-between w-100">
                       <p class="card-text"><strong>Type of payment</strong></p>   
                       <p class="card-text">{{this.curr_payment.length === 0? "N/A": this.curr_payment | uppercase}}</p> 
                     </div>
                     <hr class="m-0">
-                    <div class="d-flex flex-row justify-content-between">
+                    <div class="d-flex flex-row justify-content-between w-100">
                       <p class="card-text"><strong></strong></p>   
                       <button class="mt-4 btn btn-warning" 
                       [disabled]="this.curr_delivery.length === 0 || this.curr_payment.length === 0">Checkout >></button>

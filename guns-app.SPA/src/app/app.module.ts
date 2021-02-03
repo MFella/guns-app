@@ -15,13 +15,11 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import {PaginationModule} from 'ngx-bootstrap/pagination';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { NgxIziToastModule } from 'ngx-izitoast';
-import { AuthService } from './_services/auth.service';
 import { AuthInterceptorInterceptor } from './_services/auth-interceptor.interceptor';
 import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { SearchResolver } from './_resolvers/search.resolver';
-import {JwPaginationModule} from 'jw-angular-pagination';
 import { GunDetailComponent } from './gun-detail/gun-detail.component';
 import { GunDetailResolver } from './_resolvers/gun-detail.resolver';
 import { ShortPipe } from './_pipes/short.pipe';

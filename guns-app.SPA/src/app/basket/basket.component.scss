@@ -71,6 +71,14 @@ input[type=radio]:checked{
 .payments
 {
     margin: auto;
+    //transform: translateX(3vw);
+    // label{
+
+    //     &:nth-child(odd)
+    //     {
+    //        margin-left: 1rem !important;
+    //     }
+    // }
 }
 
 .delivery_cont
@@ -164,6 +172,7 @@ i.fa.fa-check{
             align-items: center;
             justify-content: center;
             
+            
             .d-flex
             {
                 justify-content: space-between;
@@ -177,10 +186,10 @@ i.fa.fa-check{
             }
         }
 
-        .payments{
-            padding-left: 4rem !important;
-            padding-right: 4rem !important;
-            display: none !important;
+        .row.payments{
+            padding-left: 5rem !important;
+            padding-right: 5rem !important;
+            transform: translateX(20rem);
 
             label{
              padding: 0 !important;
@@ -207,6 +216,40 @@ i.fa.fa-check{
     .row.payments{
         display: flex;
         justify-content: space-between;
+    }
+
+    ul.list-group
+    {
+        padding: 0 !important;
+
+        .list-group-item{
+
+            .card-body.item{
+                padding-left: .1rem !important;
+                padding-right: .1rem !important;
+
+                .col-xs-12{
+                    padding-left: .5rem;
+                    padding-right: .5rem;
+                }
+            }
+        }
+    }
+
+    h2.redeem{
+        padding-top: .4rem;
+        font-size: 1.5rem;
+    }
+
+    .redeem-input{
+        margin-right: 0 !important;
+    }
+
+    .card-body.sum-up
+    {
+        p.card-text{
+            font-size: .95rem !important;
+        }
     }
 
     label.col-xs-12
