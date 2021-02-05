@@ -37,14 +37,14 @@ module.exports = {
                 const pag = 
                 {
                     currentPage: 1,
-                    itemsPerPage: 3,
+                    itemsPerPage: 9,
                     totalItems: guns.length,
                     totalPages
                 };
 
                 //remove ids from this!
 
-                res.json({guns: guns.slice(0,3), pag: pag});
+                res.json({guns: guns.slice(0,9), pag: pag});
                 return;
             }
             res.json({guns: guns.slice(0,3), pag: pag})

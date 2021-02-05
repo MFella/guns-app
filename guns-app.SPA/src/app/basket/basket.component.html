@@ -41,14 +41,14 @@
                   </h5>
                   <div class="d-flex flex-row justify-content-between align-items-center">
                     <strong class="card-text pr-2">Quantity: </strong>
-                    <input type="number" class="form-control form-control-sm w-25" value="{{item.quantity}}"> 
+                    <input type="number" class="form-control form-control-sm w-25" value="{{item.quantity}}" min=0 max=100> 
                   </div>
                   <p class="d-flex flex-row card-text pt-2 pr-2 justify-content-between align-items-center">
                     <strong>Per each:</strong>{{item.item.price}} {{this.userBasket.currencyCode}}
                   </p>
-                  <div class="d-flex flex-row justfiy-content-between">
-                    <button class="btn btn-danger btn-sm w-40 mx-auto"> <i class="fa fa-trash-o"></i> Delete</button>
-                    <button class="btn btn-success btn-sm w-40 mx-auto"> <i class="fa fa-save"></i> Save</button>
+                  <div class="d-flex flex-row manage_item_buttons">
+                    <button class="btn btn-danger btn-sm w-40 "> <i class="fa fa-trash-o"></i> Delete</button>
+                    <button class="btn btn-success btn-sm w-40"> <i class="fa fa-save"></i> Save</button>
                   </div>
 
                 </div>

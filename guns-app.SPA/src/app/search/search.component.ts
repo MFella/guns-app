@@ -43,7 +43,7 @@ export class SearchComponent implements OnInit {
     console.log(this.gunServ.rates);
     this.pagination = {
       currentPage: 1,
-      itemsPerPage: 3,
+      itemsPerPage: 9,
       totalItems: 12,
       totalPages: 3
     };
@@ -54,7 +54,6 @@ export class SearchComponent implements OnInit {
       this.guns.forEach( el => 
       {
           el.price = +parseFloat(el.price.toString()).toFixed(10);
-          let temper = el.price * this.currRate;
       })
 
       this.pageOfItems = this.guns.slice(0,3);
@@ -68,10 +67,12 @@ export class SearchComponent implements OnInit {
   retrieveItems()
   {
 
+    console.log(this.pagination.itemsPerPage);
+
     this.gunServ.getSpecGuns(this.models, this.pagination.currentPage.toString(), this.pagination.itemsPerPage.toString())
         .subscribe((res:any) => 
           {
-            console.log(this.models);
+            console.log(res);
 
             this.guns = res.guns;
             this.items = res.guns;

@@ -3,6 +3,7 @@
 .container
 {
     max-width: 1400px;
+    //overflow: hidden;
 }
 
 main 
@@ -19,6 +20,10 @@ select
 {
     height: 2rem;
     overflow-y: scroll;
+}
+
+.renderGuns{
+   // margin-top: 10rem;
 }
 
 span 
@@ -95,8 +100,35 @@ span
     }
 }
 
+@media only screen and (max-width: 1311px)
+{
+    .renderGuns{
+        margin-top: 6rem;
+        width: 80vw;
+        transform: translateX(-10rem);
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+
+
 @media only screen and (max-width: 767px)
 {
+
+    .sort_side{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .renderGuns{
+        margin-top: 6rem;
+        width: 100vw;
+        transform: translateX(-1rem);
+        display: flex;
+        justify-content: space-between;
+    }
 
     form{
 
@@ -114,6 +146,19 @@ span
             width: 80% !important;
         }
     }
+}
+
+@media only screen and (max-width: 508px)
+{
+    .renderGuns{
+        margin-top: 6rem;
+        width: 100vw;
+        //transform: translateX(-1rem);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
 }
 
 @media only screen and (max-width: 500px) 
@@ -137,7 +182,7 @@ span
             flex-direction: column !important;
             align-items: center !important;  
             justify-content: center !important;
-            background-color: rgba(0,0,0,.2);
+            background-color: rgba(255,255,255,.8);
             padding-top: .2rem !important;
 
             pagination{
@@ -151,6 +196,8 @@ span
             display: flex !important;
             justify-content: center;
             transform: translateX(0rem);
+            font-weight: 700;
+            font-size: 1rem;
         }
     }
 
