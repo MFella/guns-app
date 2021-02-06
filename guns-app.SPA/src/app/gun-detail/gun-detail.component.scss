@@ -6,7 +6,7 @@ main
     //background-size: 28.80rem 18.80rem;
     background-size: cover;
     margin: auto auto;
-    height: 85rem;
+    min-height: 75rem;
     padding-top: 2rem;
     padding-bottom: 1rem;
 }
@@ -18,7 +18,7 @@ main
     background-color: #ffffff;
     box-shadow: 6px 6px 54px 0px rgba(0,0,0,0.75);
     max-width: 70rem;
-    height: 70rem;
+    min-height: 70rem;
     //overflow-y: scroll;
 }
 
@@ -28,8 +28,10 @@ main
     padding-left: 2rem;
     padding-right: 2rem;
     width: 900px;
-    height: 350px;
+    min-height: 350px;
 }
+
+
 
 .smart_list
 {
@@ -95,25 +97,36 @@ main
     font-size: 1.4rem;
 }
 
+.tab-content{
+    min-height: 10rem;
+    max-height: 50rem;
+    // display: none;
+    overflow: hidden;
+}
+
 .tab-pane.description
 {
+    
     span{
         font-size: 3rem;
         margin-top: 2rem;
     }
 
     p{
-        font-size: 1rem;
+        font-size: 1.5rem;
+        line-height: 2.5rem;
     }
 }
 
 .tab-pane.comments
 {
+    padding-bottom: 1rem;
+    // height: 5rem !important;
     .req_login
     {
         user-select: none;
         position: absolute;
-        margin-bottom: 10rem;
+        //margin-bottom: 10rem;
         font-size: 1.5rem;
         color: red;
         transform: translate(1rem, -8rem);
@@ -122,6 +135,12 @@ main
     {
         resize: none;
     }
+}
+
+.tab-pane.techs
+{
+    //height: 500rem !important;
+    font-size: 1.5rem;
 }
 
 .nothing_alert
@@ -137,8 +156,13 @@ main
 .comment_format
 {
     margin-top: 1rem;
-    height: 15rem;
+  //  min-height: 25rem;
     overflow-y: scroll;
+    max-height: 30rem;
+    width: 100%;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  
 }
 
 i.fa.fa-star.comment
@@ -164,9 +188,113 @@ i.fa.fa-arrow-up
 }
 
 
+@media only screen and (max-width: 1100px)
+{
+    .card-group{
 
+        .card{
+            .card-body{
+                padding: .5rem;
 
-// .carousel-control-next,
-// .carousel-control-prev /*, .carousel-indicators */ {
-//     filter: invert(100%);
-// }
+                span, .text-right
+                {
+                    font-size: calc(1.1rem + .2vw)//1.3rem;
+
+                }
+            }
+        }
+    }
+    
+    .carousel-control-prev, .carousel-control-next
+    {
+        filter: invert(100%);
+        transform: translateX(0) !important;
+        transition: all .2s;
+        width: 4rem;
+        &:hover
+        {
+            opacity: .5;
+        };
+
+    }
+}
+
+@media only screen and (max-width: 850px)
+{
+    .carousel-item{
+        img{
+            width: 8rem;
+        }
+    }
+
+    .carousel-control-prev //, .carousel-control-next
+    {
+        filter: invert(100%);
+        transform: translateX(4rem) !important;
+        transition: all .2s;
+        width: 2rem;
+        &:hover
+        {
+            opacity: .5;
+        };
+    }
+
+    .carousel-control-next{
+        filter: invert(100%);
+        transform: translateX(-4rem) !important;
+        transition: all .3s;
+        width: 2rem;
+        &:hover{
+            opacity: .5;
+        };
+    }
+}
+
+@media only screen and (max-width: 600px)
+{
+    form{
+        strong{
+            display: none;
+        }
+    }
+
+    .photos_container
+    {
+       width: 100vw;
+
+        .img_main{
+            transform: scaleY(.7);
+        }
+
+    }
+
+    .carousel-inner
+    {
+        width: 100vw !important;
+        transform: translateY(-6rem);
+    }
+
+    .carousel.slide{
+        transform: scale(.6);
+    }
+
+    .carousel-item{
+        width: 100vw !important;
+    }
+
+    .carousel-control-next
+    {
+        transform: scale(2) translateY(1.5rem) translateX(-4rem) !important;
+    }
+
+    .carousel-control-prev
+    {
+        transform: scale(2) translateY(1.5rem) translateX(4rem) !important;
+    }
+
+}
+
+@media only screen and (max-width: 420px)
+{
+    
+}
