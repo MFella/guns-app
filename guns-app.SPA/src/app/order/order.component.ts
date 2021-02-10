@@ -18,10 +18,10 @@ export class OrderComponent implements OnInit {
     this.route.data.subscribe(
       (res: any) => 
       {
-        this.order = res.order;
-
-        
+        this.order = res.order;   
+        console.log('----------');
         console.log(this.order);
+        console.log('----------');
       }
     )
 

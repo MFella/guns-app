@@ -146,7 +146,7 @@ module.exports = {
     findById: async(req, res) => 
     {
         user_id = req.user._id;
-        order_id = req.params.id;
+        let order_id = req.params.id;
 
         const order = await Order.findById(order_id, (err, res) => 
         {
@@ -156,7 +156,6 @@ module.exports = {
 
         const orderItems = await OrderItem.find({order: order_id}).populate('item');
         order.orderItem = orderItems;
-        
 
         if(order.length === 0)
         {
@@ -171,10 +170,6 @@ module.exports = {
 
         //console.log(order);
         return res.status(200).send(order);
-    },
-
-    extractInfo(order,){
-
     }
 
 }

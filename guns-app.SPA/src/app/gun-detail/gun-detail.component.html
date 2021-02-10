@@ -34,24 +34,24 @@
           <div id="carousel_control" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <div class="d-flex flex-direction-row justify-content-center">
+                <div class="d-flex flex-direction-row justify-content-center slider_images">
                   <img class="d-block w-20" src="../../assets/register_back.png" alt="First slide" (click)="changeMain($event)">
                   <img class="d-block w-20" src="../../assets/register_back.png" alt="Second slide" (click)="changeMain($event)">
-                  <img class="d-block w-20" src="../../assets/register_back.png" alt="Second slide" (click)="changeMain($event)">
+                  <img class="d-block w-20" src="../../assets/register_back.png" alt="Third slide" (click)="changeMain($event)">
                 </div>
               </div>
               <div class="carousel-item">
-                <div class="d-flex flex-direction-row justify-content-center">
+                <div class="d-flex flex-direction-row justify-content-center slider_images">
                   <img class="d-block w-20" src="../../assets/register_back.png" alt="First slide" (click)="changeMain($event)">
                   <img class="d-block w-20" src="../../assets/login_back.png" alt="Second slide" (click)="changeMain($event)">
-                  <img class="d-block w-20" src="../../assets/register_back.png" alt="Second slide" (click)="changeMain($event)">
+                  <img class="d-block w-20" src="../../assets/register_back.png" alt="Third slide" (click)="changeMain($event)">
                 </div>
               </div>
               <div class="carousel-item">
-                <div class="d-flex flex-direction-row justify-content-center">
+                <div class="d-flex flex-direction-row justify-content-center slider_images">
                   <img class="d-block w-20" src="../../assets/register_back.png" alt="First slide" (click)="changeMain($event)">
                   <img class="d-block w-20" src="../../assets/register_back.png" alt="First slide"(click)="changeMain($event)">
-                  <img class="d-block w-20" src="../../assets/register_back.png" alt="Second slide"(click)="changeMain($event)">
+                  <img class="d-block w-20" src="../../assets/register_back.png" alt="Third slide"(click)="changeMain($event)">
                 </div>
               </div>
             </div>
@@ -160,13 +160,24 @@
           </div>
           <div class="tab-pane comments fade d-flex flex-column justify-content-start" id="comments" role="tabpanel" aria-labelledby="nav-contact-tab">
 
-            <div class="row pt-2 d-flex justify-content-center comment_format">
-              <div class="col-10 pt-2" *ngFor="let comment of this.gun.comments;">
+            <div class="row pt-2 d-flex justify-content-center comment_format"
+            [ngClass]="{'no-scroll': this.gun.comments.length === 0}"
+            >
+              <div class="col-md-10 col-xs-12 pt-2" *ngFor="let comment of this.gun.comments;">
                 <div class="comment border rounded p-3 mt-2">
-                  <div class="d-flex justify-content-between">
-                    <strong>Autor: {{comment.remarker}} </strong>
-                    <strong>Ocena: {{comment.rating}}/5</strong>
-                    <strong>Data: {{comment.date | date: 'short'}}</strong>
+                  <div class="d-flex justify-content-between comment_header">
+                    <strong>Autor: <em>{{comment.remarker}}</em></strong>
+                    <strong>Ocena: 
+                     
+                        <em>{{comment.rating}}/5
+                          <!-- <div class="d-flex flex-row">
+                            <em class="fa fa-star" *ngFor="let smth of [].constructor(5)"></em>
+                          </div> -->
+                        </em>                        
+                      
+
+                    </strong>
+                    <strong>Data: <em>{{comment.date | date: 'short'}}</em> </strong>
                   </div>
                   <hr>
                     <p>

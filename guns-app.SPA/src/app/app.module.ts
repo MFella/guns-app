@@ -23,6 +23,7 @@ import { SearchResolver } from './_resolvers/search.resolver';
 import { GunDetailComponent } from './gun-detail/gun-detail.component';
 import { GunDetailResolver } from './_resolvers/gun-detail.resolver';
 import { ShortPipe } from './_pipes/short.pipe';
+import {ShortPricePipe} from './_pipes/short-price.pipe';
 import { CurrencyResolver } from './_resolvers/currency.resolver';
 import { AppConfigService } from './_config/appconfig.service';
 import { SearchItemComponent } from './search/search-item/search-item.component';
@@ -65,9 +66,10 @@ export function appInit(confServ: AppConfigService){
     ProfileComponent,
     GunDetailComponent,
     ShortPipe,
-      OrderListComponent,
-      OrderComponent,
-      BasketComponent
+    ShortPricePipe,
+    OrderListComponent,
+    OrderComponent,
+    BasketComponent
    ],
   imports: [
     MatSliderModule,
@@ -106,7 +108,8 @@ export function appInit(confServ: AppConfigService){
     }
   ],
   exports: [
-    ShortPipe
+    ShortPipe,
+    ShortPricePipe
   ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]

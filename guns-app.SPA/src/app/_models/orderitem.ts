@@ -8,8 +8,14 @@ export interface OrderItem
     // name: string;
     // price: string;
     // total: string;
+    // order: string;
+    // quantity: number;
+    // item: Item
+    name: string;
     order: string;
+    price: string;
     quantity: number;
-    item: Item
+    total: number;
+    id: string;
 
 }

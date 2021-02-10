@@ -1,11 +1,18 @@
+@mixin low_side_padd
+{
+    padding-left: .4rem;
+    padding-right: .4rem;
+}
+
 .container
 {
-    max-width: 2000px;
+    max-width: 3000px;
     height: calc(100%-3rem);
     background: #3A1C71;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to left, #FFAF7B, #D76D77, #3A1C71);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to left, #FFAF7B, #D76D77, #3A1C71); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     height: calc(100vh - 4rem);
+    padding-top: 3rem;
 }
 
 main 
@@ -17,9 +24,23 @@ main
     margin: auto auto;
 }
 
+h1
+{
+    background-color: rgba(219,166,50,.8);
+    border-radius: 1.3rem;
+    text-shadow: 4px 4px 2px rgba(0,0,0,0.2);
+    letter-spacing: .3rem;
+    //box-shadow: inset 0px 0px 40px 40px #DBA632;
+}
+
+.card{
+    background-color: rgba(0,0,0,0.2);
+    border-radius: .7rem;
+}
+
 ul{
 
-    width: 75%;
+    width: 100%;
     li:not(:first-child){
 
         opacity: .75;
@@ -32,44 +53,116 @@ ul{
     }
 }
 
-table
+
+span.badge
 {
-    margin-top: 3rem;
+    transition: all .5s;
+    &:hover
+    {
+        cursor: pointer;
+    }
+
+    &:focus
+    {
+        outline: none;
+        box-shadow: none;
+        transform: scale(1.1);
+    }
+}
+
+// table
+// {
+//     margin-top: 3rem;
 
 
-    thead{
-        background: linear-gradient(0.25turn,rgb(144, 238, 255,.45), rgb(144, 238, 255,1), rgb(144, 238, 255, .45));
+//     thead{
+//         background: linear-gradient(0.25turn,rgb(144, 238, 255,.45), rgb(144, 238, 255,1), rgb(144, 238, 255, .45));
         
-        tr{
-            height: 4rem;
-            font-size: 1.7rem;
-        }
-    }
+//         tr{
+//             height: 4rem;
+//             font-size: 1.7rem;
+//         }
+//     }
 
-    tbody > tr:nth-child(even){
-        background-image: linear-gradient(to left top, rgb(255, 255, 255, 1), rgba(255, 255, 255, .8));
-        box-shadow: inset 2px 0px 4px 0px rgba(0,0,0,0.75);
+//     tbody > tr:nth-child(even){
+//         background-image: linear-gradient(to left top, rgb(255, 255, 255, 1), rgba(255, 255, 255, .8));
+//         box-shadow: inset 2px 0px 4px 0px rgba(0,0,0,0.75);
 
-        button{
+//         button{
             
-            transition: all .3s;
-            &:hover{
-                border-top-right-radius: 1rem;
-                border-bottom-left-radius: 1rem;
+//             transition: all .3s;
+//             &:hover{
+//                 border-top-right-radius: 1rem;
+//                 border-bottom-left-radius: 1rem;
+//             }
+//         }
+//     }
+
+//     tbody > tr:nth-child(odd){
+//         background-image: linear-gradient(to left top, rgba(255, 255, 255, .8), rgb(255, 255, 255, 1));
+
+//         button{
+            
+//             transition: all .3s;
+//             &:hover{
+//                 border-top-left-radius: 1rem;
+//                 border-bottom-right-radius: 1rem;
+//             }
+//         }
+//     }
+// }
+
+@media only screen and (max-width: 1000px)
+{
+    .order_record
+    {
+        flex-direction: column;
+
+        span:not(:last-child){
+            display: flex !important;
+            justify-content: space-between !important;
+            //align-items: flex-end;
+            width: 100% !important;
+        }
+
+        span:last-child
+        {
+            width: 25%;
+        }
+
+    }
+}
+
+
+@media only screen and (max-width: 600px)
+{
+
+    .card-body{
+
+        @include low_side_padd;
+        .col-md-12
+        {
+            @include low_side_padd;
+
+            .list-group
+            {
+
+                width: 100%;
+
+                .order_record
+                {
+                    width: 100%;
+                    padding: .7rem;
+                    font-size: .93rem;
+                }
             }
         }
     }
 
-    tbody > tr:nth-child(odd){
-        background-image: linear-gradient(to left top, rgba(255, 255, 255, .8), rgb(255, 255, 255, 1));
-
-        button{
-            
-            transition: all .3s;
-            &:hover{
-                border-top-left-radius: 1rem;
-                border-bottom-right-radius: 1rem;
-            }
-        }
+    h1
+    {
+        width: 100% !important;
     }
+
+
 }
