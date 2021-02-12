@@ -5,6 +5,7 @@ import { AuthService } from './auth.service';
 import * as env from '../../environments/environment';
 import { map } from 'rxjs/operators';
 import { OrderItemDto } from '../_models/Dtos/orderItemDto';
+import { OrderItemToDeleteDto } from '../_models/Dtos/orderItemToDeleteDto';
 
 @Injectable({
   providedIn: 'root'
@@ -99,9 +100,13 @@ constructor(private http: HttpClient, private authServ: AuthService) { }
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     return this.http.post(env.environment.trueBackUrl + 'order-item/', body, {headers})
-
   }
 
-
+  deleteItemFromBasket(orderItemId: string)
+  {
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.delete(env.environment.trueBackUrl + `basket/order-item?id=${orderItemId}`, {headers: headers});  
+  }
 
 }

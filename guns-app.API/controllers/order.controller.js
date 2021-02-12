@@ -4,6 +4,7 @@ const User = require('../models/user');
 const Gun = require('../models/gun');
 const orderitemController = require("./orderitem.controller");
 const order = require("../models/order");
+const user = require("../models/user");
 
 module.exports = {
     create: async(req, res) => 
@@ -114,14 +115,6 @@ module.exports = {
             withOrderItems.orderItem.push(el);
         })
 
-        console.log('---------------------')
-        console.log('---------------------')
-        console.log('---------------------')
-        console.log(withOrderItems);
-        console.log('---------------------')
-        console.log('---------------------')
-        console.log('---------------------')
-
         if(basket.user.toString() === req.user._id.toString())
         {
             return res.send({"basket": basket});
@@ -132,13 +125,94 @@ module.exports = {
         }
     },
 
+    deleteFromBasket: async(req, res) => 
+    {
+        const user_id = req.user._id;
+        console.log(user_id);
+
+        const orderItemId = req.query.id;
+
+        if(!user_id) throw new Error("User doesnt exists");
+
+        const userFromDb = await User.findById(user_id).populate('orderItem');
+
+        if(!userFromDb) throw new Error("User doesnt exists");
+
+        const userBasket = await Order.findOne({user: user_id.toString(), status: "BASKET"}); //.populate('orderItems');
+
+        await userBasket.populate('orderItems').execPopulate();
+
+        if(!userBasket)
+        {
+            res.status(404);
+            return res.send({"res": false, "msg": "Basket for that user doesnt exist"});
+        }
+
+        if(!orderItemId || !orderItemId.match(/^[0-9a-fA-F]{24}$/))
+        {
+            res.status(403);
+            return res.send({"res": false, "msg": "Cant delete that item, because it doesnt exist"});
+        }
+
+        const orderItems = await OrderItem.find({order: userBasket._id});
+
+        let tempArr = [];
+        orderItems.forEach(el => {
+            tempArr.push(el.item.toString());
+        });
+
+        if(tempArr.includes(orderItemId.toString()))
+        {        
+            try{
+
+                await OrderItem.deleteOne({item: orderItemId}, (err, obj) =>
+                {
+                    if(err) throw err;
+                }); 
+                
+                const newOrderItems = await OrderItem.find({order: userBasket._id}).populate('item');
+                let summy = 0;
+
+                newOrderItems.forEach(el =>
+                {
+                    summy += el.quantity * parseFloat(el.item.price);
+                });
+
+                summy = summy * 100;
+                let roundedSum = Math.round(summy)/100;
+                
+                await userBasket.updateOne({
+                    total: roundedSum
+                }, (err, aff, res) =>
+                {
+                    if(err) throw err;
+                })
+
+
+                res.status(200);
+                return res.send({"res": true, "msg": "Order Item has been deleted successfully"});
+
+            }catch(e)
+            {
+                res.status(500);
+                return res.send({"res": false, "msg": "Error occured during deleting orderitem"});
+            }
+        
+        }
+        else
+        {
+            res.status(404);
+            return res.send({"res": false, "msg": "Cannot delete this item"});
+        }
+    },
+
     findAll: async(req, res) => 
     {
         user_id = req.user._id;
 
         if(!user_id) throw new Error("Internal error! User doesnt exists");
 
-        orders = await Order.find({user: user_id});
+        const orders = await Order.find({user: user_id});
 
         res.send(orders);
     },

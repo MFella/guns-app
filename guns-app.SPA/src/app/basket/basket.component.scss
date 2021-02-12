@@ -266,4 +266,13 @@ i.fa.fa-check{
         width: 100% !important;
     }
 
+    .lack_of_items
+    {
+        width: 100% !important;
+        span
+        {
+            display: none !important;
+        }
+    }
+
 }

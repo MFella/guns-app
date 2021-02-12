@@ -30,13 +30,21 @@
                     <strong>Per each:</strong>{{item.item.price}} {{this.userBasket.currencyCode}}
                   </p>
                   <div class="d-flex flex-row manage_item_buttons">
-                    <button class="btn btn-danger btn-sm w-40 "> <i class="fa fa-trash-o"></i> Delete</button>
+                    <button class="btn btn-danger btn-sm w-40" (click)="deleteItem(item.item._id)"> <i class="fa fa-trash-o"></i> Delete</button>
                     <button class="btn btn-success btn-sm w-40"> <i class="fa fa-save"></i> Save</button>
                   </div>
 
                 </div>
               </div>
 
+            </div>
+          </div>
+        </li>
+
+        <li class="list-group-item" *ngIf="this.userBasket.orderItem.length === 0">
+          <div class="card text-white bg-info mt-4 mx-auto w-75 lack_of_items">
+            <div class="card-body d-flex justify-content-center">
+              <h4 class="card-title m-0"><span>&#10060;</span> Your basket is empty <span>&#10060;</span> </h4>
             </div>
           </div>
         </li>
@@ -69,7 +77,7 @@
                     <!-- <div class="col-lg-2 col-md-2 col-xs-2"></div> -->
 
                     <label class="col-md-5 col-xs-12 ml-4 d-flex flex-column online justify-content-center align-items-center pt-4" (click)="changeBack($event, 'online')">
-                      <!-- <i class="fa fa-truck"></i> -->
+
                       <img src="../../assets/online_banking.webp" alt="paysafe" class="payment_type">
                       <div class="form-check">
                         <input class="form-check-input" type="radio" name="exampleRadios" id="online" value="Online Banking" >
@@ -79,7 +87,7 @@
                       </div>
                     </label>
                     <label class="col-md-5 col-xs-12 d-flex flex-column cash justify-content-center align-items-center pt-4" (click)="changeBack($event, 'cash')">
-                      <!-- <i class="fa fa-truck"></i> -->
+
                       <img src="../../assets/cash_on_delivery.png" alt="paysafe" class="payment_type">
         
                         <div class="form-check">
@@ -90,10 +98,10 @@
                         </div>
                     </label>
                     
-                    <!-- <div class="col-lg-2 col-md-2 col-xs-2"></div> -->
+
 
                     <label class="col-md-5 col-xs-12 ml-4 d-flex flex-column debet justify-content-center align-items-center pt-4" (click)="changeBack($event, 'debet')">
-                      <!-- <i class="fa fa-truck"></i> -->
+
                       <img src="../../assets/credit_debet_card.png" alt="paysafe" class="payment_type pt-4">
                       <div class="form-check pt-4">
                         <input class="form-check-input" type="radio" name="exampleRadios" id="debet" value="Debet card">
@@ -175,7 +183,7 @@
                     <div class="d-flex flex-row justify-content-between w-100">
                       <p class="card-text"><strong></strong></p>   
                       <button class="mt-4 btn btn-warning" 
-                      [disabled]="this.curr_delivery.length === 0 || this.curr_payment.length === 0">Checkout >></button>
+                      [disabled]="this.curr_delivery.length === 0 || this.curr_payment.length === 0 || this.userBasket.orderItem.length === 0">Checkout >></button>
                     </div>
                     
                   </div>

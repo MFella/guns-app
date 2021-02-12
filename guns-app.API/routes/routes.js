@@ -42,22 +42,25 @@ router.get('/basket/',
     Order.takeBasket
 )
 
+router.delete('/basket/order-item',
+    passport.authenticate('jwt', {session: false}),
+    Order.deleteFromBasket
+);
+
 router.get('/order-list',
     passport.authenticate('jwt', {session: false}),
-    Order.findAll);
+    Order.findAll); 
 
 router.get('/order-list/:id',
     passport.authenticate('jwt', {session: false}),
     Order.findById
 );
 
-
-
 //OrderItems routes:
 router.post('/order-item/', 
     passport.authenticate('jwt', {session: false}),
     OrderItem.create
-    )
+)
 
 // function ensureAuth(req, res, next){
     

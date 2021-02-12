@@ -16,6 +16,6 @@ export interface OrderItem
     price: string;
     quantity: number;
     total: number;
-    id: string;
+    _id: string;
 
 }

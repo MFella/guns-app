@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Basket } from '../_models/basket';
+import { IziAlertService } from '../_services/iziAlert.service';
+import { OrdersService } from '../_services/orders.service';
 
 @Component({
   selector: 'app-basket',
@@ -12,9 +14,10 @@ export class BasketComponent implements OnInit {
   curr_delivery: string = '';
   curr_payment: string = '';
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private ordersServ: OrdersService,
+      private izi: IziAlertService) { }
 
-  userBasket:Basket
+  userBasket: Basket
 
 
   ngOnInit() {
@@ -22,7 +25,6 @@ export class BasketComponent implements OnInit {
     this.route.data.subscribe((res) => 
     {
       this.userBasket = res.basket;
-      console.log(res);
     })
   }
 
@@ -87,10 +89,42 @@ export class BasketComponent implements OnInit {
         (<HTMLElement>document.querySelector('.delivery_cont.locker')).style.backgroundColor = green;
       break;
     }
-
   }
 
+  deleteItem(id: string)
+  {
+    this.izi.question("Wanna delete this product from basket?", () =>
+    {
+
+      this.ordersServ.deleteItemFromBasket(id)
+        .subscribe((res: any) =>
+          {
+
+            if(res.res)
+            { 
+              this.izi.success(res.msg);
+              this.userBasket.orderItem = this.userBasket.orderItem.filter(x => x.item._id !== id);
+
+              let newTotal = 0;
+              this.userBasket.orderItem.forEach(el =>
+              {
+                newTotal += parseFloat(el.item.price) * el.quantity;
+              });
+
+              
+              this.userBasket.total = newTotal.toString();
+            }
+
+            //  delete from html
+
+          }, err =>
+          {
+            this.izi.error('Error occured during deleting item');
+            console.log(err);
+          })
 
 
+    });
+  }
 
 }

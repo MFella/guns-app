@@ -44,5 +44,37 @@ constructor(public iziToast: NgxIzitoastService) { }
 
   }
 
+  question(message: string, callback: () => void): boolean
+  {
+
+    return <boolean>this.iziToast.question({
+      timeout: 10000,
+      close: true,
+      overlay: true,
+      id: 'question',
+      title: 'Are you sure',
+      message: message,
+      position: 'center',
+      buttons: [
+        ['<button><b>YES</b></button>', function (instance, toast) {
+ 
+          instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+          console.log("DASDASDAS")
+          callback();
+
+        }, true],
+        ['<button>NO</button>', function (instance, toast) {
+ 
+          instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+          return false;
+
+        }],
+      ],
+      onClosing: () =>
+      {
+        return false;
+      }
+    })
+  }
 
 }
