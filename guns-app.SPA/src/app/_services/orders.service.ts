@@ -109,4 +109,11 @@ constructor(private http: HttpClient, private authServ: AuthService) { }
     return this.http.delete(env.environment.trueBackUrl + `basket/order-item?id=${orderItemId}`, {headers: headers});  
   }
 
+  saveTinyBasketChange(quantity: string, orderItemId: string)
+  {
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.put(env.environment.trueBackUrl + `basket/order-item?qty=${quantity}&orderItemId=${orderItemId}`, {headers});
+  }
+
 }

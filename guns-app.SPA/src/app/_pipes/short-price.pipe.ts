@@ -11,6 +11,11 @@ export class ShortPricePipe implements PipeTransform {
 
     const splitted = value.toString().split('.');
 
+    if(splitted.length === 1)
+    {
+      return splitted[0] + '.00';
+    }
+
     if(splitted[1].length === 2)
     {
       return value;

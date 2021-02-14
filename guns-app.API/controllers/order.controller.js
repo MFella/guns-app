@@ -11,7 +11,7 @@ module.exports = {
     {
         const {total, discount, status, currencyCode} = req.body;
 
-        user_id = req.user._id
+        let user_id = req.user._id
 
         const users = await User.find();
 
@@ -244,6 +244,66 @@ module.exports = {
 
         //console.log(order);
         return res.status(200).send(order);
+    },
+
+    updateOrderItemQuantity: async(req, res) =>
+    {
+        const {qty, orderItemId} = req.query;
+        const user_id = req.user._id;
+
+        if(!qty || !orderItemId)
+        {
+            res.status(400);
+
+            return res.send({'res': false, 'msg': 'Cant change quantity'});
+        }
+
+        if(!user_id)
+        {
+            res.status(401);
+            return res.send({'res': false, 'msg': 'You are not allowed to do this!'});
+        }
+
+        const basket = await Order.findOne({status: 'BASKET', user: user_id}).populate('orderItem');
+
+        if(!basket)
+        {
+            res.status(403);
+            return res.send({'res': false, 'msg': 'Forbidden - basket doesnt exists'});
+        }
+
+        if(basket.orderItem.includes(orderItemId.toString()))
+        {
+            //check if orderItem exists
+            const orderItem = OrderItem.findById(orderItemId.toString());
+
+            if(!orderItem)
+            {
+                res.status(404);
+                return res.send({'res': false, 'msg': 'That item doesnt exist ;/'});
+            }else
+            {
+                await orderItem.updateOne({quantity: qty}, (err, res) =>
+                {
+                    if(err) throw err;
+                });
+
+                res.status(200);
+                return res.send({'res': true, 'msg': 'Item has been updated'});
+            }
+        }
+    },
+
+    updateBasket: async(req, res) =>
+    {
+
+        const {body} = req.body;
+        
+        const ids = Object.keys(body);
+        const qtys = Object.values(body);
+
     }
+
+
 
 }
