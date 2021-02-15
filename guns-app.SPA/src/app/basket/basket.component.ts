@@ -129,6 +129,33 @@ export class BasketComponent implements OnInit {
 
   saveTinyChange(quantity: string, orderItemId: string)
   {
+
+    this.ordersServ.updateOrderItemQuantity(quantity, orderItemId)
+      .subscribe((res: any) =>
+      {
+        if(res.res)
+        {
+          this.izi.success(res.msg);
+          //recalculate total
+          let summy = 0;
+          this.userBasket.orderItem.forEach(el =>
+          {
+            summy += el.quantity * parseFloat(el.item.price);
+          });
+
+          summy = Math.round(summy*100)/100;
+          
+          this.userBasket.total = summy.toString();
+
+        }else {
+          this.izi.error(res.msg);
+        }
+
+      }, err =>
+      {
+        this.izi.error('Error occured during changing quantity');
+      })
+
     
   }
 

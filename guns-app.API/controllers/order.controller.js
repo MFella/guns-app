@@ -250,6 +250,8 @@ module.exports = {
     {
         const {qty, orderItemId} = req.query;
         const user_id = req.user._id;
+        console.log("DSADASDSADAs");
+
 
         if(!qty || !orderItemId)
         {
@@ -272,7 +274,10 @@ module.exports = {
             return res.send({'res': false, 'msg': 'Forbidden - basket doesnt exists'});
         }
 
-        if(basket.orderItem.includes(orderItemId.toString()))
+        let orderItems = await OrderItem.find({order: basket.id}); 
+        orderItems = orderItems.map(el => el._id.toString());
+
+        if(orderItems.includes(orderItemId.toString()))
         {
             //check if orderItem exists
             const orderItem = OrderItem.findById(orderItemId.toString());
@@ -288,9 +293,36 @@ module.exports = {
                     if(err) throw err;
                 });
 
+
+                //update total 
+
+                //TODO
+                const newOrderItems = await OrderItem.find({order: basket._id}).populate('item');
+                let summy = 0;
+
+                newOrderItems.forEach(el =>
+                {
+                    summy += el.quantity * parseFloat(el.item.price);
+                });
+
+                summy = summy * 100;
+                let roundedSum = Math.round(summy)/100;
+                
+                await basket.updateOne({
+                    total: roundedSum
+                }, (err, aff, res) =>
+                {
+                    if(err) throw err;
+                });
+
+                //TODO
+
                 res.status(200);
                 return res.send({'res': true, 'msg': 'Item has been updated'});
             }
+        }else {
+            //res.status(404);
+            return res.status(404).send({'res': false, 'msg': 'Order item not found'});
         }
     },
 
@@ -301,6 +333,52 @@ module.exports = {
         
         const ids = Object.keys(body);
         const qtys = Object.values(body);
+
+        const user_id = req.user._id;
+
+        if(!user_id)
+        {
+            res.status(401);
+            return res.send({'res': false, 'msg': 'You are not allowed to do this'});           
+        }
+
+        const basket = await Order.findOne({user: user_id, status: "BASKET"}).populate('orderItem');
+
+
+        if(!basket)
+        {
+            res.status(400);
+            return res.send({'res': false, 'msg': 'You are not allowed to do this at this time!'});
+        }
+
+
+        for(let i = 0; i < ids.length; i++)
+        {
+
+            if(basket.orderItem.includes(ids[i]))
+            {
+                let orderItem = await OrderItem.findOne({id: ids[i]});
+
+
+                if(!orderItem)
+                {
+                    //res.status(404);
+                    console.log('That order item doesnt exists - try with another one');
+                    continue;
+                }
+
+                await orderItem.updateOne({
+                    quantity: qtys[i]
+                }, (err, res) =>
+                {
+                    if(err) throw err;
+                });
+
+            }
+        }
+
+        res.status(200);
+        return res.send({'res': true, 'msg': 'Basket has been updated'});
 
     }
 

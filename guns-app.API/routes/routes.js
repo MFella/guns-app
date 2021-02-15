@@ -45,16 +45,16 @@ router.get('/basket/',
 router.put('/basket/',
     passport.authenticate('jwt', {session: false}),
     Order.updateBasket
-)
-
-router.delete('/basket/order-item',
-    passport.authenticate('jwt', {session: false}),
-    Order.deleteFromBasket
 );
 
 router.put('/basket/order-item',
     passport.authenticate('jwt', {session: false}),
     Order.updateOrderItemQuantity
+);
+
+router.delete('/basket/order-item',
+    passport.authenticate('jwt', {session: false}),
+    Order.deleteFromBasket
 );
 
 router.get('/order-list',
