@@ -42,10 +42,14 @@ router.get('/basket/',
     Order.takeBasket
 );
 
-router.put('/basket/',
+router.put('/basket/wholeUpdate',
     passport.authenticate('jwt', {session: false}),
     Order.updateBasket
 );
+
+// and basket becoming an order ...
+
+//todo
 
 router.put('/basket/order-item',
     passport.authenticate('jwt', {session: false}),

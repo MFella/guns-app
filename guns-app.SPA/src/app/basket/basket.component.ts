@@ -18,21 +18,28 @@ export class BasketComponent implements OnInit {
       private izi: IziAlertService) { }
 
   userBasket: Basket
-
+  primitiveB: Basket;
 
   ngOnInit() {
 
     this.route.data.subscribe((res) => 
     {
+      console.log(res.basket);
       this.userBasket = res.basket;
+      this.primitiveB = Object.assign({}, res.basket);
+
+      this.changeBack(res.basket.typeOfPayment);
+      this.changeForDelivery(res.basket.typeOfDelivery);
+      (<any>document.querySelector(`#${res.basket.typeOfPayment}`)).checked = true;
+      (<any>document.querySelector(`#${res.basket.typeOfDelivery}`)).checked = true;
+
     })
   }
 
-  changeBack(e: Event, type: string)
+  public changeBack(type: string)
   {
-    console.log(type);
-    console.log(e.target);
     this.curr_payment = type;
+    this.userBasket.typeOfPayment = type;
 
     const green  = 'rgb(72, 219, 91)';
     const gray = 'rgba(0,0,0,.15)';
@@ -64,12 +71,12 @@ export class BasketComponent implements OnInit {
     }
   }
 
-  changeForDelivery(e: Event, type: string)
+  changeForDelivery(type: string)
   {
 
     const green  = 'rgb(72, 219, 91)';
-    //const gray = 'rgba(0,0,0,.15)';
     this.curr_delivery = type;
+    this.userBasket.typeOfDelivery = type;
 
     switch(type)
     {
@@ -127,7 +134,13 @@ export class BasketComponent implements OnInit {
     });
   }
 
-  saveTinyChange(quantity: string, orderItemId: string)
+  toggleSave(index: number, e: any)
+  {
+    this.userBasket.orderItem[index].quantity = parseInt(e.target.value);
+    (<any>document.querySelectorAll('.btn_update')[index]).disabled = false;
+  }
+
+  saveTinyChange(quantity: string, orderItemId: string, whichOne: number)
   {
 
     this.ordersServ.updateOrderItemQuantity(quantity, orderItemId)
@@ -146,6 +159,9 @@ export class BasketComponent implements OnInit {
           summy = Math.round(summy*100)/100;
           
           this.userBasket.total = summy.toString();
+          
+          (<any>document.querySelectorAll('.btn_update')[whichOne]).disabled = true;
+
 
         }else {
           this.izi.error(res.msg);
@@ -155,8 +171,44 @@ export class BasketComponent implements OnInit {
       {
         this.izi.error('Error occured during changing quantity');
       })
-
-    
   }
+
+  saveAllChanges()
+  {
+
+    this.ordersServ.updateBasket(this.userBasket)
+      .subscribe((res: any) =>
+      {
+        if(res.res)
+        {
+          //this.primitiveB = Object.assign({}, this.userBasket)
+          this.izi.success(res.msg);
+        }
+
+        console.log(res);
+
+      }, (err) =>
+      {
+        this.izi.error(err);
+      })
+
+  }
+
+  checkDiss(index: number)
+  {
+    return this.userBasket.orderItem[index].quantity === this.primitiveB.orderItem[index].quantity
+  }
+
+  // checkTinyChange(index: number, e: any)
+  // {
+  //   this.userBasket.orderItem[index].quantity = parseInt(e.target.value);
+  //   return JSON.stringify(this.userBasket.orderItem[index].quantity) === JSON.stringify(this.primitiveB.orderItem[index].quantity);
+  // }
+
+  // disableAllChanges()
+  // {
+
+  //   return JSON.stringify(this.userBasket) === JSON.stringify(this.primitiveB);
+  // }
 
 }

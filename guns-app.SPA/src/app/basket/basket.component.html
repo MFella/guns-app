@@ -9,7 +9,7 @@
       
       <ul class="col-md-12 list-group mx-auto px-4">
 
-        <li class="list-group-item" *ngFor="let item of this.userBasket.orderItem">
+        <li class="list-group-item" *ngFor="let item of this.userBasket.orderItem; let i = index;">
           <div class="card border-info">
             <div class="card-body item">
               <div class="row">
@@ -19,19 +19,21 @@
 
                 <div class="col-md-4 col-xs-12 d-flex flex-column justify-content-around">
                   <h5 class="card-title d-flex flex-row justify-content-between align-items-center"> 
-                    <strong class="card-text pr-2">Name:</strong> 
+                    <strong class="card-text pr-2">Name</strong> 
                     <div>{{item.item.name}}</div>
                   </h5>
                   <div class="d-flex flex-row justify-content-between align-items-center">
-                    <strong class="card-text pr-2">Quantity: </strong>
-                    <input type="number" class="form-control form-control-sm w-25" value="{{item.quantity}}" min=1 max=100 [(ngModel)]="item.quantity" #quantity="ngModel"> 
+                    <strong class="card-text pr-2">Quantity</strong>
+                    <!-- (change)="toggleSave(i, $event)" -->
+                    <!--value="{{item.quantity}}" (change)="toggleSave(i, $event)" [(ngModel)]="item.quantity" #quantity="ngModel"-->
+                    <input type="number" class="form-control form-control-sm w-25 item_quantity" min=1 max=100 (change)="toggleSave(i, $event)" value={{item.quantity}} > 
                   </div>
                   <p class="d-flex flex-row card-text pt-2 pr-2 justify-content-between align-items-center">
-                    <strong>Per each:</strong>{{item.item.price}} {{this.userBasket.currencyCode}}
+                    <strong>Per each</strong>{{item.item.price}} {{this.userBasket.currencyCode}}
                   </p>
                   <div class="d-flex flex-row manage_item_buttons">
                     <button class="btn btn-danger btn-sm w-40" (click)="deleteItem(item.item._id)"> <i class="fa fa-trash-o"></i> Delete</button>
-                    <button class="btn btn-success btn-sm w-40" [disabled]="!quantity.dirty" (click)="saveTinyChange(item.quantity, item._id)"> <i class="fa fa-save"></i> Save</button>
+                    <button class="btn btn-success btn-sm w-40 btn_update" [disabled]="checkDiss(i)" (click)="saveTinyChange(item.quantity, item._id, i)"> <i class="fa fa-save"></i> Save</button>
                   </div>
 
                 </div>
@@ -55,20 +57,15 @@
            
                 <form class="col-md-6 col-xs-12 payment_types">
                   
-                  <!-- <div class="d-flex flex-row justify-content-between mt-2">
-                    <h2 class="redeem">Redeem code</h2>
-                    <input type="text" class="form-control w-50 mr-4 redeem-input" placeholder="Try your luck">
-                  </div> -->
                   <div class="d-flex flex-row justify-content-center mb-2">
-                    <button class="btn btn-success w-75" [disabled]=""> <i class="fa fa-save"></i> Save all changes</button>
+                    <button class="btn btn-success w-75"  (click)="saveAllChanges()"> <i class="fa fa-save"></i> Save all changes</button>
                   </div>
 
                   <hr>
                   <h1> <i class="fa fa-money pr-3"></i> Type of payment</h1>
                   <div class="row py-4 px-2 payments d-flex flex-row justify-content-between">
                     
-                    <label class="col-md-5 col-xs-12 d-flex flex-column paysafe justify-content-center align-items-center pt-4" (click)="changeBack($event, 'paysafe')">
-                      <!-- <i class="fa fa-truck"></i> -->
+                    <label class="col-md-5 col-xs-12 d-flex flex-column paysafe justify-content-center align-items-center pt-4" (click)="changeBack('paysafe')">
                       <img src="../../assets/paysafecard.webp" alt="paysafe" class="payment_type">
                       <div class="form-check">
                         <input class="form-check-input" type="radio" name="exampleRadios" id="paysafe" value="Paysafe card">
@@ -78,9 +75,7 @@
                       </div>
                     </label>
 
-                    <!-- <div class="col-lg-2 col-md-2 col-xs-2"></div> -->
-
-                    <label class="col-md-5 col-xs-12 ml-4 d-flex flex-column online justify-content-center align-items-center pt-4" (click)="changeBack($event, 'online')">
+                    <label class="col-md-5 col-xs-12 ml-4 d-flex flex-column online justify-content-center align-items-center pt-4" (click)="changeBack('online')">
 
                       <img src="../../assets/online_banking.webp" alt="paysafe" class="payment_type">
                       <div class="form-check">
@@ -90,7 +85,7 @@
                         </div>
                       </div>
                     </label>
-                    <label class="col-md-5 col-xs-12 d-flex flex-column cash justify-content-center align-items-center pt-4" (click)="changeBack($event, 'cash')">
+                    <label class="col-md-5 col-xs-12 d-flex flex-column cash justify-content-center align-items-center pt-4" (click)="changeBack('cash')">
 
                       <img src="../../assets/cash_on_delivery.png" alt="paysafe" class="payment_type">
         
@@ -104,7 +99,7 @@
                     
 
 
-                    <label class="col-md-5 col-xs-12 ml-4 d-flex flex-column debet justify-content-center align-items-center pt-4" (click)="changeBack($event, 'debet')">
+                    <label class="col-md-5 col-xs-12 ml-4 d-flex flex-column debet justify-content-center align-items-center pt-4" (click)="changeBack('debet')">
 
                       <img src="../../assets/credit_debet_card.png" alt="paysafe" class="payment_type pt-4">
                       <div class="form-check pt-4">
@@ -118,9 +113,6 @@
                 </form>
             <form class="col-md-6 col-xs-12 p-1 delivery_types">
 
-              <!-- <div class="d-flex flex-row justify-content-center mb-2">
-                <button class="btn btn-success w-75">Save all changes</button>
-              </div> -->
               <hr class="before_redeem">
               <div class="d-flex flex-row justify-content-between mt-2">
                 <h2 class="redeem">Redeem code</h2>
@@ -132,18 +124,16 @@
               
                 <div class="delivery_cont registered mt-1">
                   
-                  <label class="form-check d-flex flex-row align-items-center justify-content-between " (click)="changeForDelivery($event, 'registered')">
+                  <label class="form-check d-flex flex-row align-items-center justify-content-between " (click)="changeForDelivery('registered')">
                     <input class="form-check-input" type="radio" name="exampleRadios" id="registered" value="registered">
-                    <!-- <label class="form-check-label" for="exampleRadios1">Registered Post</label> -->
                     <div>Registered Post</div>
                     <img src="../../assets/registered_post.png" alt="registered post">
                   </label>
                 </div>
                 <div class="delivery_cont locker">
                   <hr class="m-0">
-                  <label class="form-check d-flex flex-row align-items-center justify-content-between " (click)="changeForDelivery($event, 'locker')">
+                  <label class="form-check d-flex flex-row align-items-center justify-content-between " (click)="changeForDelivery('locker')">
                     <input class="form-check-input" type="radio" name="exampleRadios" id="locker" value="locker" >
-                    <!-- <label class="form-check-label" for="exampleRadios1">Parcel locker</label> -->
                     <div>Parcel Locker</div>
                     <img src="../../assets/parcel_locker.svg" alt="parcel locker">
                   </label>
@@ -151,9 +141,8 @@
 
                 <div class="delivery_cont pickup">
                   <hr class="m-0">
-                  <label class="form-check d-flex flex-row align-items-center justify-content-between " (click)="changeForDelivery($event, 'pickup')">
+                  <label class="form-check d-flex flex-row align-items-center justify-content-between " (click)="changeForDelivery('pickup')">
                     <input class="form-check-input" type="radio" name="exampleRadios" id="pickup" value="pickup">
-                    <!-- <label class="form-check-label" for="exampleRadios1">Pickup</label> -->
                     <div>Pickup</div>
                     <img src="../../assets/pin.svg" alt="pickup">
                   </label>
@@ -171,7 +160,7 @@
             <div class="col-12 py-4">
               <hr>
                 <!-- <h1 class="text-center">Summary</h1> -->
-                <div class="card w-100 mx-auto mt-4 bg-info">
+                <div class="card w-100 mx-auto bg-info">
                   <h3 class="card-header d-flex flex-row justify-content-between">
 
                       Summary 
@@ -181,23 +170,24 @@
 
                     <div class="d-flex flex-row justify-content-between w-100">
                       <p class="card-text"> <strong>Total </strong> </p>   
-                      <p class="card-text">{{this.userBasket.total.length === 0? "N/A": this.userBasket.total | uppercase}}</p> 
+                      <p class="card-text">{{this.userBasket.total.length === 0? "N/A": this.userBasket.total | uppercase}} {{this.userBasket.currencyCode}}</p> 
                     </div>
                     <hr class="mt-0">
                     <div class="d-flex flex-row justify-content-between w-100">
                       <p class="card-text"> <strong>Type of delivery</strong> </p>   
-                      <p class="card-text">{{this.curr_delivery.length === 0? "N/A": this.curr_delivery | uppercase}}</p> 
+                      <p class="card-text">{{this.userBasket.typeOfDelivery.length === 0? "N/A": this.userBasket.typeOfDelivery | uppercase}}</p> 
                     </div>
                     <hr class="mt-0">
                     <div class="d-flex flex-row justify-content-between w-100">
                       <p class="card-text"><strong>Type of payment</strong></p>   
-                      <p class="card-text">{{this.curr_payment.length === 0? "N/A": this.curr_payment | uppercase}}</p> 
+                      <p class="card-text">{{this.userBasket.typeOfPayment.length === 0? "N/A": this.userBasket.typeOfPayment | uppercase}}</p> 
                     </div>
                     <hr class="m-0">
                     <div class="d-flex flex-row justify-content-between w-100">
                       <p class="card-text"><strong></strong></p>   
                       <button class="mt-4 btn btn-warning" 
-                      [disabled]="this.curr_delivery.length === 0 || this.curr_payment.length === 0 || this.userBasket.orderItem.length === 0">Checkout >></button>
+                      [disabled]="this.userBasket.typeOfDelivery.length === 0 || this.userBasket.typeOfPayment.length === 0 || this.userBasket.orderItem.length === 0">
+                      Checkout >></button>
                     </div>
                     
                   </div>

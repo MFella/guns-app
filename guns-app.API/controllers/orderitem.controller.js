@@ -5,9 +5,11 @@ const Gun = require('../models/gun');
 module.exports = {
     create: async(req, res) => 
     {
-        const {item, order, quantity} = req.body;
 
-        let user_id = req.user._id;
+        //TODO
+        //this 'order' should be omitted
+        const {item, order, quantity} = req.body;
+        const user_id = req.user._id;
 
         const gunFromDb = await Gun.findById(item);
         const orderFromDb = await Order.findOne({status: "BASKET", user: req.user._id});
@@ -31,7 +33,7 @@ module.exports = {
         }
 
         //a co, jezeli to juz istnieje? ;O
-        const hipoOrderItem = await OrderItem.findOne({item: item, order: order});
+        const hipoOrderItem = await OrderItem.findOne({item: item, order: orderFromDb._id});
 
         if(hipoOrderItem !== null)
         {
@@ -68,7 +70,7 @@ module.exports = {
             return res.status(200).send({"msg": "Item has been updated", "orderItem": hipoOrderItem});
         }
     
-        const orderItem = new OrderItem({item, order, quantity});
+        const orderItem = new OrderItem({item, order: orderFromDb._id, quantity});
         //await OrderItem.create(
         //     {
         //     item, order, quantity

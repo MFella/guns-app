@@ -6,6 +6,7 @@ import * as env from '../../environments/environment';
 import { map } from 'rxjs/operators';
 import { OrderItemDto } from '../_models/Dtos/orderItemDto';
 import { OrderItemToDeleteDto } from '../_models/Dtos/orderItemToDeleteDto';
+import { Basket } from '../_models/basket';
 
 @Injectable({
   providedIn: 'root'
@@ -114,6 +115,27 @@ constructor(private http: HttpClient, private authServ: AuthService) { }
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     return this.http.put(env.environment.trueBackUrl + `basket/order-item?qty=${quantity}&orderItemId=${orderItemId}`, {headers});
+  }
+
+  updateBasket(basket: Basket)
+  {
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    console.log(`Przesylane jest: `);
+    console.log(basket);
+
+
+    let summy = 0;
+    basket.orderItem.forEach(el =>
+    {
+      summy += el.quantity * parseFloat(el.item.price);
+    });
+
+    summy = Math.round(summy*100)/100;
+    
+    basket.total = summy.toString();
+
+    return this.http.put(env.environment.trueBackUrl + `basket/wholeUpdate`, basket, {headers});
   }
 
 }

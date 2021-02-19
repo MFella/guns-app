@@ -48,7 +48,7 @@ module.exports = {
 
     changeOrderStatus: async(req, res) => 
     {
-        user_id = req.user._id;
+        let user_id = req.user._id;
         const {orderId, newStatus} = req.body;
 
         const order = await Order.findById(orderId);
@@ -208,7 +208,7 @@ module.exports = {
 
     findAll: async(req, res) => 
     {
-        user_id = req.user._id;
+        let user_id = req.user._id;
 
         if(!user_id) throw new Error("Internal error! User doesnt exists");
 
@@ -250,7 +250,6 @@ module.exports = {
     {
         const {qty, orderItemId} = req.query;
         const user_id = req.user._id;
-        console.log("DSADASDSADAs");
 
 
         if(!qty || !orderItemId)
@@ -329,52 +328,59 @@ module.exports = {
     updateBasket: async(req, res) =>
     {
 
-        const {body} = req.body;
-        
-        const ids = Object.keys(body);
-        const qtys = Object.values(body);
+        let orderFromReq = req.body;
+        let user_id = req.user._id;
 
-        const user_id = req.user._id;
+        const orderFromDb = await Order.findById(orderFromReq._id);
+        const orderItems = orderFromReq.orderItem;
+
+        delete orderFromReq.orderItem;
 
         if(!user_id)
         {
-            res.status(401);
-            return res.send({'res': false, 'msg': 'You are not allowed to do this'});           
+            return res.status(401).send({'res': false, 'msg': 'You are not allowed to do this'});
         }
 
-        const basket = await Order.findOne({user: user_id, status: "BASKET"}).populate('orderItem');
-
-
-        if(!basket)
+        if(user_id.toString() !== orderFromReq.user.toString())
         {
-            res.status(400);
-            return res.send({'res': false, 'msg': 'You are not allowed to do this at this time!'});
+            return res.status(401).send({'res': false, 'msg': 'You are not allowed to do this'});
+        }
+
+        if(orderFromDb._id.toString() !== orderFromReq._id.toString())
+        {
+            return res.status(401).send({'res': false, 'msg': 'You are not allowed to do this'});
         }
 
 
-        for(let i = 0; i < ids.length; i++)
-        {
+        try{
 
-            if(basket.orderItem.includes(ids[i]))
+            console.log(orderItems);
+
+            await Order.updateOne({"_id": orderFromDb._id}, orderFromReq, (err, res) =>
             {
-                let orderItem = await OrderItem.findOne({id: ids[i]});
+                if(err) throw err;
+            });
 
-
-                if(!orderItem)
+            orderItems.forEach(async(el) => 
+            {
+                await OrderItem.updateOne({"_id": el._id}, el, (err, res) =>
                 {
-                    //res.status(404);
-                    console.log('That order item doesnt exists - try with another one');
-                    continue;
-                }
+                    if(err)
+                    {
+                        console.log('Error occured!!!');
+                        console.log(err);
+                    
+                    }
 
-                await orderItem.updateOne({
-                    quantity: qtys[i]
-                }, (err, res) =>
-                {
-                    if(err) throw err;
-                });
+                })
 
-            }
+            })
+
+            console.log('Order should be updated');
+
+        }catch(e)
+        {
+            return res.status(500).send({'res': false, 'msg': 'Cant save current state of basket'});
         }
 
         res.status(200);

@@ -149,6 +149,9 @@ export class GunDetailComponent implements OnInit {
 
   addToBasket()
   {
+
+    //TODO
+    //change 'order:' to 'user_id'
       const body: OrderItemDto = {
         item: this.gun._id,
         order: this.authServ.currentUser.basketId,

@@ -7,4 +7,6 @@ export interface Basket
     total: string;
     discount: string;
     currencyCode: string;
+    typeOfDelivery: string;
+    typeOfPayment: string;
 }

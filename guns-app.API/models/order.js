@@ -35,6 +35,14 @@ const OrderSchema = new mongoose.Schema({
         nullable: true,
         default: "BASKET"
     },
+    typeOfDelivery:{
+        type: String,
+        default: ''
+    },
+    typeOfPayment: {
+        type: String,
+        default: ''
+    },
     orderItem: [{
         type: Schema.Types.ObjectId,
         ref: "OrderItem"
