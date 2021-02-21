@@ -22,7 +22,9 @@
             <p class="d-flex flex-row justify-content-between">Order id <strong>{{order._id}}</strong></p>
             <p class="d-flex flex-row justify-content-between">Start Date <strong>{{order.startDate}}</strong></p>
             <p class="d-flex flex-row justify-content-between">End Date <strong>{{order.endDate}}</strong></p>
-            <p class="d-flex flex-row justify-content-between m-0">Currency Code <strong>{{order.currencyCode}}</strong></p>
+            <p class="d-flex flex-row justify-content-between">Currency Code <strong>{{order.currencyCode}}</strong></p>
+            <p class="d-flex flex-row justify-content-between">Delivery Type <strong>{{order.typeOfDelivery | uppercase}}</strong></p>
+            <p class="d-flex flex-row justify-content-between m-0">Payment Type <strong>{{order.typeOfPayment | uppercase}}</strong></p>
           </div>
         </div>
 
@@ -55,8 +57,12 @@
 
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center">
+            Discount
+            <em>{{this.order.discount | discount}}</em> 
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
             Total
-            <em>{{this.order.total | shortprice}}</em> 
+            <em>{{this.order.total | shortprice}} {{this.order.currencyCode}}</em> 
           </li>
         </ul>
 

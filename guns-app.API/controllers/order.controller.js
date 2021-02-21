@@ -212,14 +212,14 @@ module.exports = {
 
         if(!user_id) throw new Error("Internal error! User doesnt exists");
 
-        const orders = await Order.find({user: user_id});
+        const orders = await Order.find({user: user_id, status: {$ne: 'BASKET'}});
 
         res.send(orders);
     },
 
     findById: async(req, res) => 
     {
-        user_id = req.user._id;
+        let user_id = req.user._id;
         let order_id = req.params.id;
 
         const order = await Order.findById(order_id, (err, res) => 
@@ -385,9 +385,82 @@ module.exports = {
 
         res.status(200);
         return res.send({'res': true, 'msg': 'Basket has been updated'});
+    },
+
+    basketBecameOrder: async(req, res) =>
+    {
+
+        let order = req.body;
+        const user_id = req.user._id;
+
+        if(!user_id)
+        {
+            return res.status(401).send({'res': false, 'msg': 'You are not allowed to do this!'});
+        }
+
+        const basketFromDb = await Order.findOne({_id: order._id, status: "BASKET"});
+
+        if(!basketFromDb)
+        {
+            return res.status(404).send({'res': false, 'msg': 'Basket not found!'});
+        }
+
+        if(basketFromDb.user.toString() !== user_id.toString())
+        {
+            return res.status(403).send({'res': false, 'msg': 'You are not allowed to do this!'});
+        }
+
+        //section of discount
+        const base64regex = /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/;
+        const uuidregex = /^[0-9a-f]{8}-?[0-9a-f]{4}-?[1-5][0-9a-f]{3}-?[89ab][0-9a-f]{3}-?[0-9a-f]{12}$/i;
+
+
+        if(base64regex.test(order.discount_code.toString()))
+        {
+            order.discount = .2;
+            order.total *= .8; 
+
+        } else if(uuidregex.test(order.discount_code.toString()))
+        {
+            order.discount = .25;
+            order.total *= .75; 
+        }
+
+        order.total = Math.round(order.total*100) / 100;
+
+        delete order.discount_code;
+
+        try{
+
+            order.status = 'ORDER';
+
+            await Order.updateOne({"_id": order._id}, order, (err, raw) =>
+            {
+                if(err) throw err;
+
+                console.log(raw);
+                console.log('Maybe updated...');
+            })
+
+            for(let item of order.orderItem)
+            {
+                await OrderItem.updateOne({"_id": item._id}, item, (err, raw) =>
+                {
+                    if(err) console.log(err);
+
+                    console.log(raw);
+                    console.log('Updated one orderItem...');
+                })
+            }
+
+            return res.status(200).send({'res': true, 'msg': 'Order was placed and is awaiting payment.'})
+
+        }catch(e)
+        {
+            return res.status(500).send({'res': false, 'msg': 'Error occured during taking order'});
+        }
 
     }
-
-
+      
 
 }

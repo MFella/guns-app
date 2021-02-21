@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import { OrderItemDto } from '../_models/Dtos/orderItemDto';
 import { OrderItemToDeleteDto } from '../_models/Dtos/orderItemToDeleteDto';
 import { Basket } from '../_models/basket';
+import { BasketLikeDto } from '../_models/basketLikeDto.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -55,7 +56,6 @@ constructor(private http: HttpClient, private authServ: AuthService) { }
         map((res:any) => {
           
           //res = res[0];
-          res.total = 0;
           res.endDate = res.endDate.split('T')[0] + ' ' + res.endDate.split('T')[1].split('.')[0];
           res.startDate = res.startDate.split('T')[0] + ' ' + res.startDate.split('T')[1].split('.')[0];
 
@@ -64,7 +64,7 @@ constructor(private http: HttpClient, private authServ: AuthService) { }
             el.price = el.item.price;
             el.name = el.item.name;
             el.total = parseFloat(el.price) * parseInt(el.quantity);
-            res.total += el.total;
+            //res.total += el.total;
             console.log(el.total);
             delete el.item;
           })
@@ -121,9 +121,6 @@ constructor(private http: HttpClient, private authServ: AuthService) { }
   {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    console.log(`Przesylane jest: `);
-    console.log(basket);
-
 
     let summy = 0;
     basket.orderItem.forEach(el =>
@@ -136,6 +133,15 @@ constructor(private http: HttpClient, private authServ: AuthService) { }
     basket.total = summy.toString();
 
     return this.http.put(env.environment.trueBackUrl + `basket/wholeUpdate`, basket, {headers});
+  }
+
+  basketBecomeOrder(basketLike: BasketLikeDto)
+  {
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.put(env.environment.trueBackUrl + 'basket/', basketLike, {headers});
+
+
   }
 
 }

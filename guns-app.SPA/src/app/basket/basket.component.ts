@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Basket } from '../_models/basket';
+import { BasketLikeDto } from '../_models/basketLikeDto.interface';
 import { IziAlertService } from '../_services/iziAlert.service';
 import { OrdersService } from '../_services/orders.service';
 
@@ -11,14 +12,13 @@ import { OrdersService } from '../_services/orders.service';
 })
 export class BasketComponent implements OnInit {
 
-  curr_delivery: string = '';
-  curr_payment: string = '';
 
   constructor(private route: ActivatedRoute, private ordersServ: OrdersService,
-      private izi: IziAlertService) { }
+      private izi: IziAlertService, private router: Router) { }
 
   userBasket: Basket
   primitiveB: Basket;
+  redeemCode: string = '';
 
   ngOnInit() {
 
@@ -38,7 +38,6 @@ export class BasketComponent implements OnInit {
 
   public changeBack(type: string)
   {
-    this.curr_payment = type;
     this.userBasket.typeOfPayment = type;
 
     const green  = 'rgb(72, 219, 91)';
@@ -75,7 +74,6 @@ export class BasketComponent implements OnInit {
   {
 
     const green  = 'rgb(72, 219, 91)';
-    this.curr_delivery = type;
     this.userBasket.typeOfDelivery = type;
 
     switch(type)
@@ -210,5 +208,34 @@ export class BasketComponent implements OnInit {
 
   //   return JSON.stringify(this.userBasket) === JSON.stringify(this.primitiveB);
   // }
+
+  makeOrder()
+  {
+    let basketToSend: BasketLikeDto = {
+       ...this.userBasket,
+       discount_code: this.redeemCode
+    };
+
+    this.ordersServ.basketBecomeOrder(basketToSend)
+      .subscribe((res: any) =>
+      {
+        console.log(res);
+
+        if(res.res)
+        {
+          this.izi.info(res.msg);
+        }else{
+          this.izi.error(res.msg)
+        }
+
+      }, err =>
+      {
+        this.izi.error(err);
+      }, () =>
+      {
+        this.router.navigate(['search']);
+      })
+
+  }
 
 }

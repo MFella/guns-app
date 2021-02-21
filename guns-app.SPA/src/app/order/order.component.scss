@@ -49,6 +49,11 @@ ul.list-group
         {
             background-color: rgba(255, 193, 7, .9);
         }
+
+        &:nth-last-child(2)
+        {
+            background-color: rgb(0, 255, 115, .6);
+        }
     }
 
 }

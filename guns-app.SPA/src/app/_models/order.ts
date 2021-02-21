@@ -9,4 +9,6 @@ export interface Order{
     currencyCode: string;
     orderItem: OrderItem[];
     total: string;
+    typeOfDelivery: string;
+    typeOfPayment: string;
 }

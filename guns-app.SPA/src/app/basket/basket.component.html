@@ -116,7 +116,7 @@
               <hr class="before_redeem">
               <div class="d-flex flex-row justify-content-between mt-2">
                 <h2 class="redeem">Redeem code</h2>
-                <input type="text" class="form-control w-50 mr-4 redeem-input" placeholder="Try your luck">
+                <input type="text" class="form-control w-50 mr-4 redeem-input" placeholder="Try your luck" [(ngModel)]="this.redeemCode" [ngModelOptions]="{standalone: true}">
               </div>                
 
               <hr class="m-0">
@@ -186,7 +186,9 @@
                     <div class="d-flex flex-row justify-content-between w-100">
                       <p class="card-text"><strong></strong></p>   
                       <button class="mt-4 btn btn-warning" 
-                      [disabled]="this.userBasket.typeOfDelivery.length === 0 || this.userBasket.typeOfPayment.length === 0 || this.userBasket.orderItem.length === 0">
+                      [disabled]="this.userBasket.typeOfDelivery.length === 0 || this.userBasket.typeOfPayment.length === 0 || this.userBasket.orderItem.length === 0"
+                      (click)="makeOrder()"
+                      >
                       Checkout >></button>
                     </div>
                     

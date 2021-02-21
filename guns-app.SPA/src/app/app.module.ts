@@ -34,6 +34,7 @@ import { OrderComponent } from './order/order.component';
 import { OrderResolver } from './_resolvers/order.resolver';
 import { BasketComponent } from './basket/basket.component';
 import { BasketResolver } from './_resolvers/basket.resolver';
+import { DiscountPipe } from './_pipes/discount.pipe';
 
 
 export function appInit(confServ: AppConfigService){
@@ -67,6 +68,7 @@ export function appInit(confServ: AppConfigService){
     GunDetailComponent,
     ShortPipe,
     ShortPricePipe,
+    DiscountPipe,
     OrderListComponent,
     OrderComponent,
     BasketComponent
@@ -109,7 +111,8 @@ export function appInit(confServ: AppConfigService){
   ],
   exports: [
     ShortPipe,
-    ShortPricePipe
+    ShortPricePipe,
+    DiscountPipe
   ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
