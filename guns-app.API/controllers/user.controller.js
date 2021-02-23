@@ -62,9 +62,11 @@ module.exports = {
     
             if(err) throw err;
     
+
+            console.log(user);
             if(!user)
             {
-                return res.json({success: false, msg:'User not found ;/'});
+                return res.status(404).json({success: false, msg:'User not found ;/'});
             }
     
             User.comparePassword(password, user.password, async (err, isMatch) => {
@@ -86,7 +88,7 @@ module.exports = {
                        const basket =  await Order.create({});
                     }
 
-                    res.json({
+                    return res.status(200).json({
                         success: true, 
                         token: 'JWT ' + token,
                         user: {

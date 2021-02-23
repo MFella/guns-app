@@ -13,7 +13,7 @@ html, body
     padding-top: 2rem;
     padding-left: 2rem;
     padding-right: 2rem;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .card
@@ -33,19 +33,19 @@ img
 {
     transition: all .4s;
 
-    &:hover
-    {
-        opacity: .2;
-        //cursor: pointer;
-        ~i{
-            cursor: pointer;
-            //pointer-events: none;
-            display: inline-block;
-            //transform: translate(-7.5rem, 0rem) scale(2.5);
-            color: white;
-            animation: uppAni 1s forwards ease;
-        }
-    }
+    // &:hover
+    // {
+    //     opacity: .2;
+
+    //     ~i{
+    //         cursor: pointer;
+
+    //         display: inline-block;
+
+    //         color: white;
+    //         animation: uppAni 1s forwards ease;
+    //     }
+    // }
 
     ~i{
         display: none;
@@ -66,5 +66,25 @@ img
     0%{transform: translate(-8.5rem, 5rem) scale(1.5); opacity: 0; pointer-events: none;};
     90%{transform: translate(-8.5rem, 4rem) scale(1.5); opacity: .9; pointer-events: none;}
     100%{transform: translate(-8.5rem, 4rem) scale(1.5); opacity: 1; pointer-events: auto;}
+}
+
+@media only screen and (max-width: 767px)
+{
+
+    .email_col
+    {
+        padding-top: 1rem;
+    }
+
+    .profile_image
+    {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .card{
+        width: 100%;
+    }
 }
 

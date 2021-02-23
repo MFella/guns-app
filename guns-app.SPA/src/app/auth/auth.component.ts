@@ -43,7 +43,7 @@ export class AuthComponent implements OnInit {
 
       }, (err) => 
       {
-        this.izi.error(`Some error occured: ${err}`);
+        this.izi.error(`Some error occured: ${err.error.msg}`);
         console.log(err);
       }, () => {
         //automatically log in!

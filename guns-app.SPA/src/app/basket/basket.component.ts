@@ -30,8 +30,13 @@ export class BasketComponent implements OnInit {
 
       this.changeBack(res.basket.typeOfPayment);
       this.changeForDelivery(res.basket.typeOfDelivery);
-      (<any>document.querySelector(`#${res.basket.typeOfPayment}`)).checked = true;
-      (<any>document.querySelector(`#${res.basket.typeOfDelivery}`)).checked = true;
+
+      if(res.basket.typeOfDelivery.length !== 0 && res.basket.typeOfPayment.length !== 0)
+      {
+        (<any>document.querySelector(`#${res.basket.typeOfPayment}`)).checked = true;
+        (<any>document.querySelector(`#${res.basket.typeOfDelivery}`)).checked = true;
+      }
+
 
     })
   }

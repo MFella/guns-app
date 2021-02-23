@@ -11,7 +11,7 @@ const OrderSchema = new mongoose.Schema({
     },
     startDate: {
         type: Date,
-        default: new Date(2001,1,1)
+        //default: new Date(2001,1,1)
     },
     endDate: {
         type: Date,

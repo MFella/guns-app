@@ -154,7 +154,6 @@ export class GunDetailComponent implements OnInit {
     //change 'order:' to 'user_id'
       const body: OrderItemDto = {
         item: this.gun._id,
-        order: this.authServ.currentUser.basketId,
         quantity: this.quantity
       };
 

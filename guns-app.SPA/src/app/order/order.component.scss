@@ -123,14 +123,14 @@ img.item_image
     .container
     {
 
-        ul.list-group
-        {
-            li:not(:last-child){
-                display: flex;
-                justify-content: center !important;
+        // ul.list-group
+        // {
+        //     li:not(:last-child){
+        //         display: flex;
+        //         justify-content: center !important;
                 
-            }
-        }
+        //     }
+        // }
 
 
         .row{

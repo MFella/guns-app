@@ -40,6 +40,7 @@ export class AuthService {
       tap(r => this.setSession(r)),
       shareReplay(),
       map((res: any) => {
+
         if(res)
         {
           this.currentUser = res.user;

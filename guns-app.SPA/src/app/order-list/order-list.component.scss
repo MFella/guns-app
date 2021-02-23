@@ -11,8 +11,9 @@
     background: #3A1C71;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to left, #FFAF7B, #D76D77, #3A1C71);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to left, #FFAF7B, #D76D77, #3A1C71); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    height: calc(100vh - 4rem);
+    min-height: calc(100vh - 4rem);
     padding-top: 3rem;
+    padding-bottom: 2rem;
 }
 
 main 
@@ -34,16 +35,16 @@ h1
 }
 
 .card{
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0,0,0,.2);
     border-radius: .7rem;
 }
 
 ul{
 
     width: 100%;
-    li:not(:first-child){
+    li{
 
-        opacity: .75;
+        opacity: .92;
         transition: all .4s;
     
         &:hover{
@@ -68,6 +69,11 @@ span.badge
         box-shadow: none;
         transform: scale(1.1);
     }
+}
+
+.nothing_pulse
+{
+    animation: nothing_pulse 4s infinite linear;
 }
 
 // table
@@ -111,6 +117,15 @@ span.badge
 //         }
 //     }
 // }
+
+@keyframes nothing_pulse
+{
+    0%{color: rgba(0,0,0,1);}
+    25%{color: rgba(0,0,0,.875); letter-spacing: .05rem;}
+    50%{color: rgba(0,0,0,.75); letter-spacing: .1rem;}
+    75%{color: rgba(0,0,0,.875); letter-spacing: .05rem;}
+    100%{color: rgba(0,0,0,1);}
+}
 
 @media only screen and (max-width: 1000px)
 {
@@ -164,5 +179,21 @@ span.badge
         width: 100% !important;
     }
 
+    .nothing_pulse
+    {
+        animation: none;
+        i{
+            display: none;
+        }
+    }
+
+}
+
+@media only screen and(max-width:390px)
+{
+    .nothing_pulse
+    {
+        font-size: 1.3rem;
+    }
 
 }

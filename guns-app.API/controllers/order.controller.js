@@ -98,7 +98,7 @@ module.exports = {
         if(basket === null)
         {
             //create basket
-           const basket =  await Order.create({user: req.user._id});
+           const basket =  await Order.create({user: req.user._id, startDate: new Date()});
            return res.send({"basket": basket});
         }
 
@@ -411,22 +411,17 @@ module.exports = {
         }
 
         //section of discount
-        const base64regex = /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/;
-        const uuidregex = /^[0-9a-f]{8}-?[0-9a-f]{4}-?[1-5][0-9a-f]{3}-?[89ab][0-9a-f]{3}-?[0-9a-f]{12}$/i;
+        const uuid4regex = /^[0-9a-f]{8}-?[0-9a-f]{4}-?[1-5][0-9a-f]{3}-?[89ab][0-9a-f]{3}-?[0-9a-f]{12}$/i;
 
-
-        if(base64regex.test(order.discount_code.toString()))
-        {
-            order.discount = .2;
-            order.total *= .8; 
-
-        } else if(uuidregex.test(order.discount_code.toString()))
+        
+        if(uuid4regex.test(order.discount_code.toString()))
         {
             order.discount = .25;
             order.total *= .75; 
         }
 
         order.total = Math.round(order.total*100) / 100;
+        order.endDate = new Date();
 
         delete order.discount_code;
 

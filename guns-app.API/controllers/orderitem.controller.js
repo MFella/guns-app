@@ -8,17 +8,23 @@ module.exports = {
 
         //TODO
         //this 'order' should be omitted
-        const {item, order, quantity} = req.body;
+        const {item, quantity} = req.body;
         const user_id = req.user._id;
 
         const gunFromDb = await Gun.findById(item);
-        const orderFromDb = await Order.findOne({status: "BASKET", user: req.user._id});
+        let orderFromDb = await Order.findOne({status: "BASKET", user: req.user._id});
 
 
-        if(gunFromDb == undefined || orderFromDb == undefined || quantity == 0)
+        if(gunFromDb == undefined || quantity == 0)
         {
             return res.status(400)
             .json({success: false, reason: "Gun doesnt exist or order doesnt exist"});
+        }
+
+        // try to create basket
+        if(orderFromDb === undefined || orderFromDb === null)
+        {
+            orderFromDb = await Order.create({user: req.user._id, startDate: new Date()});
         }
 
         if(orderFromDb.status !== 'BASKET')
