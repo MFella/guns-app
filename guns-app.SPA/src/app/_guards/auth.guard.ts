@@ -16,6 +16,7 @@ export class AuthGuard implements CanActivate {
     {
       return true;
     }
+
     this.izi.error('You are not allowed to do this!');
     this.router.navigate(['/']);
     return false;

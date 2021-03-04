@@ -22,6 +22,7 @@ export class BasketResolver implements Resolve<Order> {
             return this.ordersServ.getBasket().pipe(
                 catchError(err => {
                     this.izi.error('Problem occured during retriving data');
+                    console.log(err);
                     this.router.navigate(['/']);
                     return of(null);
                 })

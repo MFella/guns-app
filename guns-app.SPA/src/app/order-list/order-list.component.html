@@ -24,6 +24,13 @@
           <h2 class="nothing_pulse"> <i class="fa fa-arrow-right"></i> Nothing to show right now <i class="fa fa-arrow-left"></i> </h2>
         </div>
 
+        <pagination [boundaryLinks]="true" [totalItems]="this.pagination.totalItems" [rotate]="true" 
+        [maxSize]="5" firstText="&laquo;" lastText="&raquo;"
+        (pageChanged)="pageChanged($event)" [itemsPerPage]="this.pagination.itemsPerPage"
+        *ngIf="this.pagination.totalItems !== 0"
+        responsive="true"
+        ></pagination>
+
 
 
       </div>

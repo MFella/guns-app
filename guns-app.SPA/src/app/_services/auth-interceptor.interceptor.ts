@@ -3,15 +3,20 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
+import { catchError } from 'rxjs/operators';
+import { IziAlertService } from './iziAlert.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthInterceptorInterceptor implements HttpInterceptor {
 
-  constructor(private authServ: AuthService) {}
+  constructor(private authServ: AuthService, private router: Router,
+      private izi: IziAlertService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
@@ -26,7 +31,21 @@ export class AuthInterceptorInterceptor implements HttpInterceptor {
         headers: request.headers.set('Authorization', 'Bearer ' + idToken.split(' ')[1])
       });
 
-      return next.handle(cloned);
+      return next.handle(cloned)
+        .pipe(
+          catchError((response: HttpErrorResponse) =>
+          {
+
+            if(response instanceof HttpErrorResponse && response.status === 401)
+            {
+              this.router.navigate(['']);
+              this.authServ.logout();
+              this.izi.error('Session expired');
+            }
+            return throwError(response);
+
+          })
+        )
 
     }
     else 

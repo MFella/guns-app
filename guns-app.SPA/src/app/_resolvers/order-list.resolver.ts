@@ -2,8 +2,6 @@ import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, Resolve, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Gun } from '../_models/gun';
-import { GunsService } from '../_services/guns.service';
 import { IziAlertService } from '../_services/iziAlert.service';
 import {OrderRecord} from '../_models/orderrecord';
 import { OrdersService } from '../_services/orders.service';

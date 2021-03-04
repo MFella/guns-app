@@ -217,6 +217,31 @@ module.exports = {
         res.send(orders);
     },
 
+    findAllWithPagination: async(req, res) =>
+    {
+        let user_id = req.user._id;
+
+        if(!user_id)
+        {
+            return res.status(500).send({"res": false, "msg": "Internal error"});
+        }
+
+        const {pageNumber, pageSize} = req.query;
+
+        try{
+
+            const orders = await Order.find({user: user_id})
+            .skip((parseInt(pageNumber) - 1) * parseInt(pageSize)).limit(parseInt(pageSize));
+
+            return res.status(200).send({"res": true, "orders": orders});
+
+        }catch(e)
+        {
+            return res.status(500).send({"res": false, "msg": "Error occured during fetching data"});
+        }
+
+    },
+
     findById: async(req, res) => 
     {
         let user_id = req.user._id;
