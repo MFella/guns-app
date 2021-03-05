@@ -228,12 +228,29 @@ module.exports = {
 
         const {pageNumber, pageSize} = req.query;
 
+        if(pageNumber === undefined || pageSize === undefined)
+        {
+            return res.status(404).send({"res": false, "msg": "Invalid pagination"});
+        }
+
         try{
 
-            const orders = await Order.find({user: user_id})
+            let orders = await Order.find({user: user_id})
             .skip((parseInt(pageNumber) - 1) * parseInt(pageSize)).limit(parseInt(pageSize));
+            //orders = {...orders};
 
-            return res.status(200).send({"res": true, "orders": orders});
+            const length = await Order.find({user: user_id}).count();
+            const totalPages = Math.round(parseInt(length) / parseInt(pageSize));
+
+            const pagination = {
+                currentPage: pageNumber,
+                itemsPerPage: pageSize,
+                totalItems: length,
+                totalPages
+            };
+
+            console.log(pagination);
+            return res.status(200).send({"res": true, "orders": orders, "pagination": pagination});
 
         }catch(e)
         {

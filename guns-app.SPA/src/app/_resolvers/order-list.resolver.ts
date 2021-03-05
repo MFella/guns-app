@@ -14,8 +14,16 @@ export class OrderListResolver implements Resolve<OrderRecord[]> {
 
         resolve(route: ActivatedRouteSnapshot): Observable<OrderRecord[]>
         {
-            return this.orderServ.getAllOrders().pipe(
+            let pagination = 
+            {
+               pageNumber: 1,
+               pageSize: 4 
+            };
+
+
+            return this.orderServ.getAllOrders(pagination.pageNumber, pagination.pageSize).pipe(
                 catchError(err => {
+                    
                     this.izi.error('Problem occured during retriving data');
                     this.router.navigate(['/']);
                     return of(null);

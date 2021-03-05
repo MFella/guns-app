@@ -19,19 +19,20 @@ constructor(private http: HttpClient, private authServ: AuthService) { }
 
 
 
-  getAllOrders()
+  getAllOrders(pageNumber: number, pageSize: number)
   {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
 
-    return this.http.get(env.environment.trueBackUrl + 'order-list', {headers})
+    return this.http.get(env.environment.trueBackUrl + `order-list?pageNumber=${pageNumber}&pageSize=${pageSize}`, {headers})
       .pipe(
-        map((res: Array<any>) => 
+        map((res: any) => 
           {
             let i = 0;
             let ordersReduces: OrderRecord[] = [];
+            console.log(res.orders);
 
-            for(const el of res)
+            for(const el of res.orders)
             {
               ordersReduces[i] = {id: "0", startDate: "22-02-2001", total: "0"};
               ordersReduces[i].id = el._id;
@@ -40,7 +41,8 @@ constructor(private http: HttpClient, private authServ: AuthService) { }
               i++;
             }
 
-            return ordersReduces;
+            console.log("XD");
+            return [ordersReduces, res.pagination];
 
           })
       )
