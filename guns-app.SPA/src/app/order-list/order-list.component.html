@@ -9,7 +9,7 @@
         </div>
   
         <div class="col-md-12 pt-2 d-flex justify-content-center">
-          <ul class="list-group mt-4">
+          <ul class="list-group mt-4 order_list">
   
             <li class="list-group-item d-flex justify-content-between align-items-center order_record" *ngFor="let order of orderList; let i = index;">
               <span> <strong>Id:</strong>  {{order.id}} </span> 
@@ -24,14 +24,16 @@
           <h2 class="nothing_pulse"> <i class="fa fa-arrow-right"></i> Nothing to show right now <i class="fa fa-arrow-left"></i> </h2>
         </div>
 
-        <pagination [boundaryLinks]="true" [totalItems]="this.pagination.totalItems" [rotate]="true" 
-        [maxSize]="5" firstText="&laquo;" lastText="&raquo;"
-        (pageChanged)="pageChanged($event)" [itemsPerPage]="this.pagination.itemsPerPage"
-        *ngIf="this.pagination.totalItems !== 0"
-        responsive="true"
-        ></pagination>
-
-
+        <div class="row d-flex justify-content-end pagination_container">
+      
+            <pagination [boundaryLinks]="true" [totalItems]="this.pagination.totalItems" [rotate]="true" 
+            [maxSize]="5" firstText="&laquo;" lastText="&raquo;"
+            (pageChanged)="pageChanged($event)" [itemsPerPage]="this.pagination.itemsPerPage"
+            *ngIf="this.pagination.totalItems !== 0"
+            responsive="true"
+            ></pagination>
+          </div>
+       
 
       </div>
     </div>

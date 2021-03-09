@@ -235,11 +235,11 @@ module.exports = {
 
         try{
 
-            let orders = await Order.find({user: user_id})
+            let orders = await Order.find({user: user_id, status: {$ne:"BASKET"}})
             .skip((parseInt(pageNumber) - 1) * parseInt(pageSize)).limit(parseInt(pageSize));
             //orders = {...orders};
 
-            const length = await Order.find({user: user_id}).count();
+            const length = await Order.find({user: user_id, status: {$ne: "BASKET"}}).count();
             const totalPages = Math.round(parseInt(length) / parseInt(pageSize));
 
             const pagination = {
@@ -249,7 +249,7 @@ module.exports = {
                 totalPages
             };
 
-            console.log(pagination);
+            console.log(length);
             return res.status(200).send({"res": true, "orders": orders, "pagination": pagination});
 
         }catch(e)
