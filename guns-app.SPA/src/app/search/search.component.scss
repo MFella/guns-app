@@ -4,6 +4,7 @@
 {
     max-width: 1400px;
     //overflow: hidden;
+    min-height: 60vh;
 }
 
 main 
@@ -111,8 +112,15 @@ span
     }
 
     .card_sort{
-        width: 100%;
+        width: calc(100% + 10vw) !important;
     }
+
+    .alert.alert-secondary
+    {
+        width: 75%;
+        margin-left: auto;
+    }
+
 }
 
 
@@ -148,6 +156,11 @@ span
         input{
             width: 80% !important;
         }
+    }
+
+    .alert.alert-secondary
+    {
+        width: 100%;
     }
 }
 
