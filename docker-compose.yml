@@ -1,0 +1,50 @@
+version: '3.8'
+
+networks:
+  app-tier:
+    name: app-tier
+    driver: bridge
+    #external: true
+
+
+services:
+  guns-api:
+    build:
+      context: ./guns-app.API
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3090:3090"
+    container_name: guns-api
+    networks:
+      - app-tier
+    volumes:
+      - ./guns-app.API:/usr/src/app/guns-app.API
+      - /usr/src/app/guns-app.API/node_modules
+    depends_on: 
+      - db
+  guns-spa:
+    build:
+      context: ./guns-app.SPA
+      dockerfile: Dockerfile.dev
+    ports:
+      - "4200:4200"
+    expose:
+      - '4200'
+    container_name: guns-spa
+    volumes:
+      - ./guns-app.SPA:/usr/src/app/guns-app.SPA
+      - /usr/src/app/guns-app.SPA/node_modules
+  db:
+    image: mongo:latest
+    restart: always
+    container_name: guns-db
+    networks:
+      - app-tier
+    #environment:
+      #MONGO_INITDB_ROOT_USERNAME: root
+      #MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - "27017:27017"
+    expose:
+      - "27017"
+
