@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app",
-    "seed": "node seeder.js"
+    "seed": "node ./seed/gun-seeder.js"
   },
   "dependencies": {
     "bcryptjs": "*",

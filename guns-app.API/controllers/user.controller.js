@@ -80,12 +80,12 @@ module.exports = {
                     
                     //return user without the password!
                     //retrieve basket
-                    const basket = await Order.findOne({status: "BASKET"});
+                    let basket = await Order.findOne({status: "BASKET"});
 
                     if(basket === null)
                     {
                         //create basket
-                       const basket =  await Order.create({});
+                        basket =  await Order.create({});
                     }
 
                     return res.status(200).json({
@@ -108,22 +108,21 @@ module.exports = {
         })
 
 
-    },
-
-    userExists: (user) => 
-    {
-        User.findOne({email: user.email}, (err, res) =>
-        {
-            if (err) throw err;
-
-            if(res)
-            {
-                return true;
-
-            } else return false;
-        })
-
     }
+    // userExists: (user) => 
+    // {
+    //     User.findOne({email: user.email}, (err, res) =>
+    //     {
+    //         if (err) throw err;
+
+    //         if(res)
+    //         {
+    //             return true;
+
+    //         } else return false;
+    //     })
+
+    // }
 }
 
 //module.exports = 
