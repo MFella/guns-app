@@ -23,7 +23,7 @@ router.get('/comment/all', Comment.getAllComments);
 router.post('/users/register', User.addUser);
 router.post('/users/login', User.loginUser);
 
-//Retrieve Curriensies
+//Retrieve Curriencies
 router.get('/currencyrate', CurrencyRate.retrieveCurrency);
 // router.get('/currencyrate/update', CurrencyRate.setMyCurrency);
 
@@ -48,13 +48,10 @@ router.put('/basket/',
     Order.basketBecameOrder
 );
 
-//todo
-
 router.put('/basket/wholeUpdate',
     passport.authenticate('jwt', {session: false}),
     Order.updateBasket
 );
-
 
 
 router.put('/basket/order-item',
@@ -81,14 +78,5 @@ router.post('/order-item/',
     passport.authenticate('jwt', {session: false}),
     OrderItem.create
 )
-
-// function ensureAuth(req, res, next){
-    
-//     console.log(req.headers['authorization']);
-//     if(req.isAuthenticated())
-//     {
-//         return next();
-//     }else res.redirect('/users/login');
-// }
 
 module.exports = router; 

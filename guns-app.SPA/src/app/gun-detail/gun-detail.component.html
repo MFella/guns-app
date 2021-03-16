@@ -13,11 +13,6 @@
         </nav>
       </div>
 
-      <!-- <div class="col-md-12">
-        <p>Name: {{this.gun.name}}</p>
-        <p>Description: {{this.gun.description}}</p>
-        <p>Price: {{this.gun.price}}</p>
-      </div> -->
       <div class="col-md-8 col-xs-12 photos_container">
 
 
@@ -25,11 +20,7 @@
 
 
         <div class="d-flex flex-direction-row justify-content-around smart_list">
-          <!-- <i class="caret"></i>
-          <img src="../../assets/register_back.png" alt="..." class="img-thumbnail" (click)="changeMain($event)">
-          <img src="../../assets/register_back.png" alt="..." class="img-thumbnail">
-          <img src="../../assets/register_back.png" alt="..." class="img-thumbnail">
-          <i class="caret"></i> -->
+
 
           <div id="carousel_control" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
@@ -99,11 +90,10 @@
                 <input type="number" class="form-control form-control-sm amount" min=1 max=100 value=1 [(ngModel)]="this.quantity"> 
               </p>
             </div>
-            <div class="card-footer d-flex justify-content-between">
+            <div class="card-footer d-flex justify-content-center" *ngIf="this.authServ?.currentUser">
               <!-- <small class="text-muted">Last updated 3 mins ago</small> -->
 
               <button class="btn btn-sm btn-info" *ngIf="this.authServ.currentUser !== null" (click)="addToBasket()">To Basket <i class="fa fa-shopping-cart"></i></button>
-              <button class="btn btn-sm btn-warning ">Purchase now <i class="fa fa-euro"></i></button>
 
             </div>
           </div>

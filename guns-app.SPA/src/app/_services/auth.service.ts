@@ -11,9 +11,7 @@ import { IziAlertService } from './iziAlert.service';
 })
 export class AuthService {
 
-  //everything only for testing purposes
-
-  backUrl: string = 'http://localhost:3090/users';
+  //backUrl: string = 'http://localhost:3090/users';
   currentUser: any;
   basket: any;
 

@@ -1,7 +1,7 @@
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const config = require('../config/database');
+const config = require('../config/config');
 const Order = require('../models/order');
 
 
@@ -75,7 +75,7 @@ module.exports = {
     
                 if(isMatch)
                 {
-                    const token = jwt.sign({user}, config.secret, { expiresIn: 604800 }); 
+                    const token = jwt.sign({user}, config.secret, { expiresIn: "1d" }); 
                     req.user = token;
                     
                     //return user without the password!

@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
-const config = require('./config/database');
+const config = require('./config/config');
 const routes = require('./routes/routes');
 
 
@@ -22,14 +22,11 @@ mongoose.connection.on('error', (err) => {
 
 const app = express();
 
-const users = require('./routes/users');
-const guns = require('./routes/gun');
-const comments = require('./routes/comment');
-const port = 3090;
+//const port = 3090;
 
 //CORS Middleware
 app.use(cors({
-    origin: 'http://localhost:4200'
+    origin: config.origin
 }));
 //app.use(cors());
 
@@ -43,11 +40,6 @@ app.use(bodyParser.json());
 app.listenerCount(passport.initialize());
 app.listenerCount(passport.session());
 
-//
-
-//app.use('/users', users);
-//app.use('/guns', guns);
-//app.use('/comments', comments);
 app.use(routes);
 
 
@@ -58,6 +50,6 @@ app.get('/', (req, res) => {
 
 
 //Start Server 
-app.listen(port, () => {
-    console.log('Server started on port ' + port );
+app.listen(config.port, () => {
+    console.log('Server started on port ' + config.port );
 });   

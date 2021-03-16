@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
-const config = require('../config/database');
+const config = require('../config/config');
 const { response } = require('express');
 const SALT = 10;
 const Schema = mongoose.Schema;
